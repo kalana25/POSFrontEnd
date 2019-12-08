@@ -11,13 +11,13 @@ export class ApiService <T extends BaseEntity> {
 
     constructor(
         protected url:string,
-        protected endPoint:string,
+        protected resource:string,
         protected http:HttpClient ) {
 
     }
 
-    get():Observable<T[]>{
-        return this.http.get<T[]>(`${this.url}/${this.endPoint}`)
+    get(endPoint:string):Observable<T[]>{
+        return this.http.get<T[]>(`${this.url}/${this.resource}/${endPoint}`)
         .pipe(
             tap(_=>console.log('fetched resources')),
             catchError(this.handleError('getResources',[]))
@@ -25,7 +25,7 @@ export class ApiService <T extends BaseEntity> {
     }
 
     getById(id:number):Observable<T> {
-        return this.http.get<T>(`${this.url}/${this.endPoint}/${id}`)
+        return this.http.get<T>(`${this.url}/${this.resource}/${id}`)
         .pipe(
             tap(_=>console.log('fetched resource')),
             catchError(this.handleError<T>(`getbyId=${id}`))
@@ -33,7 +33,7 @@ export class ApiService <T extends BaseEntity> {
     }
 
     update(arg:T):Observable<any> {
-        return this.http.put(`${this.url}/${this.endPoint}/update/${arg.id}`,arg,httpOptions)
+        return this.http.put(`${this.url}/${this.resource}/update/${arg.id}`,arg,httpOptions)
         .pipe(
           tap(_=>console.log(`updated ${typeof(arg)} ${arg .id }`)),
           catchError(this.handleError<T>(`update${typeof(arg)}`))
@@ -41,7 +41,7 @@ export class ApiService <T extends BaseEntity> {
     }
 
     add(arg:T):Observable<T> {
-        return this.http.post<T>(`${this.url}/${this.endPoint}/save`,arg,httpOptions)
+        return this.http.post<T>(`${this.url}/${this.resource}/save`,arg,httpOptions)
         .pipe(
           tap((resPro:T) => console.log(`added ${typeof(arg)} /w id${arg.id }`)),
           catchError(this.handleError<T>(`add${typeof(arg)}`))
@@ -50,7 +50,7 @@ export class ApiService <T extends BaseEntity> {
 
     delete(arg:T | number): Observable<T> {
         const id = typeof arg === 'number' ? arg: arg.id;
-        return this.http.delete<T>(`${this.url}/${this.endPoint}/delete/${id}`,httpOptions)
+        return this.http.delete<T>(`${this.url}/${this.resource}/delete/${id}`,httpOptions)
         .pipe(
           tap(_=>console.log(`deleted ${typeof(arg)} /w id ${id}`)),
           catchError(this.handleError<T>(`delete${typeof(arg)}`))

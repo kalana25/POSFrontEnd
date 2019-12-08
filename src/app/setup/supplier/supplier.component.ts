@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../../services/supplier.service';
+import { Supplier } from 'src/app/models/supplier';
 
 @Component({
   selector: 'app-supplier',
@@ -8,11 +9,17 @@ import { SupplierService } from '../../services/supplier.service';
 })
 export class SupplierComponent implements OnInit {
 
+  supplierList:Array<Supplier>;
+
   constructor(
     public supplierService:SupplierService) { }
 
   ngOnInit() {
-    this.supplierService.get()
+    const endPoint = "findall"
+    this.supplierService.get(endPoint)
+    .subscribe(res=>{
+      this.supplierList = res;
+    })
   }
 
 }

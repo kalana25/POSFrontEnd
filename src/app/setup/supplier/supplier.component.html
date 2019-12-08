@@ -1,1 +1,19 @@
-<p>supplier works!</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact no</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let supplier of supplierList">
+            <td>{{supplier.code}}</td>
+            <td>{{supplier.name}}</td>
+            <td>{{supplier.email}}</td>
+            <td>{{supplier.contactNo}}</td>
+        </tr>
+    </tbody>
+</table>
