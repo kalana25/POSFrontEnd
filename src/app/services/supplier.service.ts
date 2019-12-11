@@ -12,7 +12,7 @@ export class SupplierService extends ApiService<Supplier> {
   constructor(
     protected http:HttpClient,
     protected config:AppSettingsService
-  ) { 
+  ) {
     super(config.apiUrl,"Suppliers",http);
   }
 }
