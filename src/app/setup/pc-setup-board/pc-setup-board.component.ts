@@ -11,6 +11,7 @@ import { Category } from 'src/app/models/category';
 })
 export class PcSetupBoardComponent implements OnInit {
 
+  CurrentLevel:number = 1;
   categoryList:Array<Category>;
 
   constructor(
@@ -20,12 +21,24 @@ export class PcSetupBoardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoryService.get("findall")
+    this.categoryService.get(`findall/level/${this.CurrentLevel}`)
     .subscribe(res=>{
       this.categoryList=res;
     },err=>{
       console.error(err);
     });
+    
+  }
+
+  OnCategoryClick(category:Category){
+    this.CurrentLevel+=1;
+    this.categoryService.get(`findall/parent/${category.id}/level/${this.CurrentLevel}`)
+    .subscribe(res=>{
+      debugger;
+      this.categoryList = res;
+    },err=>{
+      console.error(err);
+    })
     
   }
 
