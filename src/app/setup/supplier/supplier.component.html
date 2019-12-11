@@ -1,19 +1,17 @@
 
-<table>
-    <thead>
-        <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact no</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let supplier of supplierList">
-            <td>{{supplier.code}}</td>
-            <td>{{supplier.name}}</td>
-            <td>{{supplier.email}}</td>
-            <td>{{supplier.contactNo}}</td>
-        </tr>
-    </tbody>
-</table>
+<mat-card class="example-card" *ngFor="let supplier of supplierList">
+    <mat-card-header>
+        <mat-card-title> {{supplier.name}} </mat-card-title>
+        <mat-card-subtitle> {{supplier.code}} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{supplier.description}}<br>
+            <span>{{supplier.contactNo}}</span>
+            <span>{{supplier.email}}</span>
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+</mat-card>
