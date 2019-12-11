@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
+import { ProductService } from '../../services/product.service';
+import { subscribeOn } from 'rxjs/operators';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-pc-setup-board',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PcSetupBoardComponent implements OnInit {
 
-  constructor() { }
+  categoryList:Array<Category>;
+
+  constructor(
+    protected productService:ProductService,
+    protected categoryService:CategoryService
+  ) { }
 
   ngOnInit() {
+
+    this.categoryService.get("findall")
+    .subscribe(res=>{
+      this.categoryList=res;
+    },err=>{
+      console.error(err);
+    });
+    
   }
 
 }

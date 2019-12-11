@@ -1,0 +1,8 @@
+.example-card {
+    max-width: 150px;
+    margin-bottom: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 25px;
+    display: inline-block;
+  }
