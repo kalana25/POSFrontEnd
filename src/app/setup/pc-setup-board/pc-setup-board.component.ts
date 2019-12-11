@@ -13,6 +13,7 @@ export class PcSetupBoardComponent implements OnInit {
 
   CurrentLevel:number = 1;
   categoryList:Array<Category>;
+  selectionStack:Array<Category>=[];
 
   constructor(
     protected productService:ProductService,
@@ -30,16 +31,26 @@ export class PcSetupBoardComponent implements OnInit {
     
   }
 
-  OnCategoryClick(category:Category){
-    this.CurrentLevel+=1;
+  OnCategoryClick(category:Category) {
+    this.categoryList.push(category);
+    this.CurrentLevel +=1;
     this.categoryService.get(`findall/parent/${category.id}/level/${this.CurrentLevel}`)
     .subscribe(res=>{
-      debugger;
       this.categoryList = res;
     },err=>{
       console.error(err);
     })
-    
+  }
+
+  GoBackByOneLevel() {
+    const category:Category = this.selectionStack.pop();
+    this.CurrentLevel -=1;
+    this.categoryService.get(`findall/parent/${category.parentCategoryId}/level/${this.CurrentLevel}`)
+    .subscribe(res=>{
+      this.categoryList = res;
+    },err=>{
+      console.error(err);
+    })
   }
 
 }
