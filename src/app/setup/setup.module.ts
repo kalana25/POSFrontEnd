@@ -8,10 +8,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 //import {MatRippleModule} from '@angular/material/core';
 import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component';
+import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SupplierAddEditComponent } from './supplier/supplier-add-edit/supplier-add-edit.component';
 
 
 @NgModule({
-  declarations: [SupplierComponent, CategoryComponent, ProductComponent, PcSetupBoardComponent],
+  declarations: [SupplierComponent, CategoryComponent, ProductComponent, PcSetupBoardComponent, SupplierListComponent, SupplierAddEditComponent],
   imports: [
     CommonModule,
     HttpClientModule,
