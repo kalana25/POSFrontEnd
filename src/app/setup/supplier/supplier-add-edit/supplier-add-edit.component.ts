@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-supplier-add-edit',
   templateUrl: './supplier-add-edit.component.html',

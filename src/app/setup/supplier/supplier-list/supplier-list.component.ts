@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../../../services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier-list',
@@ -12,7 +13,8 @@ export class SupplierListComponent implements OnInit {
   supplierList:Array<Supplier>;
 
   constructor(
-    public supplierService:SupplierService) { }
+    public supplierService:SupplierService,
+    private router:Router) { }
 
   ngOnInit() {
     const endPoint = "findall"
@@ -20,6 +22,10 @@ export class SupplierListComponent implements OnInit {
     .subscribe(res=>{
       this.supplierList = res;
     })
+  }
+
+  OnAddClick() {
+    this.router.navigate(['/supplier-new'])
   }
 
 }
