@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
+import { Supplier } from 'src/app/models/supplier';
+import { SupplierService } from 'src/app/services/supplier.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier-add-edit',
@@ -8,10 +11,12 @@ import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 })
 export class SupplierAddEditComponent implements OnInit {
 
-  supplierFormGroup:FormGroup;
+  public supplierFormGroup:FormGroup;
 
   constructor(
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router:Router,
+    private supplierService:SupplierService
   ) { 
 
   }
@@ -25,13 +30,28 @@ export class SupplierAddEditComponent implements OnInit {
       'Telephone':[''],
       'Email':[''],
       'Comment':[''],
-      'BlackList':[''],
-      'Active':['']
+      'BlackList':[false],
+      'Active':[true]
     });
   }
 
   ngOnInit() {
     this.initForm();
+  }
+
+  OnSubmit() {
+    if(this.supplierFormGroup.valid) {
+      this.SaveSupplier(this.supplierFormGroup.value);
+    }
+  }
+
+  SaveSupplier(supplier:Supplier) {
+    this.supplierService.add(supplier)
+    .subscribe(res=>{
+      this.router.navigate(['/supplier-list']);
+    },err=>{
+      console.error(err);
+    })
   }
 
 }

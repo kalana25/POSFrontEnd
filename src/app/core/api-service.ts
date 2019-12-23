@@ -1,6 +1,6 @@
 import { of,Observable } from 'rxjs';
 import { catchError,tap } from 'rxjs/operators';
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpResponse} from '@angular/common/http';
 import { BaseEntity } from './base-entity';
 
 const httpOptions ={

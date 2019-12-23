@@ -1,12 +1,18 @@
-<form class="supplier-form" [formGroup]="supplierFormGroup" >
+<form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()">
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Code</mat-label>
         <input matInput placeholder="Placeholder" formControlName="Code">
+        <mat-error *ngIf="supplierFormGroup.get('Code').invalid">
+            <span *ngIf="supplierFormGroup.get('Code').errors.required">Mandatory</span>
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Placeholder" fromControlName="Name">
+        <input matInput placeholder="Placeholder" formControlName="Name">
+        <mat-error *ngIf="supplierFormGroup.get('Name').invalid">
+            <span *ngIf="supplierFormGroup.get('Name').errors.required">Mandatory</span>
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
@@ -36,5 +42,5 @@
 
     <mat-slide-toggle formControlName="BlackList">Blacklist</mat-slide-toggle>    
     <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
-    <button mat-button class="float-right">Save</button>
+    <button type="submit" mat-button class="float-right" >Save</button>
 </form>
