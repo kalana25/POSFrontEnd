@@ -1,40 +1,40 @@
-<form class="supplier-form" autocomplete="off">
+<form class="supplier-form" [formGroup]="supplierFormGroup" >
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Code</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Placeholder" formControlName="Code">
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Placeholder" fromControlName="Name">
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Description"></textarea>
+        <textarea matInput placeholder="Description" formControlName="Description"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Contact no</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Placeholder" formControlName="ContactNo">
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Telephone</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Placeholder" formControlName="Telephone">
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Placeholder" formControlName="Email">
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Comment</mat-label>
-        <textarea matInput placeholder="Leave a comment"></textarea>
+        <textarea matInput placeholder="Leave a comment" formControlName="Comment"></textarea>
     </mat-form-field>
 
-    <mat-slide-toggle>Blacklist</mat-slide-toggle>    
-    <mat-slide-toggle>Active</mat-slide-toggle>
+    <mat-slide-toggle formControlName="BlackList">Blacklist</mat-slide-toggle>    
+    <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
     <button mat-button class="float-right">Save</button>
 </form>

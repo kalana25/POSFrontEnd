@@ -4,6 +4,8 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,6 +23,8 @@ import { SupplierAddEditComponent } from './supplier/supplier-add-edit/supplier-
   imports: [
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-supplier-add-edit',
@@ -8,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupplierAddEditComponent implements OnInit {
 
-  constructor() { }
+  supplierFormGroup:FormGroup;
+
+  constructor(
+    private fb:FormBuilder
+  ) { 
+
+  }
+
+  private initForm() {
+    this.supplierFormGroup = this.fb.group({
+      'Code':['',Validators.required],
+      'Name':['',Validators.required],
+      'Description':[''],
+      'ContactNo':[''],
+      'Telephone':[''],
+      'Email':[''],
+      'Comment':[''],
+      'BlackList':[''],
+      'Active':['']
+    });
+  }
 
   ngOnInit() {
+    this.initForm();
   }
 
 }
