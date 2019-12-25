@@ -27,7 +27,7 @@ export class BsActionMenuComponent implements OnInit {
   OnAddProduct() {
     this.bottomSheetRef.dismiss();
     this.bottomSheetRef.afterDismissed().subscribe(res=>{
-      console.log("route to product");
+      this.router.navigate(['/product-new']);
     })
   }
 
