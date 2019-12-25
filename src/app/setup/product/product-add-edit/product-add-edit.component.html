@@ -1,1 +1,41 @@
-<p>product-add-edit works!</p>
+<form class="product-form" [formGroup]="prouctFormGroup" (ngSubmit)="OnSubmit()">
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="Code">
+        <mat-error *ngIf="prouctFormGroup.get('Code').invalid">
+            <span *ngIf="prouctFormGroup.get('Code').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="Name">
+        <mat-error *ngIf="prouctFormGroup.get('Name').invalid">
+            <span *ngIf="prouctFormGroup.get('Name').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="CategoryId">
+            <mat-option *ngFor="let category of parentCategoryList" [value]="category.value">
+                {{category.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="prouctFormGroup.get('CategoryId').invalid">
+            <span *ngIf="prouctFormGroup.get('CategoryId').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="Description" formControlName="Price">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Barcode</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="Barcode">
+    </mat-form-field>
+    <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
+    <button type="submit" mat-button class="float-right" >Save</button>
+</form>
