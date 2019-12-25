@@ -3,6 +3,8 @@ import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { subscribeOn } from 'rxjs/operators';
 import { Category } from 'src/app/models/category';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { BsActionMenuComponent } from './bs-action-menu/bs-action-menu.component';
 
 @Component({
   selector: 'app-pc-setup-board',
@@ -17,7 +19,8 @@ export class PcSetupBoardComponent implements OnInit {
 
   constructor(
     protected productService:ProductService,
-    protected categoryService:CategoryService
+    protected categoryService:CategoryService,
+    protected bottomSheet:MatBottomSheet
   ) { }
 
   ngOnInit() {
@@ -51,6 +54,11 @@ export class PcSetupBoardComponent implements OnInit {
     },err=>{
       console.error(err);
     })
+  }
+
+  OnAddNewClick() {
+    const bottomSheetRef = this.bottomSheet.open(BsActionMenuComponent);
+
   }
 
 }

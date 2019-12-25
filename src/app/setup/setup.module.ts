@@ -12,14 +12,24 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 //import {MatRippleModule} from '@angular/material/core';
 import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './supplier/supplier-add-edit/supplier-add-edit.component';
+import { BsActionMenuComponent } from './pc-setup-board/bs-action-menu/bs-action-menu.component';
 
 
 @NgModule({
-  declarations: [SupplierComponent, CategoryComponent, ProductComponent, PcSetupBoardComponent, SupplierListComponent, SupplierAddEditComponent],
+  declarations: [
+    SupplierComponent, 
+    CategoryComponent, 
+    ProductComponent, 
+    PcSetupBoardComponent, 
+    SupplierListComponent, 
+    SupplierAddEditComponent, 
+    BsActionMenuComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -30,13 +40,15 @@ import { SupplierAddEditComponent } from './supplier/supplier-add-edit/supplier-
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
-    MatButtonModule
+    MatButtonModule,
+    MatBottomSheetModule
     //MatRippleModule
   ],
   exports:[
     SupplierComponent,
     CategoryComponent,
     ProductComponent
-  ]
+  ],
+  entryComponents:[BsActionMenuComponent]
 })
 export class SetupModule { }
