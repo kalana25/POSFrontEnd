@@ -6,6 +6,8 @@ import { SupplierListComponent } from './setup/supplier/supplier-list/supplier-l
 import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/supplier-add-edit.component';
 
 import { CategoryComponent } from './setup/category/category.component';
+import { CategoryAddEditComponent } from './setup/category/category-add-edit/category-add-edit.component';
+
 import { ProductComponent } from './setup/product/product.component';
 import { PcSetupBoardComponent } from './setup/pc-setup-board/pc-setup-board.component';
 
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path:'supplier-new',component:SupplierAddEditComponent},
   
   {path:'category',component:CategoryComponent},
+  {path:'category-new',component:CategoryAddEditComponent},
+  
   {path:'product',component:ProductComponent},
   {path:'product-config',component:PcSetupBoardComponent}
 ];

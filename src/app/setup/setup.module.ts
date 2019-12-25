@@ -18,6 +18,7 @@ import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './supplier/supplier-add-edit/supplier-add-edit.component';
 import { BsActionMenuComponent } from './pc-setup-board/bs-action-menu/bs-action-menu.component';
+import { CategoryAddEditComponent } from './category/category-add-edit/category-add-edit.component';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { BsActionMenuComponent } from './pc-setup-board/bs-action-menu/bs-action
     PcSetupBoardComponent, 
     SupplierListComponent, 
     SupplierAddEditComponent, 
-    BsActionMenuComponent
+    BsActionMenuComponent, CategoryAddEditComponent
   ],
   imports: [
     CommonModule,
