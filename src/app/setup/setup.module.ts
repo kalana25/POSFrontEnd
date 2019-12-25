@@ -12,7 +12,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+
 //import {MatRippleModule} from '@angular/material/core';
 import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
@@ -42,6 +44,7 @@ import { CategoryAddEditComponent } from './category/category-add-edit/category-
     MatInputModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatSelectModule,
     MatBottomSheetModule
     //MatRippleModule
   ],

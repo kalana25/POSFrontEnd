@@ -21,7 +21,6 @@ export class BsActionMenuComponent implements OnInit {
     this.bottomSheetRef.dismiss();
     this.bottomSheetRef.afterDismissed().subscribe(res=>{
       this.router.navigate(['/category-new']);
-      
     })
   }
 

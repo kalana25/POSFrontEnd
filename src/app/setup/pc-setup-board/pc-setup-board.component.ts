@@ -5,6 +5,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { Category } from 'src/app/models/category';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { BsActionMenuComponent } from './bs-action-menu/bs-action-menu.component';
+import { DropdownItem } from 'src/app/core/dropdown-item';
 
 @Component({
   selector: 'app-pc-setup-board',

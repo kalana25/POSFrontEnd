@@ -1,1 +1,38 @@
-<p>category-add-edit works!</p>
+<form class="category-form" [formGroup]="categoryFormGroup" (ngSubmit)="OnSubmit()">
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Code</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="Code">
+            <mat-error *ngIf="categoryFormGroup.get('Code').invalid">
+                <span *ngIf="categoryFormGroup.get('Code').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="Name">
+            <mat-error *ngIf="categoryFormGroup.get('Name').invalid">
+                <span *ngIf="categoryFormGroup.get('Name').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" formControlName="Description"></textarea>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Parent</mat-label>
+            <mat-select formControlName="ParentCategoryId">
+                <mat-option *ngFor="let category of parentCategoryList" [value]="category.value">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Level</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="Level">
+        </mat-form-field>
+        <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
+        <button type="submit" mat-button class="float-right" >Save</button>
+    </form>
