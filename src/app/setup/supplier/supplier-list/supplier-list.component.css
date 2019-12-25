@@ -1,6 +1,5 @@
 .example-card {
     max-width: 400px;
-    margin-bottom: 25px;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 25px;
@@ -15,6 +14,10 @@
   .icon-add{
     font-size: 80px;
     color:white;
+  }
+
+  .icon-red {
+    color: rgb(218, 30, 30)
   }
 
   .card-add{

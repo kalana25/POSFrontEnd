@@ -28,4 +28,14 @@ export class SupplierListComponent implements OnInit {
     this.router.navigate(['/supplier-new'])
   }
 
+  OnDelete(id:number) {
+    console.log(id);
+    
+  }
+
+  OnEdit(supplier) {
+    console.log(supplier);
+    
+  }
+
 }
