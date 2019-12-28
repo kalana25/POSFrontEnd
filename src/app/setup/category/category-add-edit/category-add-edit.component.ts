@@ -26,17 +26,29 @@ export class CategoryAddEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategories();
     this.initForm();
   }
 
   private initForm() {
+    let parentCategoryId=null;
+    let parentCategory=null;
+    const data = JSON.parse(localStorage.getItem("ABC"));
+    if(data.currentLevel===1) {
+      parentCategoryId=0;
+      parentCategory="No parent";
+    } else {
+      const category = data.parentCategory as Category;
+      parentCategoryId=category.id;
+      parentCategory=category.name;
+    }
+    
     this.categoryFormGroup = this.fb.group({
       'Code':['',Validators.required],
       'Name':['',Validators.required],
       'Description':[''],
-      'ParentCategoryId':[''],
-      'Level':[''],
+      'ParentCategoryId':[parentCategoryId,Validators.required],
+      'ParentCategoryName':[{value:parentCategory,disabled:true}],
+      'Level':[data.currentLevel],
       'Active':[true]
     });
   }
