@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
+import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-bs-action-menu',
@@ -11,10 +12,12 @@ export class BsActionMenuComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private bottomSheetRef:MatBottomSheetRef<BsActionMenuComponent>
+    private bottomSheetRef:MatBottomSheetRef<BsActionMenuComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
   ) { }
 
   ngOnInit() {
+    localStorage.setItem('ABC',JSON.stringify(this.data));
   }
 
   OnAddCategory() {

@@ -36,7 +36,7 @@ export class PcSetupBoardComponent implements OnInit {
   }
 
   OnCategoryClick(category:Category) {
-    this.categoryList.push(category);
+    this.selectionStack.push(category);
     this.CurrentLevel +=1;
     this.categoryService.get(`findall/parent/${category.id}/level/${this.CurrentLevel}`)
     .subscribe(res=>{
@@ -58,7 +58,9 @@ export class PcSetupBoardComponent implements OnInit {
   }
 
   OnAddNewClick() {
-    const bottomSheetRef = this.bottomSheet.open(BsActionMenuComponent);
+    const length = this.selectionStack.length;
+    const lastCategory = this.selectionStack[length-1];
+    const bottomSheetRef = this.bottomSheet.open(BsActionMenuComponent,{data:{currentLevel:this.CurrentLevel,parentCategory:lastCategory}});
 
   }
 

@@ -17,15 +17,9 @@
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Category</mat-label>
-        <mat-select formControlName="CategoryId">
-            <mat-option *ngFor="let category of parentCategoryList" [value]="category.value">
-                {{category.viewValue}}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="prouctFormGroup.get('CategoryId').invalid">
-            <span *ngIf="prouctFormGroup.get('CategoryId').errors.required">Mandatory</span>
-        </mat-error>
+        <input matInput placeholder="Placeholder" formControlName="CategoryName">
     </mat-form-field>
+    <input type="hidden" formControlName="CategoryId">
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Price</mat-label>
