@@ -14,6 +14,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatDialogModule} from '@angular/material/dialog';
 
 //import {MatRippleModule} from '@angular/material/core';
 import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component';
@@ -46,7 +47,8 @@ import { ProductAddEditComponent } from './product/product-add-edit/product-add-
     MatSlideToggleModule,
     MatButtonModule,
     MatSelectModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatDialogModule
     //MatRippleModule
   ],
   exports:[

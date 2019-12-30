@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../../../services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-supplier-list',
@@ -14,7 +15,8 @@ export class SupplierListComponent implements OnInit {
 
   constructor(
     public supplierService:SupplierService,
-    private router:Router) { }
+    private router:Router,
+    private dialog:MatDialog) { }
 
   ngOnInit() {
     const endPoint = "findall"
@@ -29,7 +31,7 @@ export class SupplierListComponent implements OnInit {
   }
 
   OnDelete(id:number) {
-    console.log(id);
+    //this.dialog.open()
     
   }
 
