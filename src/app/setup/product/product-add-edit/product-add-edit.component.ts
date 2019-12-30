@@ -31,13 +31,24 @@ export class ProductAddEditComponent implements OnInit {
   }
 
   private initForm() {
+    let categoryName=null;
+    let categoryId=null;
     const data = JSON.parse(localStorage.getItem("ABC"));
-    const category = data.parentCategory as Category;
+    if(data.currentLevel===1) {
+      categoryName='No category';
+      categoryId = '0';
+    } else {
+      const category = data.parentCategory as Category;
+      categoryId =category.id;
+      categoryName = category.name;
+    }
+    
+    
     this.prouctFormGroup = this.fb.group({
       'Code':['',Validators.required],
       'Name':['',Validators.required],
-      'CategoryName':[{value:category.name,disabled:true}],
-      'CategoryId':[category.id,Validators.required],
+      'CategoryName':[{value:categoryName,disabled:true}],
+      'CategoryId':[categoryId,Validators.required],
       'Price':[''],
       'Barcode':[''],
       'Active':[true]
