@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+
 import { CommonModule } from '@angular/common';
 import { SupplierComponent } from './supplier/supplier.component';
 import { CategoryComponent } from './category/category.component';
@@ -37,6 +39,7 @@ import { ProductAddEditComponent } from './product/product-add-edit/product-add-
   ],
   imports: [
     CommonModule,
+    SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
     
