@@ -4,7 +4,7 @@ import { Supplier } from 'src/app/models/supplier';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
-import { DialogContentComponent } from '../../../shared/components/dialog-content/dialog-content.component';
+import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
 
 @Component({
   selector: 'app-supplier-list',
@@ -21,6 +21,10 @@ export class SupplierListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
+    this.LoadSupplierList();
+  }
+
+  private LoadSupplierList() {
     const endPoint = "findall"
     this.supplierService.get(endPoint)
     .subscribe(res=>{
@@ -33,18 +37,15 @@ export class SupplierListComponent implements OnInit {
   }
 
   OnDelete(id:number) {
-    const dialogData = new DialogData();
-    dialogData.dialogTitle ="Supplier Delete";
-    dialogData.dialogContent = "Are you sure you want to delete this supplier ?";
-    dialogData.buttonCancel = true;
-    dialogData.buttonConfim = true;
-    this.dialog.open(DialogContentComponent,
+    let dialogRef = this.dialog.open(SupplierDeleteDialogComponent,
       {
         width:'500px',
         height: '180px',
-        data:dialogData
+        data:id
       });
-    
+    dialogRef.afterClosed().subscribe(res=>{
+      this.LoadSupplierList();
+    })
   }
 
   OnEdit(supplier) {
