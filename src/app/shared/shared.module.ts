@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { noTwoWhiteSpacesValidator,numbersValidator} from 'src/app/shared/Validations/common-validation'
 
 
 @NgModule({

@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { Supplier } from 'src/app/models/supplier';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Router } from '@angular/router';
+import { noTwoWhiteSpacesValidator,numbersValidator } from 'src/app/shared/Validations/common-validation'
 
 @Component({
   selector: 'app-supplier-add-edit',
@@ -26,9 +27,9 @@ export class SupplierAddEditComponent implements OnInit {
       'Code':['',Validators.required],
       'Name':['',Validators.required],
       'Description':[''],
-      'ContactNo':[''],
-      'Telephone':[''],
-      'Email':[''],
+      'ContactNo':['',[Validators.maxLength(10),numbersValidator()]],
+      'Telephone':['',[Validators.maxLength(10),numbersValidator()]],
+      'Email':['',Validators.email],
       'Comment':[''],
       'BlackList':[false],
       'Active':[true]
