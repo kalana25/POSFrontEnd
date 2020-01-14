@@ -21,3 +21,7 @@
     background-color:rgba(0,0,0,.87);
     cursor: pointer;
   }
+
+  .icon-red {
+    color: rgb(218, 30, 30)
+  }

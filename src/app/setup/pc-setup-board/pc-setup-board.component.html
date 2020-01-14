@@ -8,7 +8,12 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-
+        <button mat-icon-button (click)="OnDeleteCategory(category.id)" >
+            <mat-icon class="icon-red">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="OnEditCategory(category)">
+            <mat-icon>edit</mat-icon>
+        </button>
     </mat-card-actions>
 </mat-card>
 
@@ -22,7 +27,12 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-
+        <button mat-icon-button (click)="OnDeleteProduct(product.id)" >
+            <mat-icon class="icon-red">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="OnEditProduct(product)">
+            <mat-icon>edit</mat-icon>
+        </button>
     </mat-card-actions>
 </mat-card>
 
