@@ -6,6 +6,7 @@ import { SupplierListComponent } from './setup/supplier/supplier-list/supplier-l
 import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/supplier-add-edit.component';
 
 import { CategoryComponent } from './setup/category/category.component';
+import { CategoryListComponent } from './setup/category/category-list/category-list.component';
 import { CategoryAddEditComponent } from './setup/category/category-add-edit/category-add-edit.component';
 
 import { ProductListComponent } from './setup/product/product-list/product-list.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path:'supplier-list',component:SupplierListComponent},
   {path:'supplier-new',component:SupplierAddEditComponent},
   
-  {path:'category',component:CategoryComponent},
+  {path:'category-list',component:CategoryListComponent},
   {path:'category-new',component:CategoryAddEditComponent},
   
   {path:'product-list',component:ProductListComponent},
