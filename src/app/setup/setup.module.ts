@@ -4,7 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { SupplierComponent } from './supplier/supplier.component';
 import { CategoryComponent } from './category/category.component';
-import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -32,13 +31,13 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 
 @NgModule({
   declarations: [
+    ProductListComponent,
     SupplierComponent, 
     CategoryComponent, 
-    ProductComponent, 
     PcSetupBoardComponent, 
     SupplierListComponent, 
     SupplierAddEditComponent, 
-    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent, ProductListComponent
+    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +60,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
   exports:[
     SupplierComponent,
     CategoryComponent,
-    ProductComponent
+    ProductListComponent
   ],
   entryComponents:[BsActionMenuComponent,SupplierDeleteDialogComponent]
 })
