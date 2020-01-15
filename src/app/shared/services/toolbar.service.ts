@@ -3,7 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class DialogService {
-
+export class ToolBarService {
+  
   constructor() { }
+
+  goBackPCSetupByOne() {
+
+  }
+
 }

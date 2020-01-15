@@ -45,3 +45,10 @@
         <mat-icon class="icon-add">add</mat-icon>
     </mat-card-content>
 </mat-card>
+
+<button mat-fab class="fab-plus" (click)="OnAddNewClick()">
+    <mat-icon>add</mat-icon>
+</button>
+<button mat-fab class="fab-back" *ngIf="BackButtonVisible" (click)="GoBackByOneLevel()">
+    <mat-icon>arrow_back</mat-icon>
+</button>

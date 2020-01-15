@@ -12,6 +12,7 @@ import { DialogContentComponent } from 'src/app/shared/components/dialog-content
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDeleteAction } from '../category/dialog-actions/confirmation-action';
 import { ProductDeleteAction } from '../product/dialog-action/confirmation-action';
+import { ToolBarService } from '../../shared/services/toolbar.service';
 @Component({
   selector: 'app-pc-setup-board',
   templateUrl: './pc-setup-board.component.html',
@@ -19,6 +20,7 @@ import { ProductDeleteAction } from '../product/dialog-action/confirmation-actio
 })
 export class PcSetupBoardComponent implements OnInit {
 
+  BackButtonVisible:boolean = false;
   CurrentLevel:number = 1;
   categoryList:Array<Category>;
   selectionStack:Array<Category>=[];
@@ -28,6 +30,7 @@ export class PcSetupBoardComponent implements OnInit {
   constructor(
     protected productService:ProductService,
     protected categoryService:CategoryService,
+    protected toolbarService:ToolBarService,
     protected bottomSheet:MatBottomSheet,
     protected dialog:MatDialog
   ) { }
@@ -51,6 +54,7 @@ export class PcSetupBoardComponent implements OnInit {
   OnCategoryClick(category:Category) {
     this.selectionStack.push(category);
     this.CurrentLevel +=1;
+    this.BackButtonVisible= true;
     forkJoin(
       this.categoryService.get(`findall/parent/${category.id}/level/${this.CurrentLevel}`),
       this.productService.get(`findall/categoryId/${category.id}`)
@@ -65,7 +69,13 @@ export class PcSetupBoardComponent implements OnInit {
 
   GoBackByOneLevel() {
     const category:Category = this.selectionStack.pop();
-    this.CurrentLevel -=1;
+    if(this.CurrentLevel>1) {
+      this.CurrentLevel -=1;
+      this.BackButtonVisible = (this.CurrentLevel===1) ? false : true;
+    }
+    else
+      return;
+
     this.categoryService.get(`findall/parent/${category.parentCategoryId}/level/${this.CurrentLevel}`)
     .subscribe(res=>{
       this.categoryList = res;
