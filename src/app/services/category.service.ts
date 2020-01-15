@@ -15,4 +15,6 @@ export class CategoryService extends ApiService<Category>{
   ) { 
     super(config.apiUrl,"ItemCategories",http);
   }
+
+  
 }

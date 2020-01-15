@@ -10,7 +10,7 @@ import { Product } from 'src/app/models/product';
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { CategoryDeleteAction } from '../category/dialog-actions/confirmation-action';
 @Component({
   selector: 'app-pc-setup-board',
   templateUrl: './pc-setup-board.component.html',
@@ -83,8 +83,10 @@ export class PcSetupBoardComponent implements OnInit {
     let confrimData = new DialogData()
     confrimData.buttonCancel = true;
     confrimData.buttonConfim = true;
-    confrimData.dialogContent = "Category Delete";
-    confrimData.dialogTitle = "Are you sure you want to delete this cateogry ?";
+    confrimData.dialogTitle = "Category Delete";
+    confrimData.dialogContent = "Are you sure you want to delete this cateogry ?";
+    confrimData.action = new CategoryDeleteAction(this.categoryService,id);
+    
     let dialogRef = this.dialog.open(DialogContentComponent,
       {
         width:'500px',
@@ -92,7 +94,7 @@ export class PcSetupBoardComponent implements OnInit {
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
-      console.log('After close ');
+      console.log('After close');
     })
   }
 
