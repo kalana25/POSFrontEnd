@@ -3,7 +3,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CommonModule } from '@angular/common';
 import { SupplierComponent } from './supplier/supplier.component';
-import { CategoryComponent } from './category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -34,11 +33,11 @@ import { CategoryListComponent } from './category/category-list/category-list.co
   declarations: [
     ProductListComponent,
     SupplierComponent, 
-    CategoryComponent, 
+    CategoryListComponent, 
     PcSetupBoardComponent, 
     SupplierListComponent, 
     SupplierAddEditComponent, 
-    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent, CategoryListComponent,
+    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +59,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
   ],
   exports:[
     SupplierComponent,
-    CategoryComponent,
+    CategoryListComponent,
     ProductListComponent
   ],
   entryComponents:[BsActionMenuComponent,SupplierDeleteDialogComponent]

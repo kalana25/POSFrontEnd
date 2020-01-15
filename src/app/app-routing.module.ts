@@ -5,7 +5,6 @@ import { SupplierComponent } from './setup/supplier/supplier.component';
 import { SupplierListComponent } from './setup/supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/supplier-add-edit.component';
 
-import { CategoryComponent } from './setup/category/category.component';
 import { CategoryListComponent } from './setup/category/category-list/category-list.component';
 import { CategoryAddEditComponent } from './setup/category/category-add-edit/category-add-edit.component';
 
