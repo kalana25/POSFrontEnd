@@ -47,6 +47,7 @@ export class PcSetupBoardComponent implements OnInit {
     
   }
 
+
   OnCategoryClick(category:Category) {
     this.selectionStack.push(category);
     this.CurrentLevel +=1;
@@ -95,7 +96,7 @@ export class PcSetupBoardComponent implements OnInit {
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
-      console.log('After close');
+      this.ReloadCurrentLevelCategories();
     })
   }
 
@@ -114,7 +115,27 @@ export class PcSetupBoardComponent implements OnInit {
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
-      console.log('After close');
+      this.ReloadCurrentLevelProducts();
+    })
+  }
+
+  ReloadCurrentLevelCategories() {
+    this.categoryService.get(`findall/level/${this.CurrentLevel}`)
+    .subscribe(res=>{
+      this.categoryList = res;
+    },err=>{
+      console.error(err);
+    })
+  }
+
+  ReloadCurrentLevelProducts() {
+    const stackLength = this.selectionStack.length;
+    const parentCategory = this.selectionStack[stackLength-1];
+    this.productService.get(`findall/categoryId/${parentCategory.id}`)
+    .subscribe(res=>{
+      this.productList = res;
+    },err=>{
+      console.log(err);
     })
   }
 
