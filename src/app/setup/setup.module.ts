@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { CommonModule } from '@angular/common';
-import { SupplierComponent } from './supplier/supplier.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -32,10 +31,9 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 @NgModule({
   declarations: [
     ProductListComponent,
-    SupplierComponent, 
+    SupplierListComponent, 
     CategoryListComponent, 
     PcSetupBoardComponent, 
-    SupplierListComponent, 
     SupplierAddEditComponent, 
     BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent,
   ],
@@ -58,7 +56,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     //MatRippleModule
   ],
   exports:[
-    SupplierComponent,
+    SupplierListComponent,
     CategoryListComponent,
     ProductListComponent
   ],

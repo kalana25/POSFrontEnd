@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SupplierComponent } from './setup/supplier/supplier.component';
 import { SupplierListComponent } from './setup/supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/supplier-add-edit.component';
 
@@ -15,7 +14,6 @@ import { from } from 'rxjs';
 
 
 const routes: Routes = [
-  {path:'supplier',component:SupplierComponent},
   {path:'supplier-list',component:SupplierListComponent},
   {path:'supplier-new',component:SupplierAddEditComponent},
   
