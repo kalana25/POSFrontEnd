@@ -22,11 +22,11 @@ export class SupplierListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
-    this.IsLoading = true;
     this.LoadSupplierList();
   }
 
   private LoadSupplierList() {
+    this.IsLoading = true;
     const endPoint = "findall"
     this.supplierService.get(endPoint)
     .subscribe(res=>{
@@ -36,6 +36,8 @@ export class SupplierListComponent implements OnInit {
   }
 
   OnAddClick() {
+    console.log(this.supplierList);
+    
     this.router.navigate(['/supplier-new'])
   }
 
