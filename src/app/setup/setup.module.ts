@@ -27,6 +27,7 @@ import { BsActionMenuComponent } from './pc-setup-board/bs-action-menu/bs-action
 import { CategoryAddEditComponent } from './category/category-add-edit/category-add-edit.component';
 import { ProductAddEditComponent } from './product/product-add-edit/product-add-edit.component';
 import { SupplierDeleteDialogComponent } from './supplier/supplier-delete-dialog/supplier-delete-dialog.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { SupplierDeleteDialogComponent } from './supplier/supplier-delete-dialog
     PcSetupBoardComponent, 
     SupplierListComponent, 
     SupplierAddEditComponent, 
-    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent
+    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent, ProductListComponent
   ],
   imports: [
     CommonModule,

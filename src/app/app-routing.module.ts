@@ -8,9 +8,10 @@ import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/sup
 import { CategoryComponent } from './setup/category/category.component';
 import { CategoryAddEditComponent } from './setup/category/category-add-edit/category-add-edit.component';
 
-import { ProductComponent } from './setup/product/product.component';
+import { ProductListComponent } from './setup/product/product-list/product-list.component';
 import { ProductAddEditComponent } from './setup/product/product-add-edit/product-add-edit.component';
 import { PcSetupBoardComponent } from './setup/pc-setup-board/pc-setup-board.component';
+import { from } from 'rxjs';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path:'category',component:CategoryComponent},
   {path:'category-new',component:CategoryAddEditComponent},
   
-  {path:'product',component:ProductComponent},
+  {path:'product-list',component:ProductListComponent},
   {path:'product-new',component:ProductAddEditComponent},
   {path:'product-config',component:PcSetupBoardComponent}
 ];
