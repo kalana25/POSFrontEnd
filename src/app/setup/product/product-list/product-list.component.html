@@ -1,1 +1,26 @@
-<p>product-list works!</p>
+
+<mat-card class="example-card" *ngFor="let product of productList">
+    <mat-card-header>
+        <mat-card-title> {{product.name}} </mat-card-title>
+        <mat-card-subtitle> {{product.code}} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{product.price}}<br>
+            <span>{{product.barcode}}</span>
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-icon-button (click)="OnDelete(product.id)" >
+            <mat-icon class="icon-red">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="OnEdit(product)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-spinner class="cus-spinner" [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+<button mat-fab class="fab-plus" (click)="OnAddClick()">
+    <mat-icon>add</mat-icon>
+</button>

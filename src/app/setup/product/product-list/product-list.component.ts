@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../../services/product.service';
+import { Product } from 'src/app/models/product';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-list',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { }
+  productList:Array<Product>;
+  IsLoading:boolean = false;
+
+  constructor(
+    public productService:ProductService,
+    private router:Router,
+    private dialog:MatDialog) { }
 
   ngOnInit() {
+    this.LoadSupplierList();
   }
+
+  private LoadSupplierList() {
+    this.IsLoading = true;
+    const endPoint = "findall"
+    this.productService.get(endPoint)
+    .subscribe(res=>{
+      this.IsLoading = false;
+      this.productList = res;
+    })
+  }
+
+  OnAddClick() {
+    this.router.navigate(['/product-new'])
+  }
+
 
 }

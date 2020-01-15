@@ -83,7 +83,7 @@ export class PcSetupBoardComponent implements OnInit {
       return;
     forkJoin(
       this.categoryService.get(`findall/parent/${category.parentCategoryId}/level/${this.CurrentLevel}`),
-      this.productService.get(`findall/categoryId/${category.id}`)
+      this.productService.get(`findall/categoryId/${category.parentCategoryId}`)
     )
     .subscribe(([cat,pro])=>{
       this.IsLoading = false;
