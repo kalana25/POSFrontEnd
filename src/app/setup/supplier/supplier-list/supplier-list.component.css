@@ -29,3 +29,19 @@
     background-color:rgba(0,0,0,.87);
     cursor: pointer;
   }
+
+.fab-plus {
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color:#009432;
+    color: white;
+}
+
+.cus-spinner {
+    position: absolute;
+    left: 46%;
+    top: 45%;
+}

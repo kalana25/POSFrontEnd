@@ -34,9 +34,9 @@
     margin-bottom: 15px;
     background-color:#009432;
     color: white;
-  }
+}
 
-  .fab-back {
+.fab-back {
     position:absolute;
     left: 0;
     bottom: 0;
@@ -44,10 +44,10 @@
     margin-bottom: 15px;
     background-color:rgba(0,0,0,.87);
     color: white;
-  }
+}
 
-  .cus-spinner {
+.cus-spinner {
     position: absolute;
     left: 46%;
     top: 45%;
-  }
+}

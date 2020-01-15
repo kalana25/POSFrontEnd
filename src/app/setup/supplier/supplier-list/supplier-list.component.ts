@@ -14,6 +14,7 @@ import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplie
 export class SupplierListComponent implements OnInit {
 
   supplierList:Array<Supplier>;
+  IsLoading:boolean = false;
 
   constructor(
     public supplierService:SupplierService,
@@ -21,6 +22,7 @@ export class SupplierListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
+    this.IsLoading = true;
     this.LoadSupplierList();
   }
 
@@ -28,6 +30,7 @@ export class SupplierListComponent implements OnInit {
     const endPoint = "findall"
     this.supplierService.get(endPoint)
     .subscribe(res=>{
+      this.IsLoading = false;
       this.supplierList = res;
     })
   }

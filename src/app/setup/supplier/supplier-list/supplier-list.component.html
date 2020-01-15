@@ -20,8 +20,8 @@
         </button>
     </mat-card-actions>
 </mat-card>
-<mat-card class="card-add example-card" (click)="OnAddClick()">
-    <mat-card-content>
-        <mat-icon class="icon-add">add</mat-icon>
-    </mat-card-content>
-</mat-card>
+
+<mat-spinner class="cus-spinner" [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+<button mat-fab class="fab-plus" (click)="OnAddClick()">
+    <mat-icon>add</mat-icon>
+</button>
