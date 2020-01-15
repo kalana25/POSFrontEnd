@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 //import {MatRippleModule} from '@angular/material/core';
 import { PcSetupBoardComponent } from './pc-setup-board/pc-setup-board.component';
@@ -52,7 +53,8 @@ import { SupplierDeleteDialogComponent } from './supplier/supplier-delete-dialog
     MatButtonModule,
     MatSelectModule,
     MatBottomSheetModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
     //MatRippleModule
   ],
   exports:[

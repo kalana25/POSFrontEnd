@@ -26,7 +26,7 @@
     color: rgb(218, 30, 30)
   }
 
-  .fab-plus{
+  .fab-plus {
     position:absolute;
     right: 0;
     bottom: 0;
@@ -36,7 +36,7 @@
     color: white;
   }
 
-  .fab-back{
+  .fab-back {
     position:absolute;
     left: 0;
     bottom: 0;
@@ -44,4 +44,10 @@
     margin-bottom: 15px;
     background-color:rgba(0,0,0,.87);
     color: white;
+  }
+
+  .cus-spinner {
+    position: absolute;
+    left: 46%;
+    top: 45%;
   }

@@ -21,6 +21,8 @@ import { ToolBarService } from '../../shared/services/toolbar.service';
 export class PcSetupBoardComponent implements OnInit {
 
   BackButtonVisible:boolean = false;
+  IsLoading:boolean = false;
+
   CurrentLevel:number = 1;
   categoryList:Array<Category>;
   selectionStack:Array<Category>=[];
@@ -36,12 +38,13 @@ export class PcSetupBoardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.IsLoading = true;
     forkJoin(
       this.categoryService.get(`findall/level/${this.CurrentLevel}`),
       this.productService.get(`findall/categoryId/0`)
     )
     .subscribe(([cat,pro])=>{
+      this.IsLoading =false;
       this.categoryList=cat;
       this.productList=pro;
     },err=>{
@@ -52,6 +55,7 @@ export class PcSetupBoardComponent implements OnInit {
 
 
   OnCategoryClick(category:Category) {
+    this.IsLoading = true;
     this.selectionStack.push(category);
     this.CurrentLevel +=1;
     this.BackButtonVisible= true;
@@ -60,6 +64,7 @@ export class PcSetupBoardComponent implements OnInit {
       this.productService.get(`findall/categoryId/${category.id}`)
     )
     .subscribe(([cat,pro])=>{
+      this.IsLoading = false; 
       this.categoryList = cat;
       this.productList = pro;
     },err=>{
@@ -68,6 +73,7 @@ export class PcSetupBoardComponent implements OnInit {
   }
 
   GoBackByOneLevel() {
+    this.IsLoading = true;
     const category:Category = this.selectionStack.pop();
     if(this.CurrentLevel>1) {
       this.CurrentLevel -=1;
@@ -75,10 +81,14 @@ export class PcSetupBoardComponent implements OnInit {
     }
     else
       return;
-
-    this.categoryService.get(`findall/parent/${category.parentCategoryId}/level/${this.CurrentLevel}`)
-    .subscribe(res=>{
-      this.categoryList = res;
+    forkJoin(
+      this.categoryService.get(`findall/parent/${category.parentCategoryId}/level/${this.CurrentLevel}`),
+      this.productService.get(`findall/categoryId/${category.id}`)
+    )
+    .subscribe(([cat,pro])=>{
+      this.IsLoading = false;
+      this.categoryList = cat;
+      this.productList = pro;
     },err=>{
       console.error(err);
     })
@@ -130,8 +140,10 @@ export class PcSetupBoardComponent implements OnInit {
   }
 
   ReloadCurrentLevelCategories() {
+    this.IsLoading = true;
     this.categoryService.get(`findall/level/${this.CurrentLevel}`)
     .subscribe(res=>{
+      this.IsLoading = false;
       this.categoryList = res;
     },err=>{
       console.error(err);
@@ -139,10 +151,12 @@ export class PcSetupBoardComponent implements OnInit {
   }
 
   ReloadCurrentLevelProducts() {
+    this.IsLoading = true;
     const stackLength = this.selectionStack.length;
     const parentCategory = this.selectionStack[stackLength-1];
     this.productService.get(`findall/categoryId/${parentCategory.id}`)
     .subscribe(res=>{
+      this.IsLoading = false;
       this.productList = res;
     },err=>{
       console.log(err);
