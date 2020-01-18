@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router,ActivatedRoute } from '@angular/router';
 import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';
 import { pipe } from 'rxjs';
@@ -16,21 +17,47 @@ import { CategoryAddEditComponent } from '../../category/category-add-edit/categ
 })
 export class ProductAddEditComponent implements OnInit {
 
+  pcsetupScreenActive:boolean = true;
   prouctFormGroup:FormGroup;
+  categoryList:Array<Category>;
+
 
   constructor(
     private fb:FormBuilder,
     private router:Router,
-    private productService:ProductService
+    private activatedRoute:ActivatedRoute,
+    private productService:ProductService,
+    private categoryService:CategoryService
   ) { 
 
   }
 
   ngOnInit() {
-    this.initForm();
+    this.activatedRoute.paramMap.pipe(map(()=>window.history.state))
+    .subscribe(res=>{
+      if(res.source==="From-PC-Setup") {
+        this.pcsetupScreenActive = true;
+        this.initFormForPCSetup();
+      } else {
+        this.pcsetupScreenActive = false;
+        this.LoadCategories();
+        this.initFormForNewProduct();
+      }
+    });
   }
 
-  private initForm() {
+  private initFormForNewProduct() {
+    this.prouctFormGroup = this.fb.group({
+      'Code':['',Validators.required],
+      'Name':['',Validators.required],
+      'CategoryId':['',Validators.required],
+      'Price':[''],
+      'Barcode':[''],
+      'Active':[true]
+    });
+  }
+
+  private initFormForPCSetup() {
     let categoryName=null;
     let categoryId=null;
     const data = JSON.parse(localStorage.getItem("ABC"));
@@ -42,8 +69,6 @@ export class ProductAddEditComponent implements OnInit {
       categoryId =category.id;
       categoryName = category.name;
     }
-    
-    
     this.prouctFormGroup = this.fb.group({
       'Code':['',Validators.required],
       'Name':['',Validators.required],
@@ -59,6 +84,15 @@ export class ProductAddEditComponent implements OnInit {
     this.productService.add(product)
     .subscribe(res=>{
       this.router.navigate(['/product-config']);
+    },err=>{
+      console.error(err);
+    })
+  }
+
+  LoadCategories() {
+    this.categoryService.get("findall")
+    .subscribe(res=>{
+      this.categoryList=res;
     },err=>{
       console.error(err);
     })

@@ -30,7 +30,7 @@ export class BsActionMenuComponent implements OnInit {
   OnAddProduct() {
     this.bottomSheetRef.dismiss();
     this.bottomSheetRef.afterDismissed().subscribe(res=>{
-      this.router.navigate(['/product-new']);
+      this.router.navigate(['/product-new'],{state : { source: "From-PC-Setup"}});
     })
   }
 

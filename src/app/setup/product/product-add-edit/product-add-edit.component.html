@@ -15,11 +15,20 @@
         </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="standard" class="full-width">
+    <mat-form-field appearance="standard" class="full-width" *ngIf="pcsetupScreenActive">
         <mat-label>Category</mat-label>
         <input matInput placeholder="Placeholder" formControlName="CategoryName">
     </mat-form-field>
-    <input type="hidden" formControlName="CategoryId">
+    <input type="hidden" formControlName="CategoryId" *ngIf="pcsetupScreenActive">
+
+    <mat-form-field appearance="standard" class="full-width" *ngIf="!pcsetupScreenActive">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="CategoryId">
+            <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                {{category.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Price</mat-label>
