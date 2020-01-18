@@ -3,6 +3,9 @@ import { CategoryService } from '../../../services/category.service';
 import { Category } from 'src/app/models/category';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from 'src/app/core/dialog-data';
+import { CategoryDeleteAction } from '../dialog-actions/confirmation-action';
+import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-category-list',
@@ -35,6 +38,25 @@ export class CategoryListComponent implements OnInit {
 
     OnAddClick() {
       this.router.navigate(['/category-new'])
+    }
+
+    public OnDelete(id:number) {
+      let confrimData = new DialogData()
+      confrimData.buttonCancel = true;
+      confrimData.buttonConfim = true;
+      confrimData.dialogTitle = "Category Delete";
+      confrimData.dialogContent = "Are you sure you want to delete this cateogry ?";
+      confrimData.action = new CategoryDeleteAction(this.categoryService,id);
+      
+      let dialogRef = this.dialog.open(DialogContentComponent,
+        {
+          width:'500px',
+          height: '180px',
+          data:confrimData
+        });
+      dialogRef.afterClosed().subscribe(res=>{
+        this.LoadCategoryList();
+      })
     }
 
 }

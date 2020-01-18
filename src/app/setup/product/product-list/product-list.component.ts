@@ -3,6 +3,9 @@ import { ProductService } from '../../../services/product.service';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from 'src/app/core/dialog-data';
+import { ProductDeleteAction } from '../dialog-action/confirmation-action';
+import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-product-list',
@@ -35,6 +38,25 @@ export class ProductListComponent implements OnInit {
 
   OnAddClick() {
     this.router.navigate(['/product-new'])
+  }
+
+  OnDelete(id:number) {
+    let confrimData = new DialogData()
+    confrimData.buttonCancel = true;
+    confrimData.buttonConfim = true;
+    confrimData.dialogTitle = "Product Delete";
+    confrimData.dialogContent = "Are you sure you want to delete this product ?";
+    confrimData.action = new ProductDeleteAction(this.productService,id);
+
+    let dialogRef = this.dialog.open(DialogContentComponent,
+      {
+        width:'500px',
+        height: '180px',
+        data:confrimData
+      });
+    dialogRef.afterClosed().subscribe(res=>{
+      this.LoadProductList();
+    })
   }
 
 
