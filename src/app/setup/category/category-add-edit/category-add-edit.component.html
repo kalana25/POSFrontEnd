@@ -20,12 +20,26 @@
             <textarea matInput placeholder="Description" formControlName="Description"></textarea>
         </mat-form-field>
     
-        <mat-form-field appearance="standard" class="full-width">
+        <mat-form-field appearance="standard" class="full-width" *ngIf="pcsetupScreenActive">
             <mat-label>Parent</mat-label>
             <input matInput placeholder="Placeholder" formControlName="ParentCategoryName">
         </mat-form-field>
-        <input type="hidden" formControlName="ParentCategoryId">
-        <input type="hidden" formControlName="Level">
+        <input type="hidden" formControlName="ParentCategoryId" *ngIf="pcsetupScreenActive">
+        <input type="hidden" formControlName="Level" *ngIf="pcsetupScreenActive">
+
+        <mat-form-field appearance="standard" class="full-width" *ngIf="!pcsetupScreenActive">
+            <mat-label>Parent</mat-label>
+            <mat-select formControlName="ParentCategoryId">
+                <mat-option *ngFor="let category of parentCategoryList" [value]="category.value">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="full-width" *ngIf="!pcsetupScreenActive">
+            <mat-label>Level</mat-label>
+            <input matInput placeholder="Level" formControlName="Level" type="number" min="1">
+        </mat-form-field>
+
         <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
         <button type="submit" mat-button class="float-right" >Save</button>
     </form>

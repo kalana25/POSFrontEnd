@@ -23,7 +23,7 @@ export class BsActionMenuComponent implements OnInit {
   OnAddCategory() {
     this.bottomSheetRef.dismiss();
     this.bottomSheetRef.afterDismissed().subscribe(res=>{
-      this.router.navigate(['/category-new']);
+      this.router.navigate(['/category-new'],{state: { source: "From-PC-Setup"}});
     })
   }
 

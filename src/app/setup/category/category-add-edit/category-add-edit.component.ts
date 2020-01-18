@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';
 import { pipe } from 'rxjs';
@@ -14,22 +14,46 @@ import { pipe } from 'rxjs';
 })
 export class CategoryAddEditComponent implements OnInit {
 
+  public pcsetupScreenActive:boolean = true;
   public categoryFormGroup:FormGroup;
   public parentCategoryList:Array<DropdownItem>;
 
   constructor(
     private fb:FormBuilder,
     private router:Router,
+    private activatedRoute:ActivatedRoute,
     private categoryService:CategoryService
   ) { 
 
   }
 
   ngOnInit() {
-    this.initForm();
+    this.activatedRoute.paramMap.pipe(map(()=>window.history.state))
+    .subscribe(res=>{
+      if(res.source==="From-PC-Setup") {
+        this.pcsetupScreenActive = true;
+        this.initFormForPCSetup();
+      } else {
+        this.pcsetupScreenActive = false;
+        this.getCategories();
+        this.initFormForNewCategory();
+      }
+    });
   }
 
-  private initForm() {
+
+  private initFormForNewCategory() {
+    this.categoryFormGroup = this.fb.group({
+      'Code':['',Validators.required],
+      'Name':['',Validators.required],
+      'Description':[''],
+      'ParentCategoryId':['',Validators.required],
+      'Level':[''],
+      'Active':[true]
+    });
+  }
+
+  private initFormForPCSetup() {
     let parentCategoryId=null;
     let parentCategory=null;
     const data = JSON.parse(localStorage.getItem("ABC"));
@@ -76,6 +100,8 @@ export class CategoryAddEditComponent implements OnInit {
     .subscribe(res=>{
       this.parentCategoryList = res;
       this.parentCategoryList.splice(0,0,new DropdownItem(0,'No Parent'));
+      console.log(this.parentCategoryList);
+      
     },err=>{
       console.log(err);
     });
