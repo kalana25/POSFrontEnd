@@ -5,7 +5,8 @@ import { CategoryService } from 'src/app/services/category.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { RouteStateService } from 'src/app/shared/services/route-state.service';
+import { pipe, from } from 'rxjs';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -22,6 +23,7 @@ export class CategoryAddEditComponent implements OnInit {
     private fb:FormBuilder,
     private router:Router,
     private activatedRoute:ActivatedRoute,
+    public routeStateService:RouteStateService,
     private categoryService:CategoryService
   ) { 
 
@@ -86,7 +88,11 @@ export class CategoryAddEditComponent implements OnInit {
   SaveCategory(category:Category) {
     this.categoryService.add(category)
     .subscribe(res=>{
-      this.router.navigate(['/product-config']);
+      if(this.routeStateService.getPreviousUrl()==="/category-list") {
+        this.router.navigate(['/category-list']);
+      } else {
+        this.router.navigate(['/product-config']);
+      }
     },err=>{
       console.error(err);
     })
@@ -100,8 +106,6 @@ export class CategoryAddEditComponent implements OnInit {
     .subscribe(res=>{
       this.parentCategoryList = res;
       this.parentCategoryList.splice(0,0,new DropdownItem(0,'No Parent'));
-      console.log(this.parentCategoryList);
-      
     },err=>{
       console.log(err);
     });

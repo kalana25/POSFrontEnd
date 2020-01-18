@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ToolBarService } from './shared/services/toolbar.service';
+import { RouteStateService } from './shared/services/route-state.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,9 @@ import { ToolBarService } from './shared/services/toolbar.service';
 export class AppComponent {
   title = 'PosFrontend';
   
-  constructor(public toolbarService:ToolBarService) {
-
+  constructor(
+    public routeStateService:RouteStateService,
+    public toolbarService:ToolBarService) {
+      this.routeStateService.loadRouting();
   }
 }

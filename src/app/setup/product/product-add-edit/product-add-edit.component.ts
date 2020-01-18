@@ -8,6 +8,7 @@ import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import { Category } from 'src/app/models/category';
+import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { CategoryAddEditComponent } from '../../category/category-add-edit/category-add-edit.component';
 
 @Component({
@@ -27,6 +28,7 @@ export class ProductAddEditComponent implements OnInit {
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private productService:ProductService,
+    public routeStateService:RouteStateService,
     private categoryService:CategoryService
   ) { 
 
@@ -83,7 +85,11 @@ export class ProductAddEditComponent implements OnInit {
   SaveProduct(product:Product) {
     this.productService.add(product)
     .subscribe(res=>{
-      this.router.navigate(['/product-config']);
+      if(this.routeStateService.getPreviousUrl()==="/product-list"){
+        this.router.navigate(['/product-list']);
+      } else {
+        this.router.navigate(['/product-config']);
+      }
     },err=>{
       console.error(err);
     })
