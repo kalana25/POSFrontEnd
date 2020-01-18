@@ -20,10 +20,10 @@ export class ProductListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
-    this.LoadSupplierList();
+    this.LoadProductList();
   }
 
-  private LoadSupplierList() {
+  private LoadProductList() {
     this.IsLoading = true;
     const endPoint = "findall"
     this.productService.get(endPoint)

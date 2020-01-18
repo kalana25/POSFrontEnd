@@ -1,0 +1,27 @@
+.example-card {
+    max-width: 400px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 25px;
+    display: inline-block;
+  }
+
+  .icon-red {
+    color: rgb(218, 30, 30)
+  }
+
+  .fab-plus {
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color:#009432;
+    color: white;
+}
+
+.cus-spinner {
+    position: absolute;
+    left: 46%;
+    top: 45%;
+}
