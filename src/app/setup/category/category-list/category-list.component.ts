@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data';
 import { CategoryDeleteAction } from '../dialog-actions/confirmation-action';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
 
 @Component({
   selector: 'app-category-list',
@@ -57,6 +58,16 @@ export class CategoryListComponent implements OnInit {
       dialogRef.afterClosed().subscribe(res=>{
         this.LoadCategoryList();
       })
+    }
+
+    public OnEdit(category:Category) {
+      let dialogRef = this.dialog.open(CategoryEditComponent,
+        {
+          data:category
+        });
+      dialogRef.afterClosed().subscribe(_=>{
+        this.LoadCategoryList();
+      });
     }
 
 }

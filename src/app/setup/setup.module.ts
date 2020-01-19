@@ -27,6 +27,7 @@ import { SupplierDeleteDialogComponent } from './supplier/supplier-delete-dialog
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
+import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.co
     CategoryListComponent, 
     PcSetupBoardComponent, 
     SupplierAddEditComponent, 
-    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent, SupplierEditComponent,
+    BsActionMenuComponent, CategoryAddEditComponent, ProductAddEditComponent, SupplierDeleteDialogComponent, SupplierEditComponent, CategoryEditComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +62,6 @@ import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.co
     CategoryListComponent,
     ProductListComponent
   ],
-  entryComponents:[BsActionMenuComponent,SupplierDeleteDialogComponent]
+  entryComponents:[BsActionMenuComponent,SupplierDeleteDialogComponent,CategoryEditComponent]
 })
 export class SetupModule { }

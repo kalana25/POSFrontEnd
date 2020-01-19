@@ -1,0 +1,38 @@
+<h3 class="card-header">Edit Category</h3>
+<form class="category-form" [formGroup]="categoryFormGroup" (ngSubmit)="OnSubmit()">
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="code">
+        <mat-error *ngIf="categoryFormGroup.get('code').invalid">
+            <span *ngIf="categoryFormGroup.get('code').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+        <mat-error *ngIf="categoryFormGroup.get('name').invalid">
+            <span *ngIf="categoryFormGroup.get('name').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Parent</mat-label>
+        <mat-select formControlName="parentCategoryId">
+            <mat-option *ngFor="let category of parentCategoryList" [value]="category.value">
+                {{category.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Level</mat-label>
+        <input matInput placeholder="Level" formControlName="level" type="number" min="1">
+    </mat-form-field>
+    <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+    <button type="submit" mat-button class="float-right" >Save</button>
+</form>
