@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data';
 import { ProductDeleteAction } from '../dialog-action/confirmation-action';
+import { ProductEditComponent } from 'src/app/setup/product/product-edit/product-edit.component';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 
 @Component({
@@ -57,6 +58,16 @@ export class ProductListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res=>{
       this.LoadProductList();
     })
+  }
+
+  public OnEdit(product:Product) {
+    let dialogRef = this.dialog.open(ProductEditComponent,
+      {
+        data:product
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.LoadProductList();
+    });
   }
 
 
