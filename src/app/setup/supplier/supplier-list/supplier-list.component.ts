@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
 import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
+import { SupplierEditComponent } from 'src/app/setup/supplier/supplier-edit/supplier-edit.component';
 
 @Component({
   selector: 'app-supplier-list',
@@ -48,14 +49,20 @@ export class SupplierListComponent implements OnInit {
         height: '180px',
         data:id
       });
-    dialogRef.afterClosed().subscribe(res=>{
+    dialogRef.afterClosed().subscribe(_=>{
       this.LoadSupplierList();
     })
   }
 
-  OnEdit(supplier) {
+  OnEdit(supplier:Supplier) {
     console.log(supplier);
-    
+    let dialogRef = this.dialog.open(SupplierEditComponent,
+      {
+        data:supplier
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.LoadSupplierList();
+    })
   }
 
 }

@@ -1,0 +1,52 @@
+<form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()">
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="code">
+        <mat-error *ngIf="supplierFormGroup.get('code').invalid">
+            <span *ngIf="supplierFormGroup.get('code').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+        <mat-error *ngIf="supplierFormGroup.get('name').invalid">
+            <span *ngIf="supplierFormGroup.get('name').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Contact no</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="contactNo">
+        <mat-error *ngIf="supplierFormGroup.get('contactNo').invalid">
+            <span *ngIf="supplierFormGroup.get('contactNo').errors">Invalid contact no</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Telephone</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="telephone">
+        <mat-error *ngIf="supplierFormGroup.get('telephone').invalid">
+            <span *ngIf="supplierFormGroup.get('telephone').errors">Invalid telephone no</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Comment</mat-label>
+        <textarea matInput placeholder="Leave a comment" formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <mat-slide-toggle formControlName="blackList">Blacklist</mat-slide-toggle>    
+    <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+    <button type="submit" mat-button class="float-right" >Update</button>
+</form>
+<button mat-button class="float-right" (click)="OnCancel()">Cancel</button>

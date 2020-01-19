@@ -32,8 +32,8 @@ export class ApiService <T extends BaseEntity> {
         );
     }
 
-    update(arg:T):Observable<any> {
-        return this.http.put(`${this.url}/${this.resource}/update/${arg.id}`,arg,httpOptions)
+    update(arg:T):Observable<T> {
+        return this.http.put<T>(`${this.url}/${this.resource}/update/${arg.id}`,arg,httpOptions)
         .pipe(
           tap(_=>console.log(`updated ${typeof(arg)} ${arg .id }`)),
           catchError(this.handleError<T>(`update${typeof(arg)}`))
