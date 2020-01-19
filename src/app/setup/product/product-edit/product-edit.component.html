@@ -1,1 +1,39 @@
-<p>product-edit works!</p>
+<h3 class="card-header">Edit Product</h3>
+<form class="product-form" [formGroup]="prouctFormGroup" (ngSubmit)="OnSubmit()">
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="code">
+        <mat-error *ngIf="prouctFormGroup.get('code').invalid">
+            <span *ngIf="prouctFormGroup.get('code').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+        <mat-error *ngIf="prouctFormGroup.get('name').invalid">
+            <span *ngIf="prouctFormGroup.get('name').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                {{category.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="Description" formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Barcode</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="barcode">
+    </mat-form-field>
+    <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+    <button type="submit" mat-button class="float-right" >Save</button>
+</form>

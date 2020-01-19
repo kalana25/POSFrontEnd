@@ -1,0 +1,18 @@
+.card-header {
+    margin-top: 0px;
+    margin-bottom: 6px;
+}
+.product-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-left: 50px;
+}
+  
+.full-width {
+    width: 100%;
+}
+
+.float-right {
+    float: right;
+}
