@@ -20,6 +20,16 @@
     color: rgb(218, 30, 30)
   }
 
+  .icon-small {
+    font-size: 17px;
+    margin-top:-2px;
+    margin-bottom: -2px;
+  }
+
+  .card-action {
+    margin-top: 0px;
+  }
+
   .card-add{
     margin-top: 25px;
     width: 100px;
