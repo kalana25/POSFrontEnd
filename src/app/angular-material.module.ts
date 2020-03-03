@@ -20,7 +20,9 @@ import {
    MatTableModule,
    MatPaginatorModule,
    MatCardModule,
-   MatSnackBarModule
+   MatSnackBarModule,
+   MatProgressSpinnerModule,
+   MatSlideToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -44,7 +46,9 @@ import {
       MatTableModule,
       MatPaginatorModule,
       MatCardModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatProgressSpinnerModule,
+      MatSlideToggleModule
    ],
    exports: [
       MatButtonModule,
@@ -64,7 +68,9 @@ import {
       MatTableModule,
       MatPaginatorModule,
       MatCardModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatProgressSpinnerModule,
+      MatSlideToggleModule
    ],
    providers: [
       MatDatepickerModule,
