@@ -1,17 +1,19 @@
 
 <mat-card class="example-card" *ngFor="let supplier of supplierList">
-    <mat-card-header>
-        <mat-card-title> {{supplier.name}} </mat-card-title>
-        <mat-card-subtitle> {{supplier.code}} </mat-card-subtitle>
-    </mat-card-header>
+    <mat-card-title> {{supplier.name}} </mat-card-title>
+    <mat-card-subtitle> {{supplier.code}} </mat-card-subtitle>
     <mat-card-content>
         <p>
             {{supplier.description}}
         </p>
         <span> <mat-icon class="icon-small">local_phone</mat-icon> {{supplier.contactNo}}</span> <br>
         <span> <mat-icon class="icon-small">phone_iphone</mat-icon> {{supplier.telephone}}</span> <br>
-        <span> <mat-icon class="icon-small">mail</mat-icon> {{supplier.email}}</span>
+        <span> <mat-icon class="icon-small">mail</mat-icon> {{supplier.email}}</span> <br>
+        <span matBadge="8" matBadgePosition="after" matBadgeOverlap="false" matBadgeColor="accent">
+          <mat-icon class="icon-small">info</mat-icon> Contacts
+        </span>
     </mat-card-content>
+
     <mat-card-actions class="card-action">
         <button mat-icon-button (click)="OnDelete(supplier.id)" >
             <mat-icon class="icon-red">delete</mat-icon>
@@ -20,6 +22,7 @@
             <mat-icon>edit</mat-icon>
         </button>
     </mat-card-actions>
+
 </mat-card>
 
 <mat-spinner class="cus-spinner" [diameter]="80" *ngIf="IsLoading"></mat-spinner>
