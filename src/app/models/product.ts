@@ -4,6 +4,6 @@ export class Product extends BaseEntity{
     name:string;
     categoryId:number;
     price:number;
-    barcode:number;
+    barcode:string;
     active:boolean;
 }
