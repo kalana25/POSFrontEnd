@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CategoryDeleteAction } from '../category/dialog-actions/confirmation-action';
 import { ProductDeleteAction } from '../product/dialog-action/confirmation-action';
 import { ToolBarService } from '../../shared/services/toolbar.service';
+import { ProductEditComponent } from '../product/product-edit/product-edit.component';
+import { CategoryEditComponent } from '../category/category-edit/category-edit.component';
 @Component({
   selector: 'app-pc-setup-board',
   templateUrl: './pc-setup-board.component.html',
@@ -161,6 +163,26 @@ export class PcSetupBoardComponent implements OnInit {
     },err=>{
       console.log(err);
     })
+  }
+
+  public OnEditProduct(product:Product) {
+    let dialogRef = this.dialog.open(ProductEditComponent,
+      {
+        data:product
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.ReloadCurrentLevelProducts();
+    });
+  }
+
+  public OnEditCategory(category:Category) {
+    let dialogRef = this.dialog.open(CategoryEditComponent,
+      {
+        data:category
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.ReloadCurrentLevelCategories();
+    });
   }
 
 }
