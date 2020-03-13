@@ -8,6 +8,9 @@ import { PurchaseOrderComponent } from './purchase-order/purchase-order.componen
   declarations: [PurchaseOrderComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    PurchaseOrderComponent
   ]
 })
 export class SalesModule { }

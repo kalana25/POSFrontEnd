@@ -11,6 +11,8 @@ import { CategoryAddEditComponent } from './setup/category/category-add-edit/cat
 import { ProductListComponent } from './setup/product/product-list/product-list.component';
 import { ProductAddEditComponent } from './setup/product/product-add-edit/product-add-edit.component';
 import { PcSetupBoardComponent } from './setup/pc-setup-board/pc-setup-board.component';
+import { PurchaseOrderComponent } from './sales/purchase-order/purchase-order.component';
+
 import { from } from 'rxjs';
 
 
@@ -24,7 +26,9 @@ const routes: Routes = [
   
   {path:'product-list',component:ProductListComponent},
   {path:'product-new',component:ProductAddEditComponent},
-  {path:'product-config',component:PcSetupBoardComponent}
+  {path:'product-config',component:PcSetupBoardComponent},
+
+  {path:'purchase-orders',component:PurchaseOrderComponent}
 ];
 
 @NgModule({
