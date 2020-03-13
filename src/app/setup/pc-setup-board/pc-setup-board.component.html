@@ -21,7 +21,7 @@
     </mat-card>
 
     <mat-card class="example-card" *ngFor="let product of productList">
-        <div (click)="OnCategoryClick(product)">
+        <div>
             <mat-card-header>
                 <mat-card-title> {{product.code}} </mat-card-title>
                 <mat-card-subtitle> {{product.name}} </mat-card-subtitle>
