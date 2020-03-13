@@ -8,11 +8,15 @@ import { PurchaseOrderService } from '../services/purchase-order.service';
 })
 export class PurchaseOrderComponent implements OnInit {
 
+  purchaseOrderList;
+  displayedColumns: string[] = ['id', 'date', 'code', 'totalPrice', 'userId'];
+
   constructor(public purchaseOrderService:PurchaseOrderService) { }
 
   ngOnInit() {
     this.purchaseOrderService.get("header/findall")
     .subscribe(res=>{
+      this.purchaseOrderList = res;
       console.log(res);
     },err=>{
       console.error(err);
