@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PurchaseOrderService } from '../services/purchase-order.service';
-import { ResponseData } from 'src/app/core/response-Data';
+import { ResponseData } from 'src/app/core/response-data';
 import { PurchaseOrder } from '../models/purchase-order';
+import { PageEvent } from '@angular/material';
+import { RequestData } from 'src/app/core/request-data';
 
 @Component({
   selector: 'app-purchase-order',
@@ -11,22 +13,33 @@ import { PurchaseOrder } from '../models/purchase-order';
 export class PurchaseOrderComponent implements OnInit {
 
   purchaseOrderResponse:ResponseData<PurchaseOrder>;
+  purchaseOrderRequest:RequestData;
+
   displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId'];
 
   constructor(public purchaseOrderService:PurchaseOrderService) { }
 
   ngOnInit() {
-    this.purchaseOrderService.pagination()
+    this.purchaseOrderRequest = new RequestData();
+    this.purchaseOrderRequest.page=1;
+    this.purchaseOrderRequest.pageSize=2;
+    this.getPurchaseOrderPagination(this.purchaseOrderRequest);
+  }
+
+  public OnPage(event:PageEvent):void {
+    this.purchaseOrderRequest.pageSize = event.pageSize;
+    this.purchaseOrderRequest.page= event.pageIndex+1;
+    this.getPurchaseOrderPagination(this.purchaseOrderRequest);
+  }
+
+  private getPurchaseOrderPagination(poRequest:RequestData) {
+    this.purchaseOrderService.pagination(poRequest)
     .subscribe(res=>{
       this.purchaseOrderResponse = res;
       console.log(res);
     },err=>{
       console.error(err);
     })
-  }
-
-  private Test():void {
-    this.purchaseOrderResponse.totalCount;
   }
 
 }

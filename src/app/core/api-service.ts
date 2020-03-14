@@ -2,7 +2,9 @@ import { of,Observable } from 'rxjs';
 import { catchError,tap } from 'rxjs/operators';
 import { HttpClient,HttpHeaders, HttpResponse} from '@angular/common/http';
 import { BaseEntity } from './base-entity';
-import { ResponseData } from './response-Data';
+import { ResponseData } from './response-data';
+import { RequestData } from './request-data';
+import { stringify } from 'querystring';
 
 const httpOptions ={
     headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -17,8 +19,13 @@ export class ApiService <T extends BaseEntity> {
 
     }
 
-    pagination():Observable<ResponseData<T>>{
-        return this.http.get<ResponseData<T>>(`${this.url}/${this.resource}/pagination`)
+    pagination(requestData:RequestData):Observable<ResponseData<T>>{
+        const keys:Array<string> =[];
+        Object.keys(requestData).forEach(element => {
+            keys.push(`${element}=${requestData[element]}`);
+        });
+        let params = `?${keys.join('&')}`;
+        return this.http.get<ResponseData<T>>(`${this.url}/${this.resource}/pagination/${params}`)
         .pipe(
             tap(_=>console.log('fetched resources')),
             //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))
