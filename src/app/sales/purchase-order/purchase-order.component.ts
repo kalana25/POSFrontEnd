@@ -14,6 +14,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   purchaseOrderResponse:ResponseData<PurchaseOrder>;
   purchaseOrderRequest:RequestData;
+  IsLoading:boolean=false;
 
   displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId'];
 
@@ -33,11 +34,14 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   private getPurchaseOrderPagination(poRequest:RequestData) {
+    this.IsLoading = true;
     this.purchaseOrderService.pagination(poRequest)
     .subscribe(res=>{
       this.purchaseOrderResponse = res;
+      this.IsLoading = false;
       console.log(res);
     },err=>{
+      this.IsLoading = false;
       console.error(err);
     })
   }
