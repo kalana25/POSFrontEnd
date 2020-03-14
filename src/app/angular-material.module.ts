@@ -23,7 +23,7 @@ import {
    MatSnackBarModule,
    MatProgressSpinnerModule,
    MatSlideToggleModule,
-   MatBottomSheetModule
+   MatBottomSheetModule,
 } from '@angular/material';
 
 @NgModule({

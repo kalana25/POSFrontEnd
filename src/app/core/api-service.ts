@@ -2,6 +2,9 @@ import { of,Observable } from 'rxjs';
 import { catchError,tap } from 'rxjs/operators';
 import { HttpClient,HttpHeaders, HttpResponse} from '@angular/common/http';
 import { BaseEntity } from './base-entity';
+import { ResponseData } from './response-data';
+import { RequestData } from './request-data';
+import { stringify } from 'querystring';
 
 const httpOptions ={
     headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -14,6 +17,19 @@ export class ApiService <T extends BaseEntity> {
         protected resource:string,
         protected http:HttpClient ) {
 
+    }
+
+    pagination(requestData:RequestData):Observable<ResponseData<T>>{
+        const keys:Array<string> =[];
+        Object.keys(requestData).forEach(element => {
+            keys.push(`${element}=${requestData[element]}`);
+        });
+        let params = `?${keys.join('&')}`;
+        return this.http.get<ResponseData<T>>(`${this.url}/${this.resource}/pagination/${params}`)
+        .pipe(
+            tap(_=>console.log('fetched resources')),
+            //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))
+        )
     }
 
     get(endPoint:string):Observable<T[]>{
@@ -64,4 +80,12 @@ export class ApiService <T extends BaseEntity> {
             return of(result as T);     
         }
     }
+
+    // private handlePaginationError <ResponseData<T>>(operation='operation',result?:ResponseData<T>) {
+    //     return (error:ResponseData<T>):Observable<ResponseData<T>> => {
+    //         console.error(error);
+    //         console.log(`${operation} failed: ${error.message}`);
+    //         return of(result as ResponseData<T>);     
+    //     }
+    // }
 }
