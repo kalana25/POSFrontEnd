@@ -23,7 +23,7 @@ export class PurchaseOrderComponent implements OnInit {
   ngOnInit() {
     this.purchaseOrderRequest = new RequestData();
     this.purchaseOrderRequest.page=1;
-    this.purchaseOrderRequest.pageSize=2;
+    this.purchaseOrderRequest.pageSize=5;
     this.getPurchaseOrderPagination(this.purchaseOrderRequest);
   }
 
