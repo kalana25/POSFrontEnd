@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="purchaseOrderList" class="mat-elevation-z8">
+<table mat-table [dataSource]="purchaseOrderResponse.items" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -27,4 +27,8 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+</table>
+<mat-paginator [length]="purchaseOrderResponse.totalCount"
+              [pageSize]="purchaseOrderResponse.pageSize"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
