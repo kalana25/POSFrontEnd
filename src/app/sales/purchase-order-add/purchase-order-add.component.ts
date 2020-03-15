@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-purchase-order-add',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./purchase-order-add.component.css']
 })
 export class PurchaseOrderAddComponent implements OnInit {
+  selectedProductList:Array<Product> =[];
 
   constructor() { }
 
@@ -14,7 +16,7 @@ export class PurchaseOrderAddComponent implements OnInit {
 
   public OnSelectProduct(product) {
     console.log(product);
-    
+    this.selectedProductList.push(product);
   }
 
 }

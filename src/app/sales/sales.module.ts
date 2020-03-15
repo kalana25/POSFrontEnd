@@ -6,11 +6,12 @@ import { PurchaseOrderAddComponent } from './purchase-order-add/purchase-order-a
 import { PurchaseOrderHeaderComponent } from './purchase-order-header/purchase-order-header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetupModule } from '../setup/setup.module';
+import { PurchaseOrderDetailComponent } from './purchase-order-detail/purchase-order-detail.component';
 
 
 
 @NgModule({
-  declarations: [PurchaseOrderComponent, PurchaseOrderAddComponent, PurchaseOrderHeaderComponent],
+  declarations: [PurchaseOrderComponent, PurchaseOrderAddComponent, PurchaseOrderHeaderComponent, PurchaseOrderDetailComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,
