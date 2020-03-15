@@ -15,7 +15,9 @@
 
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Date</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="date">
+        <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="purchaseOrderHeader.get('date').invalid">
             <span *ngIf="purchaseOrderHeader.get('date').errors.required">Mandatory</span>
         </mat-error>
