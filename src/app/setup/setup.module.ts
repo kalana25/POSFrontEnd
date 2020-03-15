@@ -46,7 +46,8 @@ import { AngularMaterialModule } from '../angular-material.module';
   exports:[
     SupplierListComponent,
     CategoryListComponent,
-    ProductListComponent
+    ProductListComponent,
+    PcSetupBoardComponent
   ],
   entryComponents:[
     BsActionMenuComponent,

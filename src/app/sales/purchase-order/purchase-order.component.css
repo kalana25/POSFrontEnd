@@ -25,5 +25,15 @@ table {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
+
+.fab-plus {
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color:#009432;
+    color: white;
+}
   

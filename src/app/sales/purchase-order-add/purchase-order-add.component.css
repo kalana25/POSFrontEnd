@@ -1,0 +1,22 @@
+.po-header {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 30%;
+    /* float: left;
+    width: 30%; */
+}
+
+.po-detail {
+    width: 64%;
+    height: 635px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 10px;
+    /* float: right;
+    width: 100%; */
+}
+
+.card-container {
+    width:100%;
+}

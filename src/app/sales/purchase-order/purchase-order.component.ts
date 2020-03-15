@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PurchaseOrderService } from '../services/purchase-order.service';
 import { ResponseData } from 'src/app/core/response-data';
 import { PurchaseOrder } from '../models/purchase-order';
@@ -18,7 +19,11 @@ export class PurchaseOrderComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId'];
 
-  constructor(public purchaseOrderService:PurchaseOrderService) { }
+  constructor(
+    public purchaseOrderService:PurchaseOrderService,
+    private router:Router) { 
+
+    }
 
   ngOnInit() {
     this.purchaseOrderRequest = new RequestData();
@@ -44,6 +49,10 @@ export class PurchaseOrderComponent implements OnInit {
       this.IsLoading = false;
       console.error(err);
     })
+  }
+
+  public OnAddClick() {
+    this.router.navigate(['/purchase-order-add'])
   }
 
 }
