@@ -1,1 +1,28 @@
-<p>purchase-order-header works!</p>
+<form class="category-form" [formGroup]="purchaseOrderHeader">
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="code">
+        <mat-error *ngIf="purchaseOrderHeader.get('code').invalid">
+            <span *ngIf="purchaseOrderHeader.get('code').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>User</mat-label>
+        <input matInput placeholder="User" formControlName="userId">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Date</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="date">
+        <mat-error *ngIf="purchaseOrderHeader.get('date').invalid">
+            <span *ngIf="purchaseOrderHeader.get('date').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="totalPrice">
+    </mat-form-field>
+</form>

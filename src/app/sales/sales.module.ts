@@ -4,6 +4,7 @@ import { PurchaseOrderComponent } from './purchase-order/purchase-order.componen
 import { AngularMaterialModule } from './../angular-material.module';
 import { PurchaseOrderAddComponent } from './purchase-order-add/purchase-order-add.component';
 import { PurchaseOrderHeaderComponent } from './purchase-order-header/purchase-order-header.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,8 @@ import { PurchaseOrderHeaderComponent } from './purchase-order-header/purchase-o
   declarations: [PurchaseOrderComponent, PurchaseOrderAddComponent, PurchaseOrderHeaderComponent],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     PurchaseOrderComponent
