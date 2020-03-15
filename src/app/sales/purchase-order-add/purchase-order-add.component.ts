@@ -12,4 +12,9 @@ export class PurchaseOrderAddComponent implements OnInit {
   ngOnInit() {
   }
 
+  public OnSelectProduct(product) {
+    console.log(product);
+    
+  }
+
 }

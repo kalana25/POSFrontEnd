@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { forkJoin } from 'rxjs';
@@ -30,6 +30,7 @@ export class PcSetupBoardComponent implements OnInit {
   selectionStack:Array<Category>=[];
 
   productList:Array<Product>;
+  @Output() productSelected = new EventEmitter<Product>();
 
   constructor(
     protected productService:ProductService,
@@ -183,6 +184,10 @@ export class PcSetupBoardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(_=>{
       this.ReloadCurrentLevelCategories();
     });
+  }
+
+  public selectProduct(product:Product) {
+    this.productSelected.emit(product);
   }
 
 }

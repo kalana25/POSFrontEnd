@@ -2,6 +2,10 @@
     <mat-card class="po-header">
         <app-purchase-order-header></app-purchase-order-header>
     </mat-card>
-    <mat-card class="po-detail">PO detail</mat-card>
+    <mat-card class="po-detail">
+        <app-pc-setup-board
+        (productSelected)="OnSelectProduct($event)">
+        </app-pc-setup-board>
+    </mat-card>
 </div>
 
