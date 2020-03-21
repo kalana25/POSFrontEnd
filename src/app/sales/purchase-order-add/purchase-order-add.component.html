@@ -1,7 +1,9 @@
 <div class="card-container">
     <mat-card class="po-header">
-        <app-purchase-order-header></app-purchase-order-header>
-        <app-purchase-order-detail></app-purchase-order-detail>
+        <app-purchase-order-header
+        (purchaseOrderSaveModel)="OnModelReceived($event)"></app-purchase-order-header>
+        <app-purchase-order-detail [ProductList]="selectedProductList">
+        </app-purchase-order-detail>
     </mat-card>
     <mat-card class="po-detail">
         <app-pc-setup-board

@@ -1,1 +1,20 @@
-<p>purchase-order-detail works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Barcode</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of ProductList">
+            <td>{{prod.name}}</td>
+            <td>1</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.barcode}}</td>
+            <th></th>
+        </tr>
+    </tbody>
+</table>
