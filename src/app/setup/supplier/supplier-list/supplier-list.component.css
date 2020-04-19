@@ -1,44 +1,12 @@
-.example-card {
-    max-width: 400px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 25px;
-    display: inline-block;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+table {
+  width: 100%;
+}
 
-  .icon-add{
-    font-size: 80px;
-    color:white;
-  }
-
-  .icon-red {
-    color: rgb(218, 30, 30)
-  }
-
-  .icon-small {
-    font-size: 17px;
-    margin-top:-2px;
-    margin-bottom: -2px;
-  }
-
-  .card-action {
-    margin-top: 0px;
-  }
-
-  .card-add{
-    margin-top: 25px;
-    width: 100px;
-    height: 100px;
-    display:inline-block;
-    text-align: justify;
-    background-color:rgba(0,0,0,.87);
-    cursor: pointer;
-  }
+.cus-spinner {
+  position: absolute;
+  left: 46%;
+  top: 45%;
+}
 
 .fab-plus {
     position:absolute;
@@ -50,8 +18,23 @@
     color: white;
 }
 
-.cus-spinner {
-    position: absolute;
-    left: 46%;
-    top: 45%;
+.supplier-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-red {
+  color: rgb(218, 30, 30)
+}
+
+.icon-small {
+  font-size: 24px;
 }

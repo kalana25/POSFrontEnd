@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
 import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
 import { SupplierEditComponent } from 'src/app/setup/supplier/supplier-edit/supplier-edit.component';
+import { ResponseData } from 'src/app/core/response-data';
+import { RequestData } from 'src/app/core/request-data';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-supplier-list',
@@ -14,8 +17,11 @@ import { SupplierEditComponent } from 'src/app/setup/supplier/supplier-edit/supp
 })
 export class SupplierListComponent implements OnInit {
 
-  supplierList:Array<Supplier>;
-  IsLoading:boolean = false;
+  supplierResponse:ResponseData<Supplier>;
+  supplierRequest:RequestData;
+  IsLoading:boolean=false;
+  
+  displayedColumns: string[] = ['code', 'name', 'contactNo', 'telephone', 'email','action'];
 
   constructor(
     public supplierService:SupplierService,
@@ -23,26 +29,37 @@ export class SupplierListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
-    this.LoadSupplierList();
+    this.supplierRequest = new RequestData();
+    this.supplierRequest.page=1;
+    this.supplierRequest.pageSize=5;
+    this.getSupplierPagination(this.supplierRequest);
   }
 
-  private LoadSupplierList() {
+
+  private getSupplierPagination(supplierRequest:RequestData) {
     this.IsLoading = true;
-    const endPoint = "findall"
-    this.supplierService.get(endPoint)
+    this.supplierService.pagination(supplierRequest)
     .subscribe(res=>{
+      this.supplierResponse = res;
       this.IsLoading = false;
-      this.supplierList = res;
+      console.log(res);
+    },err=>{
+      this.IsLoading = false;
+      console.error(err);
     })
   }
 
+  public OnPage(event:PageEvent):void {
+    this.supplierRequest.pageSize = event.pageSize;
+    this.supplierRequest.page= event.pageIndex+1;
+    this.getSupplierPagination(this.supplierRequest);
+  }
+
   OnAddClick() {
-    console.log(this.supplierList);
-    
     this.router.navigate(['/supplier-new'])
   }
 
-  OnDelete(id:number) {
+  public OnDelete(id:number) {
     let dialogRef = this.dialog.open(SupplierDeleteDialogComponent,
       {
         width:'500px',
@@ -50,19 +67,21 @@ export class SupplierListComponent implements OnInit {
         data:id
       });
     dialogRef.afterClosed().subscribe(_=>{
-      this.LoadSupplierList();
+      this.getSupplierPagination(this.supplierRequest);
     })
   }
 
-  OnEdit(supplier:Supplier) {
+  public OnEdit(supplier:Supplier) {
     console.log(supplier);
     let dialogRef = this.dialog.open(SupplierEditComponent,
       {
         data:supplier
       });
     dialogRef.afterClosed().subscribe(_=>{
-      this.LoadSupplierList();
+      this.getSupplierPagination(this.supplierRequest);
     })
   }
+
+
 
 }
