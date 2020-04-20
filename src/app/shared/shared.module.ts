@@ -7,10 +7,11 @@ import { noTwoWhiteSpacesValidator,numbersValidator} from 'src/app/shared/Valida
 import { HeaderComponent } from './components/header/header.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { RouterModule } from '@angular/router';
+import { PickQuantityComponent } from './components/pick-quantity/pick-quantity.component';
 
 
 @NgModule({
-  declarations: [DialogContentComponent, HeaderComponent],
+  declarations: [DialogContentComponent, HeaderComponent, PickQuantityComponent],
   imports: [
     RouterModule,
     CommonModule,
@@ -22,6 +23,6 @@ import { RouterModule } from '@angular/router';
     DialogContentComponent,
     HeaderComponent
   ],
-  entryComponents:[DialogContentComponent]
+  entryComponents:[DialogContentComponent,PickQuantityComponent]
 })
 export class SharedModule { }
