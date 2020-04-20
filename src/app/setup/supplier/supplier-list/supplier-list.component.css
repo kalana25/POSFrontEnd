@@ -2,12 +2,6 @@ table {
   width: 100%;
 }
 
-.cus-spinner {
-  position: absolute;
-  left: 46%;
-  top: 45%;
-}
-
 .fab-plus {
     position:absolute;
     right: 0;

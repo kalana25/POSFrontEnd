@@ -7,6 +7,9 @@ import { DialogData } from 'src/app/core/dialog-data';
 import { CategoryDeleteAction } from '../dialog-actions/confirmation-action';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { ResponseData } from 'src/app/core/response-data';
+import { RequestData } from 'src/app/core/request-data';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-category-list',
@@ -15,8 +18,11 @@ import { CategoryEditComponent } from '../category-edit/category-edit.component'
 })
 export class CategoryListComponent implements OnInit {
 
-  categoryList:Array<Category>;
+  categoryResponse:ResponseData<Category>;
+  categoryRequest:RequestData;
   IsLoading:boolean = false;
+
+  displayedColumns: string[] = ['code', 'name', 'description','action'];
 
   constructor(
     public categoryService:CategoryService,
@@ -24,17 +30,29 @@ export class CategoryListComponent implements OnInit {
     private dialog:MatDialog) { }
 
     ngOnInit() {
-      this.LoadCategoryList();
+      this.categoryRequest = new RequestData();
+      this.categoryRequest.page=1;
+      this.categoryRequest.pageSize=5;
+      this.getCategoryPagination(this.categoryRequest);
     }
-  
-    private LoadCategoryList() {
+
+    private getCategoryPagination(categoryRequest:RequestData) {
       this.IsLoading = true;
-      const endPoint = "findall"
-      this.categoryService.get(endPoint)
+      this.categoryService.pagination(categoryRequest)
       .subscribe(res=>{
+        this.categoryResponse = res;
         this.IsLoading = false;
-        this.categoryList = res;
+        console.log(res);
+      },err=>{
+        this.IsLoading = false;
+        console.error(err);
       })
+    }
+
+    public OnPage(event:PageEvent):void {
+      this.categoryRequest.pageSize = event.pageSize;
+      this.categoryRequest.page= event.pageIndex+1;
+      this.getCategoryPagination(this.categoryRequest);
     }
 
     OnAddClick() {
@@ -56,7 +74,7 @@ export class CategoryListComponent implements OnInit {
           data:confrimData
         });
       dialogRef.afterClosed().subscribe(res=>{
-        this.LoadCategoryList();
+        this.getCategoryPagination(this.categoryRequest);
       })
     }
 
@@ -66,7 +84,7 @@ export class CategoryListComponent implements OnInit {
           data:category
         });
       dialogRef.afterClosed().subscribe(_=>{
-        this.LoadCategoryList();
+        this.getCategoryPagination(this.categoryRequest)
       });
     }
 
