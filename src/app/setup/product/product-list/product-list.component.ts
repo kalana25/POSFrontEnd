@@ -7,6 +7,9 @@ import { DialogData } from 'src/app/core/dialog-data';
 import { ProductDeleteAction } from '../dialog-action/confirmation-action';
 import { ProductEditComponent } from 'src/app/setup/product/product-edit/product-edit.component';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
+import { ResponseData } from 'src/app/core/response-data';
+import { RequestData } from 'src/app/core/request-data';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-product-list',
@@ -15,8 +18,11 @@ import { DialogContentComponent } from 'src/app/shared/components/dialog-content
 })
 export class ProductListComponent implements OnInit {
 
-  productList:Array<Product>;
+  productResponse:ResponseData<Product>;
+  productRequest:RequestData;
   IsLoading:boolean = false;
+
+  displayedColumns: string[] = ['code', 'name', 'price', 'barcode','action'];
 
   constructor(
     public productService:ProductService,
@@ -24,17 +30,30 @@ export class ProductListComponent implements OnInit {
     private dialog:MatDialog) { }
 
   ngOnInit() {
-    this.LoadProductList();
+    this.productRequest = new RequestData();
+    this.productRequest.page=1;
+    this.productRequest.pageSize=5;
+    this.getProductPagination(this.productRequest);
   }
-
-  private LoadProductList() {
+  
+  
+  private getProductPagination(supplierRequest:RequestData) {
     this.IsLoading = true;
-    const endPoint = "findall"
-    this.productService.get(endPoint)
+    this.productService.pagination(supplierRequest)
     .subscribe(res=>{
+      this.productResponse = res;
       this.IsLoading = false;
-      this.productList = res;
+      console.log(res);
+    },err=>{
+      this.IsLoading = false;
+      console.error(err);
     })
+  }
+  
+  public OnPage(event:PageEvent):void {
+    this.productRequest.pageSize = event.pageSize;
+    this.productRequest.page= event.pageIndex+1;
+    this.getProductPagination(this.productRequest);
   }
 
   OnAddClick() {
@@ -56,7 +75,7 @@ export class ProductListComponent implements OnInit {
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
-      this.LoadProductList();
+      this.getProductPagination(this.productRequest);
     })
   }
 
@@ -66,7 +85,7 @@ export class ProductListComponent implements OnInit {
         data:product
       });
     dialogRef.afterClosed().subscribe(_=>{
-      this.LoadProductList();
+      this.getProductPagination(this.productRequest);
     });
   }
 
