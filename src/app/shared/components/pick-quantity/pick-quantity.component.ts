@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pick-quantity',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickQuantityComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialogRef:MatDialogRef<PickQuantityComponent>
+  ) { }
 
   ngOnInit() {
+  }
+
+  public OnCancel() {
+    this.dialogRef.close();
   }
 
 }
