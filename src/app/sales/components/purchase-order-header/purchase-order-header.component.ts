@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
-import { PurchaseOrderSave } from '../models/purchase-order-save';
+import { PurchaseOrderSave } from '../../models/purchase-order-save';
 
 @Component({
   selector: 'app-purchase-order-header',

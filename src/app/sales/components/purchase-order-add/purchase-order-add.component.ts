@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PurchaseOrderSave } from '../models/purchase-order-save';
-import { PurchaseOrderDetail } from '../models/purchase-order-detail';
-import { PurchaseOrderService } from '../services/purchase-order.service';
+import { PurchaseOrderSave } from '../../models/purchase-order-save';
+import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
+import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
