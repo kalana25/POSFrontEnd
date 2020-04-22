@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PurchaseOrderSave } from '../models/purchase-order-save';
 import { PurchaseOrderDetail } from '../models/purchase-order-detail';
 import { PurchaseOrderService } from '../services/purchase-order.service';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { PickQuantityComponent } from '../../shared/components/pick-quantity/pick-quantity.component';
 
 
 @Component({
@@ -17,6 +16,7 @@ import { PickQuantityComponent } from '../../shared/components/pick-quantity/pic
 })
 export class PurchaseOrderAddComponent implements OnInit {
   selectedProductList:Array<Product> =[];
+  selectedPoDetails:Array<PurchaseOrderDetail> =[];
 
   constructor(
     private snackBar:MatSnackBar,
@@ -34,7 +34,6 @@ export class PurchaseOrderAddComponent implements OnInit {
     this.selectedProductList.push(product);
 
     //open pick quantity componetn.
-    this.dialog.open(PickQuantityComponent,{disableClose:true});
   }
 
   public OnModelReceived(model:PurchaseOrderSave) {
