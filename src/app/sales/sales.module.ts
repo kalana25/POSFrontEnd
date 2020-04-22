@@ -7,11 +7,12 @@ import { PurchaseOrderHeaderComponent } from './purchase-order-header/purchase-o
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetupModule } from '../setup/setup.module';
 import { PurchaseOrderDetailComponent } from './purchase-order-detail/purchase-order-detail.component';
+import { PoDetailPickerComponent } from './po-detail-picker/po-detail-picker.component';
 
 
 
 @NgModule({
-  declarations: [PurchaseOrderComponent, PurchaseOrderAddComponent, PurchaseOrderHeaderComponent, PurchaseOrderDetailComponent],
+  declarations: [PurchaseOrderComponent, PurchaseOrderAddComponent, PurchaseOrderHeaderComponent, PurchaseOrderDetailComponent, PoDetailPickerComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,
@@ -20,6 +21,7 @@ import { PurchaseOrderDetailComponent } from './purchase-order-detail/purchase-o
   ],
   exports: [
     PurchaseOrderComponent
-  ]
+  ],
+  entryComponents:[PoDetailPickerComponent]
 })
 export class SalesModule { }
