@@ -7,6 +7,7 @@ import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.component';
 
 
 @Component({
@@ -34,6 +35,14 @@ export class PurchaseOrderAddComponent implements OnInit {
     this.selectedProductList.push(product);
 
     //open pick quantity componetn.
+    let dialogRef = this.dialog.open(PoDetailPickerComponent,
+      {
+        data:product
+      });
+      dialogRef.afterClosed().subscribe(res=>{
+        console.log(res);
+        
+      })
   }
 
   public OnModelReceived(model:PurchaseOrderSave) {

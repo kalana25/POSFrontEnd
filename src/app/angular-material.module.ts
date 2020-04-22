@@ -24,6 +24,7 @@ import {
    MatProgressSpinnerModule,
    MatSlideToggleModule,
    MatBottomSheetModule,
+   MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -50,7 +51,8 @@ import {
       MatSnackBarModule,
       MatProgressSpinnerModule,
       MatSlideToggleModule,
-      MatBottomSheetModule
+      MatBottomSheetModule,
+      MatDialogModule
    ],
    exports: [
       MatButtonModule,
@@ -73,7 +75,8 @@ import {
       MatSnackBarModule,
       MatProgressSpinnerModule,
       MatSlideToggleModule,
-      MatBottomSheetModule
+      MatBottomSheetModule,
+      MatDialogModule
    ],
    providers: [
       MatDatepickerModule,
