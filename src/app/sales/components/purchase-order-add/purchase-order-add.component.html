@@ -1,7 +1,8 @@
 <div class="card-container">
     <mat-card class="po-header">
         <app-purchase-order-header
-        (purchaseOrderSaveModel)="OnModelReceived($event)"></app-purchase-order-header>
+        (purchaseOrderSaveModel)="OnModelReceived($event)"
+        [totalPrice]="totalPrice"></app-purchase-order-header>
         <app-purchase-order-detail [ProductList]="selectedProductList">
         </app-purchase-order-detail>
     </mat-card>

@@ -16,8 +16,9 @@ import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.co
   styleUrls: ['./purchase-order-add.component.css']
 })
 export class PurchaseOrderAddComponent implements OnInit {
-  selectedProductList:Array<Product> =[];
+  selectedProductList:Array<{product:Product,details:PurchaseOrderDetail}> =[];
   selectedPoDetails:Array<PurchaseOrderDetail> =[];
+  totalPrice:number=0;
 
   constructor(
     private snackBar:MatSnackBar,
@@ -30,19 +31,19 @@ export class PurchaseOrderAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  public OnSelectProduct(product) {
-    console.log(product);
-    this.selectedProductList.push(product);
-
-    //open pick quantity componetn.
+  public OnSelectProduct(product:Product) {
     let dialogRef = this.dialog.open(PoDetailPickerComponent,
       {
         data:product
       });
+
       dialogRef.afterClosed().subscribe(res=>{
-        console.log(res);
-        
-      })
+        if(res) {
+          this.selectedProductList.push({product:product,details:res});
+          this.selectedPoDetails.push(res);
+          this.totalPrice +=product.price* res.quantity;
+        }
+      });
   }
 
   public OnModelReceived(model:PurchaseOrderSave) {
@@ -51,14 +52,7 @@ export class PurchaseOrderAddComponent implements OnInit {
       {
         this.snackBar.open("Please select items","OK",{duration:2500});
       } else {
-        const details:Array<PurchaseOrderDetail> = this.selectedProductList.map(x=>{
-          let model = new PurchaseOrderDetail();
-          model.itemId = x.id;
-          model.quantity = 1;
-          model.unit = 1;
-          return model;
-        });
-        model.items = details;
+        model.items = this.selectedPoDetails;
         this.purchaseOrderService.add(model)
         .subscribe(res=>{
           const previousUrl = this.routerService.getPreviousUrl();

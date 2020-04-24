@@ -24,7 +24,7 @@ export class PoDetailPickerComponent implements OnInit {
   }
 
   public OnCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(undefined);
   }
 
   public OnConfirm() {
@@ -32,7 +32,7 @@ export class PoDetailPickerComponent implements OnInit {
     if(this.quantity.valid) {
       this.model.unit = 1;
       this.model.itemId = this.data.id;
-      this.model.quantity = this.quantity.value;
+      this.model.quantity = Number(this.quantity.value);
       this.dialogRef.close(this.model);
     }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
 
 @Component({
   selector: 'app-purchase-order-detail',
@@ -8,7 +9,16 @@ import { Product } from 'src/app/models/product';
 })
 export class PurchaseOrderDetailComponent implements OnInit {
 
-  @Input()ProductList:Array<Product>
+  private products:Array<{product:Product,details:PurchaseOrderDetail}>
+  
+  @Input()
+  set ProductList(value:Array<{product:Product,details:PurchaseOrderDetail}>) {
+    this.products = value;
+  }
+
+  get ProductList():Array<{product:Product,details:PurchaseOrderDetail}> {
+    return this.products;
+  }
   
   constructor() { }
 

@@ -2,19 +2,19 @@
     <thead>
         <tr>
             <th>Description</th>
+            <th>Barcode</th>
             <th>Qty</th>
             <th>Price</th>
-            <th>Barcode</th>
-            <th></th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let prod of ProductList">
-            <td>{{prod.name}}</td>
-            <td>1</td>
-            <td>{{prod.price}}</td>
-            <td>{{prod.barcode}}</td>
-            <th></th>
+        <tr *ngFor="let item of ProductList">
+            <td>{{item.product.name}}</td>
+            <td>{{item.product.barcode}}</td>
+            <td>{{item.details.quantity}}</td>
+            <td>{{item.product.price}}</td>
+            <th>{{item.product.price * item.details.quantity}}</th>
         </tr>
     </tbody>
 </table>
