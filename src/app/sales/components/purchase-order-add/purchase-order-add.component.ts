@@ -17,7 +17,6 @@ import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.co
 })
 export class PurchaseOrderAddComponent implements OnInit {
   selectedProductList:Array<{product:Product,details:PurchaseOrderDetail}> =[];
-  selectedPoDetails:Array<PurchaseOrderDetail> =[];
   totalPrice:number=0;
 
   constructor(
@@ -40,8 +39,7 @@ export class PurchaseOrderAddComponent implements OnInit {
       dialogRef.afterClosed().subscribe(res=>{
         if(res) {
           this.selectedProductList.push({product:product,details:res});
-          this.selectedPoDetails.push(res);
-          this.totalPrice +=product.price* res.quantity;
+          this.totalPrice =this.totalPrice + product.price* res.quantity;
         }
       });
   }
@@ -52,7 +50,7 @@ export class PurchaseOrderAddComponent implements OnInit {
       {
         this.snackBar.open("Please select items","OK",{duration:2500});
       } else {
-        model.items = this.selectedPoDetails;
+        model.items = this.selectedProductList.map(x=>x.details);
         this.purchaseOrderService.add(model)
         .subscribe(res=>{
           const previousUrl = this.routerService.getPreviousUrl();
@@ -64,5 +62,8 @@ export class PurchaseOrderAddComponent implements OnInit {
     }
   }
 
+  public OnItemDelete(item:{product:Product,details:PurchaseOrderDetail}){
+    this.totalPrice = this.totalPrice-item.product.price;
+  }
 
 }

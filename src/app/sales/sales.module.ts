@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SetupModule } from '../setup/setup.module';
 import { PurchaseOrderDetailComponent } from './components/purchase-order-detail/purchase-order-detail.component';
 import { PoDetailPickerComponent } from './components/po-detail-picker/po-detail-picker.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { PoDetailPickerComponent } from './components/po-detail-picker/po-detail
     CommonModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    SetupModule
+    SetupModule,
+    SharedModule
   ],
   exports: [
     PurchaseOrderComponent

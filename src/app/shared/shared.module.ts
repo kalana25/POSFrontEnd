@@ -7,6 +7,7 @@ import { noTwoWhiteSpacesValidator,numbersValidator} from 'src/app/shared/Valida
 import { HeaderComponent } from './components/header/header.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { RouterModule } from '@angular/router';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -16,11 +17,13 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatButtonModule,
     MatDialogModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AngularFontAwesomeModule
   ],
   exports:[
     DialogContentComponent,
-    HeaderComponent
+    HeaderComponent,
+    AngularFontAwesomeModule
   ],
   entryComponents:[DialogContentComponent]
 })

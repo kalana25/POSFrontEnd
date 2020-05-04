@@ -6,6 +6,7 @@
             <th>Qty</th>
             <th>Price</th>
             <th>Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +15,14 @@
             <td>{{item.product.barcode}}</td>
             <td>{{item.details.quantity}}</td>
             <td>{{item.product.price}}</td>
-            <th>{{item.product.price * item.details.quantity}}</th>
+            <td>{{item.product.price * item.details.quantity}}</td>
+            <td>
+                <!--<fa name="minus-circle" animation="spin"></fa>-->
+                <button mat-icon-button (click)="OnDeleteItem(item)" >
+                    <mat-icon class="icon-red" >remove_circle_outline</mat-icon>
+                </button>
+                <!--<fa name="minus-circle" class="icon-red" click="OnDeleteItem(item)"></fa>-->
+            </td>
         </tr>
     </tbody>
 </table>
