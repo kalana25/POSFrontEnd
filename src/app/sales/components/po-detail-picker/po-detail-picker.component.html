@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Product quanity</h3>
+
+<mat-dialog-content>
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Quantity</mat-label>
+        <input matInput placeholder="Pickup your quantity" [formControl]="quantity" type="number">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button  mat-raised-button class="float-right" (click)="OnCancel()">Cancel</button>
+    <button  mat-raised-button class="float-right" color="primary" (click)="OnConfirm()">Confirm</button>
+</mat-dialog-actions>

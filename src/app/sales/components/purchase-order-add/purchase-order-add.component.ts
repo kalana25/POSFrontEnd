@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { PurchaseOrderSave } from '../models/purchase-order-save';
-import { PurchaseOrderDetail } from '../models/purchase-order-detail';
-import { PurchaseOrderService } from '../services/purchase-order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PurchaseOrderSave } from '../../models/purchase-order-save';
+import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
+import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.component';
 
 
 @Component({
@@ -14,21 +16,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./purchase-order-add.component.css']
 })
 export class PurchaseOrderAddComponent implements OnInit {
-  selectedProductList:Array<Product> =[];
+  selectedProductList:Array<{product:Product,details:PurchaseOrderDetail}> =[];
+  totalPrice:number=0;
 
   constructor(
     private snackBar:MatSnackBar,
     private purchaseOrderService:PurchaseOrderService,
     private routerService:RouteStateService,
     private router:Router,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit() {
   }
 
-  public OnSelectProduct(product) {
-    console.log(product);
-    this.selectedProductList.push(product);
+  public OnSelectProduct(product:Product) {
+    let dialogRef = this.dialog.open(PoDetailPickerComponent,
+      {
+        data:product
+      });
+
+      dialogRef.afterClosed().subscribe(res=>{
+        if(res) {
+          this.selectedProductList.push({product:product,details:res});
+          this.totalPrice =this.totalPrice + product.price* res.quantity;
+        }
+      });
   }
 
   public OnModelReceived(model:PurchaseOrderSave) {
@@ -37,14 +50,7 @@ export class PurchaseOrderAddComponent implements OnInit {
       {
         this.snackBar.open("Please select items","OK",{duration:2500});
       } else {
-        const details:Array<PurchaseOrderDetail> = this.selectedProductList.map(x=>{
-          let model = new PurchaseOrderDetail();
-          model.itemId = x.id;
-          model.quantity = 1;
-          model.unit = 1;
-          return model;
-        });
-        model.items = details;
+        model.items = this.selectedProductList.map(x=>x.details);
         this.purchaseOrderService.add(model)
         .subscribe(res=>{
           const previousUrl = this.routerService.getPreviousUrl();
@@ -56,5 +62,8 @@ export class PurchaseOrderAddComponent implements OnInit {
     }
   }
 
+  public OnItemDelete(item:{product:Product,details:PurchaseOrderDetail}){
+    this.totalPrice = this.totalPrice-item.product.price;
+  }
 
 }

@@ -1,15 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,OnChanges, EventEmitter, Input } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
-import { PurchaseOrderSave } from '../models/purchase-order-save';
+import { PurchaseOrderSave } from '../../models/purchase-order-save';
 
 @Component({
   selector: 'app-purchase-order-header',
   templateUrl: './purchase-order-header.component.html',
   styleUrls: ['./purchase-order-header.component.css']
 })
-export class PurchaseOrderHeaderComponent implements OnInit {
+export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
   purchaseOrderHeader:FormGroup;
   @Output() purchaseOrderSaveModel = new EventEmitter<PurchaseOrderSave>();
+  @Input() totalPrice;
 
   constructor(
     public fb:FormBuilder
@@ -17,9 +18,15 @@ export class PurchaseOrderHeaderComponent implements OnInit {
 
   }
 
+  ngOnChanges() {
+    if(this.totalPrice) {
+      this.purchaseOrderHeader.patchValue({'totalPrice':this.totalPrice});
+    }
+  }
+
   ngOnInit() {
     this.purchaseOrderHeader = this.fb.group({
-      date:[null,Validators.required],
+      date:[new Date(),Validators.required],
       code:['',Validators.required],
       userId:[0,],
       totalPrice:[0,Validators.required]

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PurchaseOrderService } from '../services/purchase-order.service';
+import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { ResponseData } from 'src/app/core/response-data';
-import { PurchaseOrder } from '../models/purchase-order';
+import { PurchaseOrder } from '../../models/purchase-order';
 import { PageEvent } from '@angular/material';
 import { RequestData } from 'src/app/core/request-data';
 

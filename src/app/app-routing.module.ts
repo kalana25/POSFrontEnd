@@ -12,8 +12,8 @@ import { ProductListComponent } from './setup/product/product-list/product-list.
 import { ProductAddEditComponent } from './setup/product/product-add-edit/product-add-edit.component';
 import { PcSetupBoardComponent } from './setup/pc-setup-board/pc-setup-board.component';
 
-import { PurchaseOrderComponent } from './sales/purchase-order/purchase-order.component';
-import { PurchaseOrderAddComponent } from './sales/purchase-order-add/purchase-order-add.component';
+import { PurchaseOrderComponent } from './sales/components/purchase-order/purchase-order.component';
+import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
 
 
 import { from } from 'rxjs';
