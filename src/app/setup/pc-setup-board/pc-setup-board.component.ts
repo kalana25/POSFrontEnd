@@ -115,7 +115,7 @@ export class PcSetupBoardComponent implements OnInit {
     let dialogRef = this.dialog.open(DialogContentComponent,
       {
         width:'500px',
-        height: '180px',
+        height: '200px',
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
@@ -134,7 +134,7 @@ export class PcSetupBoardComponent implements OnInit {
     let dialogRef = this.dialog.open(DialogContentComponent,
       {
         width:'500px',
-        height: '180px',
+        height: '200px',
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
