@@ -5,6 +5,10 @@ import { ResponseData } from 'src/app/core/response-data';
 import { PurchaseOrder } from '../../models/purchase-order';
 import { PageEvent } from '@angular/material';
 import { RequestData } from 'src/app/core/request-data';
+import { MatDialog } from '@angular/material/dialog';
+import { PurchaseOrderDeleteAction } from '../dialog-action/confirmation-action';
+import { DialogData } from 'src/app/core/dialog-data';
+import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-purchase-order',
@@ -17,10 +21,11 @@ export class PurchaseOrderComponent implements OnInit {
   purchaseOrderRequest:RequestData;
   IsLoading:boolean=false;
 
-  displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId'];
+  displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId','action'];
 
   constructor(
     public purchaseOrderService:PurchaseOrderService,
+    private dialog:MatDialog,
     private router:Router) { 
 
     }
@@ -53,6 +58,25 @@ export class PurchaseOrderComponent implements OnInit {
 
   public OnAddClick() {
     this.router.navigate(['/purchase-order-add'])
+  }
+
+  OnDelete(id:number) {
+    let confrimData = new DialogData()
+    confrimData.buttonCancel = true;
+    confrimData.buttonConfim = true;
+    confrimData.dialogTitle = "Purchase Order Delete";
+    confrimData.dialogContent = "Are you sure you want to delete this purchase order ?";
+    confrimData.action = new PurchaseOrderDeleteAction(this.purchaseOrderService,id);
+
+    let dialogRef = this.dialog.open(DialogContentComponent,
+      {
+        width:'500px',
+        height: '180px',
+        data:confrimData
+      });
+    dialogRef.afterClosed().subscribe(res=>{
+      this.getPurchaseOrderPagination(this.purchaseOrderRequest);
+    })
   }
 
 }
