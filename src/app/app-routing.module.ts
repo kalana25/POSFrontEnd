@@ -13,6 +13,7 @@ import { ProductAddEditComponent } from './setup/components/product/product-add-
 import { PcSetupBoardComponent } from './setup/components/pc-setup-board/pc-setup-board.component';
 
 import { PurchaseOrderListComponent } from './sales/components/purchase-order-list/purchase-order-list.component';
+import { PurchaseOrderListDetailComponent } from './sales/components/purchase-order-list-detail/purchase-order-list-detail.component';
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'product-config',component:PcSetupBoardComponent},
 
   {path:'purchase-order-list',component:PurchaseOrderListComponent},
+  {path:'purchase-order-list-details',component:PurchaseOrderListDetailComponent},
   {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
 ];
 
