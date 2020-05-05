@@ -3,7 +3,7 @@
 <div class="po-container mat-elevation-z8">
 
     <div class="po-loading-shade" *ngIf="IsLoading">
-        <mat-spinner *ngIf="IsLoading"></mat-spinner>
+        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
     </div>
     <div class="po-table-container">
         <table *ngIf="purchaseOrderResponse" mat-table [dataSource]="purchaseOrderResponse.items">
