@@ -1,6 +1,6 @@
 import { IAction } from 'src/app/core/IAction'
 import { Observable, from } from 'rxjs';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from '../../../services/product.service';
 
 export class ProductDeleteAction implements IAction
 {

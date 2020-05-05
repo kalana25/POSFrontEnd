@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../core/api-service';
-import { AppSettingsService } from '../core/app-settings.service'; 
+import { ApiService } from 'src/app/core/api-service';
+import { AppSettingsService } from 'src/app/core/app-settings.service'; 
 import { Category } from '../models/category';
 import { HttpClient } from '@angular/common/http';
 

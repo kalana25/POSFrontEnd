@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../../setup/models/product';
 import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
 import { fadeInItems } from '@angular/material';
 

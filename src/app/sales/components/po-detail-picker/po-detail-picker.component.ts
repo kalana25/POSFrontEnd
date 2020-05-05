@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
-import { Product } from '../../../models/product';
+import { Product } from '../../../setup/models/product';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 

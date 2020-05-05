@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../../setup/models/product';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PurchaseOrderSave } from '../../models/purchase-order-save';
 import { PurchaseOrderDetail } from '../../models/purchase-order-detail';

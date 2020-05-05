@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../core/api-service';
+import { ApiService } from 'src/app/core/api-service';
 import { Product } from '../models/product';
-import { AppSettingsService } from '../core/app-settings.service'; 
+import { AppSettingsService } from 'src/app/core/app-settings.service'; 
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

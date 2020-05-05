@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SupplierService } from 'src/app/services/supplier.service';
-import { Supplier } from 'src/app/models/supplier';
+import { SupplierService } from '../../../services/supplier.service';
+import { Supplier } from '../../../models/supplier';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'

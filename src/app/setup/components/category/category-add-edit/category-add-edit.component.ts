@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
-import { Category } from 'src/app/models/category';
-import { CategoryService } from 'src/app/services/category.service';
+import { Category } from '../../../models/category';
+import { CategoryService } from '../../../services/category.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';

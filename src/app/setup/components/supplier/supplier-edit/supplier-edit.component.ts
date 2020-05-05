@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
-import { Supplier } from 'src/app/models/supplier';
-import { SupplierService } from 'src/app/services/supplier.service';
+import { Supplier } from '../../../models/supplier';
+import { SupplierService } from '../../../services/supplier.service';
 import { Router } from '@angular/router';
 import { DialogData } from 'src/app/core/dialog-data';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
