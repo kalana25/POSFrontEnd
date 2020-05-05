@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
+import { PurchaseOrderListComponent } from './components/purchase-order-list/purchase-order-list.component';
 import { AngularMaterialModule } from './../angular-material.module';
 import { PurchaseOrderAddComponent } from './components/purchase-order-add/purchase-order-add.component';
 import { PurchaseOrderHeaderComponent } from './components/purchase-order-header/purchase-order-header.component';
@@ -14,7 +14,7 @@ import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-men
 
 @NgModule({
   declarations: [
-    PurchaseOrderComponent, 
+    PurchaseOrderListComponent, 
     PurchaseOrderAddComponent, 
     PurchaseOrderHeaderComponent, 
     PurchaseOrderDetailComponent, 
@@ -28,7 +28,7 @@ import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-men
     SharedModule
   ],
   exports: [
-    PurchaseOrderComponent
+    PurchaseOrderListComponent
   ],
   entryComponents:[
     PoDetailPickerComponent,

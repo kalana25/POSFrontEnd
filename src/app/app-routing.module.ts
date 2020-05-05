@@ -12,7 +12,7 @@ import { ProductListComponent } from './setup/components/product/product-list/pr
 import { ProductAddEditComponent } from './setup/components/product/product-add-edit/product-add-edit.component';
 import { PcSetupBoardComponent } from './setup/components/pc-setup-board/pc-setup-board.component';
 
-import { PurchaseOrderComponent } from './sales/components/purchase-order/purchase-order.component';
+import { PurchaseOrderListComponent } from './sales/components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
 
 
@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'product-new',component:ProductAddEditComponent},
   {path:'product-config',component:PcSetupBoardComponent},
 
-  {path:'purchase-orders',component:PurchaseOrderComponent},
+  {path:'purchase-order-list',component:PurchaseOrderListComponent},
   {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
 ];
 

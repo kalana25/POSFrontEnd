@@ -13,11 +13,11 @@ import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet
 import { BsActionMenuComponent } from '../bs-action-menu/bs-action-menu.component';
 
 @Component({
-  selector: 'app-purchase-order',
-  templateUrl: './purchase-order.component.html',
-  styleUrls: ['./purchase-order.component.css']
+  selector: 'app-purchase-order-list',
+  templateUrl: './purchase-order-list.component.html',
+  styleUrls: ['./purchase-order-list.component.css']
 })
-export class PurchaseOrderComponent implements OnInit {
+export class PurchaseOrderListComponent implements OnInit {
 
   purchaseOrderResponse:ResponseData<PurchaseOrder>;
   purchaseOrderRequest:RequestData;
