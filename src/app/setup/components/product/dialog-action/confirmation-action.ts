@@ -1,4 +1,4 @@
-import { IAction } from '../../../core/IAction'
+import { IAction } from 'src/app/core/IAction'
 import { Observable, from } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 

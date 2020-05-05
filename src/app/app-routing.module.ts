@@ -8,9 +8,9 @@ import { SupplierEditComponent } from './setup/components/supplier/supplier-edit
 import { CategoryListComponent } from './setup/components/category/category-list/category-list.component';
 import { CategoryAddEditComponent } from './setup/components/category/category-add-edit/category-add-edit.component';
 
-import { ProductListComponent } from './setup/product/product-list/product-list.component';
-import { ProductAddEditComponent } from './setup/product/product-add-edit/product-add-edit.component';
-import { PcSetupBoardComponent } from './setup/pc-setup-board/pc-setup-board.component';
+import { ProductListComponent } from './setup/components/product/product-list/product-list.component';
+import { ProductAddEditComponent } from './setup/components/product/product-add-edit/product-add-edit.component';
+import { PcSetupBoardComponent } from './setup/components/pc-setup-board/pc-setup-board.component';
 
 import { PurchaseOrderComponent } from './sales/components/purchase-order/purchase-order.component';
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data';
 import { ProductDeleteAction } from '../dialog-action/confirmation-action';
-import { ProductEditComponent } from 'src/app/setup/product/product-edit/product-edit.component';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
