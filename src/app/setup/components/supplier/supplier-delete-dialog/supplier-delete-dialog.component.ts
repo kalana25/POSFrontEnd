@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { DialogData } from 'src/app/core/dialog-data';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { SupplierService } from '../../../services/supplier.service';
+import { SupplierService } from 'src/app/services/supplier.service';
 import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({

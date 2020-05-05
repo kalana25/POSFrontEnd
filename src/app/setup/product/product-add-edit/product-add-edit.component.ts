@@ -9,7 +9,7 @@ import { map} from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
-import { CategoryAddEditComponent } from '../../category/category-add-edit/category-add-edit.component';
+import { CategoryAddEditComponent } from '../../components/category/category-add-edit/category-add-edit.component';
 
 @Component({
   selector: 'app-product-add-edit',

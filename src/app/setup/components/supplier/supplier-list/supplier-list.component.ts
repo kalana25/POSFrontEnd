@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SupplierService } from '../../../services/supplier.service';
+import { SupplierService } from 'src/app/services/supplier.service';
 import { Supplier } from 'src/app/models/supplier';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
 import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
-import { SupplierEditComponent } from 'src/app/setup/supplier/supplier-edit/supplier-edit.component';
+import { SupplierEditComponent } from '../supplier-edit/supplier-edit.component';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';

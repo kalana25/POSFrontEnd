@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SupplierListComponent } from './setup/supplier/supplier-list/supplier-list.component';
-import { SupplierAddEditComponent } from './setup/supplier/supplier-add-edit/supplier-add-edit.component';
-import { SupplierEditComponent } from './setup/supplier/supplier-edit/supplier-edit.component';
+import { SupplierListComponent } from './setup/components/supplier/supplier-list/supplier-list.component';
+import { SupplierAddEditComponent } from './setup/components/supplier/supplier-add-edit/supplier-add-edit.component';
+import { SupplierEditComponent } from './setup/components/supplier/supplier-edit/supplier-edit.component';
 
-import { CategoryListComponent } from './setup/category/category-list/category-list.component';
-import { CategoryAddEditComponent } from './setup/category/category-add-edit/category-add-edit.component';
+import { CategoryListComponent } from './setup/components/category/category-list/category-list.component';
+import { CategoryAddEditComponent } from './setup/components/category/category-add-edit/category-add-edit.component';
 
 import { ProductListComponent } from './setup/product/product-list/product-list.component';
 import { ProductAddEditComponent } from './setup/product/product-add-edit/product-add-edit.component';

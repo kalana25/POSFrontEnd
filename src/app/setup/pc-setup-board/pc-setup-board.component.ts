@@ -10,11 +10,11 @@ import { Product } from 'src/app/models/product';
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoryDeleteAction } from '../category/dialog-actions/confirmation-action';
+import { CategoryDeleteAction } from '../components/category/dialog-actions/confirmation-action';
 import { ProductDeleteAction } from '../product/dialog-action/confirmation-action';
 import { ToolBarService } from '../../shared/services/toolbar.service';
 import { ProductEditComponent } from '../product/product-edit/product-edit.component';
-import { CategoryEditComponent } from '../category/category-edit/category-edit.component';
+import { CategoryEditComponent } from '../components/category/category-edit/category-edit.component';
 @Component({
   selector: 'app-pc-setup-board',
   templateUrl: './pc-setup-board.component.html',
