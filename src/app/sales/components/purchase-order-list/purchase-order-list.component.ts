@@ -87,4 +87,8 @@ export class PurchaseOrderListComponent implements OnInit {
     this.bottomSheet.open(BsActionMenuComponent)
   }
 
+  public OnViewDetails(purchaseOrder:PurchaseOrder) {
+    this.router.navigate(["purchase-order-list-details"]);
+  }
+
 }

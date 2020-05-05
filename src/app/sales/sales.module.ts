@@ -10,6 +10,7 @@ import { PurchaseOrderDetailComponent } from './components/purchase-order-detail
 import { PoDetailPickerComponent } from './components/po-detail-picker/po-detail-picker.component';
 import { SharedModule } from '../shared/shared.module';
 import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-menu.component';
+import { PurchaseOrderListDetailComponent } from './components/purchase-order-list-detail/purchase-order-list-detail.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-men
     PurchaseOrderAddComponent, 
     PurchaseOrderHeaderComponent, 
     PurchaseOrderDetailComponent, 
-    PoDetailPickerComponent, BsActionMenuComponent
+    PoDetailPickerComponent, BsActionMenuComponent, PurchaseOrderListDetailComponent
   ],
   imports: [
     CommonModule,
