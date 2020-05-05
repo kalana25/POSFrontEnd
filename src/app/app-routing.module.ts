@@ -31,9 +31,9 @@ const routes: Routes = [
   {path:'product-list',component:ProductListComponent},
   {path:'product-new',component:ProductAddEditComponent},
   {path:'product-config',component:PcSetupBoardComponent},
-
+  
+  {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
   {path:'purchase-order-list',component:PurchaseOrderListComponent},
-  {path:'purchase-order-list-details',component:PurchaseOrderListDetailComponent},
   {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
 ];
 

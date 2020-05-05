@@ -31,7 +31,7 @@ export class PurchaseOrderListComponent implements OnInit {
     protected bottomSheet:MatBottomSheet,
     protected router:Router) { 
 
-    }
+  }
 
   ngOnInit() {
     this.purchaseOrderRequest = new RequestData();
@@ -88,7 +88,7 @@ export class PurchaseOrderListComponent implements OnInit {
   }
 
   public OnViewDetails(purchaseOrder:PurchaseOrder) {
-    this.router.navigate(["purchase-order-list-details"]);
+    this.router.navigate(['po-list-details',purchaseOrder.id]);
   }
 
 }
