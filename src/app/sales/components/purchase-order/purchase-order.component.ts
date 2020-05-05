@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOrderDeleteAction } from '../dialog-action/confirmation-action';
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
+import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { BsActionMenuComponent } from '../bs-action-menu/bs-action-menu.component';
 
 @Component({
   selector: 'app-purchase-order',
@@ -24,9 +26,10 @@ export class PurchaseOrderComponent implements OnInit {
   displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId','action'];
 
   constructor(
-    public purchaseOrderService:PurchaseOrderService,
-    private dialog:MatDialog,
-    private router:Router) { 
+    protected purchaseOrderService:PurchaseOrderService,
+    protected dialog:MatDialog,
+    protected bottomSheet:MatBottomSheet,
+    protected router:Router) { 
 
     }
 
@@ -77,6 +80,11 @@ export class PurchaseOrderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res=>{
       this.getPurchaseOrderPagination(this.purchaseOrderRequest);
     })
+  }
+
+  public OnEdit(purchaseOrder:PurchaseOrder) {
+    console.log(purchaseOrder);
+    this.bottomSheet.open(BsActionMenuComponent)
   }
 
 }

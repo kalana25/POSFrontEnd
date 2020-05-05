@@ -9,6 +9,7 @@ import { SetupModule } from '../setup/setup.module';
 import { PurchaseOrderDetailComponent } from './components/purchase-order-detail/purchase-order-detail.component';
 import { PoDetailPickerComponent } from './components/po-detail-picker/po-detail-picker.component';
 import { SharedModule } from '../shared/shared.module';
+import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-menu.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     PurchaseOrderAddComponent, 
     PurchaseOrderHeaderComponent, 
     PurchaseOrderDetailComponent, 
-    PoDetailPickerComponent
+    PoDetailPickerComponent, BsActionMenuComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +30,9 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     PurchaseOrderComponent
   ],
-  entryComponents:[PoDetailPickerComponent]
+  entryComponents:[
+    PoDetailPickerComponent,
+    BsActionMenuComponent
+  ]
 })
 export class SalesModule { }
