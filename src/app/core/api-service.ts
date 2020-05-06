@@ -73,7 +73,7 @@ export class ApiService <T extends BaseEntity> {
         );
     }
 
-    private handleError<T>(operation='operation',result?:T) {
+    protected handleError<T>(operation='operation',result?:T) {
         return (error:any):Observable<T> => {
             console.error(error);
             console.log(`${operation} failed: ${error.message}`);

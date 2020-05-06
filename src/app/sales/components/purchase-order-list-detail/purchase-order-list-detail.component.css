@@ -1,0 +1,25 @@
+.fab-back {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    background-color:rgba(0,0,0,.87);
+    color: white;
+}
+.po-detail-loading-shade {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+table {
+    width: 100%;
+}
+
