@@ -1,2 +1,51 @@
-<p>purchase-order-list-detail works!</p>
-{{id}}
+<h2>Purchase Order Details</h2>
+Code :{{result.code}}<br>
+Date :{{result.date| date}}<br>
+Userid :{{result.userId}}<br>
+Grand Total :{{result.totalPrice}}<br><br>
+<div class="po-container mat-elevation-z8" *ngIf="!IsLoading">
+    <div class="po-detail-loading-shade" *ngIf="IsLoading">
+        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+    </div> 
+    <div class="po-detail-table-container">
+        <table mat-table [dataSource]="result.items">
+
+            <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let column"> {{column.item.code}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="barcode">
+            <th mat-header-cell *matHeaderCellDef> Barcode </th>
+            <td mat-cell *matCellDef="let column"> {{column.item.barcode}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let column"> {{column.item.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let column"> {{column.item.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let column"> {{column.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef> Unit </th>
+                <td mat-cell *matCellDef="let column"> {{column.unit}} </td>
+            </ng-container>
+       
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
+
+<button mat-fab class="fab-back" (click)="OnGoBack()">
+    <mat-icon>arrow_back</mat-icon>
+</button>
