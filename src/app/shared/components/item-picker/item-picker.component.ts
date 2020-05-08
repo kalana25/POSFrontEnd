@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { ItemPickerService } from '../../services/item-picker.service';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
@@ -19,6 +19,8 @@ export class ItemPickerComponent implements OnInit {
   public itemRequest:RequestData;
   public IsLoading:boolean = false;
   public search = new FormControl('');
+  @Output() itemselected = new EventEmitter<Item>();
+  
 
   displayedColumns: string[] = ['code', 'name'];
 
@@ -58,11 +60,13 @@ export class ItemPickerComponent implements OnInit {
   public SubcribeToEvent() {
     this.search.valueChanges
     .pipe(
+      tap(_=>{
+        this.IsLoading = true;
+       }),
       filter(text => text.length > 3 || text.length==0),
       debounceTime(500),
       distinctUntilChanged(),
       switchMap(key => {
-        this.IsLoading = true;
         this.itemRequest.filter = key;
         return this.itemPickerService.pagination(this.itemRequest)
       })
@@ -76,4 +80,9 @@ export class ItemPickerComponent implements OnInit {
     });
   }
 
+  public OnRawClick(item:Item) {
+    this.itemselected.emit(item);
+    if(this.search.value)
+      this.search.setValue('');
+  }
 }
