@@ -2,13 +2,13 @@
     position: absolute;
     margin-left: 10px;
     margin-top: 10px;
-    width: 30%;
+    width: 48%;
     /* float: left;
     width: 30%; */
 }
 
 .po-detail {
-    width: 64%;
+    width: 45%;
     height: 635px;
     float:right;
     margin-top: 10px;
