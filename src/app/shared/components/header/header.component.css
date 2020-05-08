@@ -12,6 +12,9 @@
   width: 150px;
 }
 
-.header-menu{
+.header-menu-100{
+  width:100px;
+}
+.header-menu-200{
   width:200px;
 }

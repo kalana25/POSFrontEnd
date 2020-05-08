@@ -1,5 +1,12 @@
 <mat-toolbar color="primary">
-  <div class="header-menu">
+
+  <div class="header-menu-100">
+    <span routerLink="/">
+      <h2>POS</h2>
+    </span>
+  </div>
+
+  <div class="header-menu-200">
     <span [matMenuTriggerFor]="configurations">
       <mat-icon>settings</mat-icon>
       <span class="aligned-with-icon">Configurations</span>
@@ -19,7 +26,7 @@
       </a>
     </mat-menu>
   </div>
-  <div class="header-menu">
+  <div class="header-menu-200">
     <span routerLink="/purchase-order-list">
       <mat-icon>assignment</mat-icon>
       <span class="aligned-with-icon">Purchase Order</span>
