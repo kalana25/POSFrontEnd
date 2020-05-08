@@ -1,0 +1,17 @@
+.mat-icon{
+  margin-top: 8px;
+  margin-right: 5px;
+}
+.aligned-with-icon{
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px; /* optional */
+}
+
+.mat-menu-item{
+  width: 150px;
+}
+
+.header-menu{
+  width:200px;
+}
