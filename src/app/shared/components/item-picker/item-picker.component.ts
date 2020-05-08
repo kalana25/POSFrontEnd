@@ -4,6 +4,9 @@ import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { Item } from 'src/app/sales/models/item';
 import { PageEvent } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { ajax } from 'rxjs/ajax';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-item-picker',
@@ -12,9 +15,10 @@ import { PageEvent } from '@angular/material';
 })
 export class ItemPickerComponent implements OnInit {
 
-  itemResponse:ResponseData<Item>;
-  itemRequest:RequestData;
-  IsLoading:boolean = false;
+  public itemResponse:ResponseData<Item>;
+  public itemRequest:RequestData;
+  public IsLoading:boolean = false;
+  public search = new FormControl('');
 
   displayedColumns: string[] = ['code', 'name'];
 
@@ -27,6 +31,7 @@ export class ItemPickerComponent implements OnInit {
     this.itemRequest.page=1;
     this.itemRequest.pageSize=5;
     this.getItemPagination(this.itemRequest);
+    this.SubcribeToEvent();
   }
 
   private getItemPagination(supplierRequest:RequestData) {
@@ -46,6 +51,21 @@ export class ItemPickerComponent implements OnInit {
     this.itemRequest.pageSize = event.pageSize;
     this.itemRequest.page= event.pageIndex+1;
     this.getItemPagination(this.itemRequest);
+  }
+
+  public SubcribeToEvent() {
+    this.search.valueChanges
+    .pipe(
+      filter(text => text.length > 3),
+      debounceTime(10),
+      distinctUntilChanged(),
+      switchMap(() => ajax('/api/endpoint'))
+    )
+    .subscribe(res=>{
+
+    },err=>{
+
+    });
   }
 
 }

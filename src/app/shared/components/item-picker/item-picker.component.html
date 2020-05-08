@@ -1,4 +1,8 @@
 
+<mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="search" placeholder="Code, Name, Barcode" autocomplete="off">
+</mat-form-field>
 <div class="item-container mat-elevation-z8">
 
     <div class="item-loading-shade" *ngIf="IsLoading">

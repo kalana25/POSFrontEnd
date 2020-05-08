@@ -9,6 +9,7 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ItemPickerComponent } from './components/item-picker/item-picker.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,13 +24,15 @@ import { ItemPickerComponent } from './components/item-picker/item-picker.compon
     MatButtonModule,
     MatDialogModule,
     AngularMaterialModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   exports:[
     DialogContentComponent,
     HeaderComponent,
     AngularFontAwesomeModule,
-    ItemPickerComponent
+    ItemPickerComponent,
+    ReactiveFormsModule
   ],
   entryComponents:[DialogContentComponent]
 })
