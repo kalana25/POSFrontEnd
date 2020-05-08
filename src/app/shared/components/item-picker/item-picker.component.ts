@@ -6,7 +6,7 @@ import { Item } from 'src/app/sales/models/item';
 import { PageEvent } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { ajax } from 'rxjs/ajax';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap,tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-item-picker',
@@ -30,6 +30,7 @@ export class ItemPickerComponent implements OnInit {
     this.itemRequest = new RequestData();
     this.itemRequest.page=1;
     this.itemRequest.pageSize=5;
+    this.itemRequest.filter = this.search.value;
     this.getItemPagination(this.itemRequest);
     this.SubcribeToEvent();
   }
@@ -50,21 +51,28 @@ export class ItemPickerComponent implements OnInit {
   public OnPage(event:PageEvent):void {
     this.itemRequest.pageSize = event.pageSize;
     this.itemRequest.page= event.pageIndex+1;
+    this.itemRequest.filter = this.search.value;
     this.getItemPagination(this.itemRequest);
   }
 
   public SubcribeToEvent() {
     this.search.valueChanges
     .pipe(
-      filter(text => text.length > 3),
-      debounceTime(10),
+      filter(text => text.length > 3 || text.length==0),
+      debounceTime(500),
       distinctUntilChanged(),
-      switchMap(() => ajax('/api/endpoint'))
+      switchMap(key => {
+        this.IsLoading = true;
+        this.itemRequest.filter = key;
+        return this.itemPickerService.pagination(this.itemRequest)
+      })
     )
     .subscribe(res=>{
-
+      this.itemResponse = res;
+      this.IsLoading = false;
     },err=>{
-
+      this.IsLoading = false;
+      console.error(err);      
     });
   }
 
