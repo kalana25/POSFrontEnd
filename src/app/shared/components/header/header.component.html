@@ -1,4 +1,43 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
+
+  <div class="header-menu-100">
+    <span routerLink="/">
+      <h2>POS</h2>
+    </span>
+  </div>
+
+  <div class="header-menu-200">
+    <span [matMenuTriggerFor]="configurations">
+      <mat-icon>settings</mat-icon>
+      <span class="aligned-with-icon">Configurations</span>
+    </span>
+    <mat-menu #configurations="matMenu" class="menu-width">
+      <a mat-menu-item routerLink="/supplier-list">
+        <mat-icon>face</mat-icon>
+        <span class="aligned-with-icon">Suppliers</span>
+      </a>
+      <a mat-menu-item routerLink="/category-list">
+        <mat-icon>print</mat-icon>
+        <span class="aligned-with-icon">Catogories</span>
+      </a>
+      <a mat-menu-item routerLink="/product-list">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="aligned-with-icon">Products</span>
+      </a>
+    </mat-menu>
+  </div>
+  <div class="header-menu-200">
+    <span routerLink="/purchase-order-list">
+      <mat-icon>assignment</mat-icon>
+      <span class="aligned-with-icon">Purchase Order</span>
+    </span>
+  </div>
+</mat-toolbar>
+
+
+
+
+<!-- <mat-toolbar>
   <a routerLink="/">Pos</a>
   <a mat-icon-button aria-label="Example icon-button with a heart icon"
       routerLink="/supplier-list" >
@@ -20,4 +59,4 @@
   routerLink="/purchase-order-list">
 <mat-icon>spa</mat-icon>
 </a>
-</mat-toolbar>
+</mat-toolbar> -->
