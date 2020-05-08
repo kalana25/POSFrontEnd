@@ -28,7 +28,8 @@ import { ItemPickerComponent } from './components/item-picker/item-picker.compon
   exports:[
     DialogContentComponent,
     HeaderComponent,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ItemPickerComponent
   ],
   entryComponents:[DialogContentComponent]
 })
