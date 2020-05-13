@@ -11,6 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { BsActionMenuComponent } from './components/bs-action-menu/bs-action-menu.component';
 import { PurchaseOrderListComponent } from './components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderListDetailComponent } from './components/purchase-order-list-detail/purchase-order-list-detail.component';
+import { PurchaseOrderEditHeaderComponent } from './components/purchase-order-edit-header/purchase-order-edit-header.component';
+import { PurchaseOrderEditDetailComponent } from './components/purchase-order-edit-detail/purchase-order-edit-detail.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { PurchaseOrderListDetailComponent } from './components/purchase-order-li
     PoDetailPickerComponent, 
     BsActionMenuComponent, 
     PurchaseOrderListComponent, 
-    PurchaseOrderListDetailComponent
+    PurchaseOrderListDetailComponent, 
+    PurchaseOrderEditHeaderComponent, 
+    PurchaseOrderEditDetailComponent
   ],
   imports: [
     CommonModule,
