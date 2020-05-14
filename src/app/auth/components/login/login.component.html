@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="form-container">
+    <h1 class="login-header">Login</h1>
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="OnSubmit()" autocomplete="off">
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="mypos@hotmail.com" formControlName="email">
+            <mat-error *ngIf="loginForm.get('email').invalid">
+                <span *ngIf="loginForm.get('email').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="abc@123" formControlName="password">
+            <mat-error *ngIf="loginForm.get('password').invalid">
+                <span *ngIf="loginForm.get('password').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <button type="submit" mat-raised-button color="primary" 
+        class="btn-login">Login</button>
+    </form>
+</div>

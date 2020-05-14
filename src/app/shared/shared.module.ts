@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ItemPickerComponent } from './components/item-picker/item-picker.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { httpInterceptorProviders } from './providers/interceptor-provider';
 
 
 @NgModule({
@@ -25,14 +27,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     AngularMaterialModule,
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:[
     DialogContentComponent,
     HeaderComponent,
     AngularFontAwesomeModule,
     ItemPickerComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers:[
+    httpInterceptorProviders
   ],
   entryComponents:[DialogContentComponent]
 })

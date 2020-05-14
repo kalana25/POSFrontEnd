@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+
 import { SupplierListComponent } from './setup/components/supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './setup/components/supplier/supplier-add-edit/supplier-add-edit.component';
 import { SupplierEditComponent } from './setup/components/supplier/supplier-edit/supplier-edit.component';
@@ -19,10 +22,11 @@ import { PurchaseOrderEditHeaderComponent } from './sales/components/purchase-or
 import { PurchaseOrderEditDetailComponent } from './sales/components/purchase-order-edit-detail/purchase-order-edit-detail.component';
 
 
-import { from } from 'rxjs';
-
 
 const routes: Routes = [
+  {path:'login-user',component:LoginComponent},
+  {path:'register-user',component:RegisterComponent},
+
   {path:'supplier-list',component:SupplierListComponent},
   {path:'supplier-new',component:SupplierAddEditComponent},
   {path:'supplier-edit',component:SupplierEditComponent},

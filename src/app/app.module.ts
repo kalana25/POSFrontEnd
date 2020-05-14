@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SetupModule } from './setup/setup.module';
 import { SalesModule } from './sales/sales.module';
+import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { AngularMaterialModule } from './angular-material.module';
     SharedModule,
     SetupModule,
     SalesModule,
+    AuthModule,
     BrowserAnimationsModule,
     AngularMaterialModule
   ],
