@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators'
 import { UserManagerResponse } from '../../models/user-manager-response';
 import { Key } from '../../../shared/models/key';
 import { Router } from '@angular/router';
+import { SharedMemoryService } from 'src/app/shared/services/shared-memory.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public fb:FormBuilder,
     public router:Router,
+    public sharedMemoryService:SharedMemoryService,
     public authService:AuthService) { 
 
     }
@@ -41,7 +43,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(model)
       .subscribe(res=>{
         if(res.isSuccess) {
-          localStorage.setItem(Key.Token.toString(),res.message);
+          this.sharedMemoryService.setToken(res.message);
+          this.sharedMemoryService.setLoggedUserEmail(model.email);
         }
       },err=>{
         console.error(err);
