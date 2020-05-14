@@ -1,0 +1,21 @@
+.form-container{
+    width: 230px;
+    margin: auto;
+    margin-top: 10%;
+}
+
+
+.btn-register {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 230px;
+}
+
+
+.register-header{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}

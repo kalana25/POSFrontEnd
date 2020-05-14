@@ -4,6 +4,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -13,6 +15,8 @@ import { AngularMaterialModule } from '../angular-material.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    RouterModule,
     ReactiveFormsModule,
     AngularMaterialModule
   ]

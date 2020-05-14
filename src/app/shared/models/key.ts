@@ -1,7 +1,7 @@
 export enum Key{
-    Token=1,
-    LoggedUserId=2,
-    LoggedUserName=3,
-    LoggedUserEmail=4,
-    LoggedUser=5,
+    Token="token",
+    LoggedUserId="loggedUserId",
+    LoggedUserName="loggedUserName",
+    LoggedUserEmail="loggedUserEmail",
+    LoggedUser="loggedUser",
 }
