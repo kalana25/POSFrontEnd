@@ -12,7 +12,6 @@ import { DialogContentComponent } from 'src/app/shared/components/dialog-content
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDeleteAction } from '../category/dialog-actions/confirmation-action';
 import { ProductDeleteAction } from '../product/dialog-action/confirmation-action';
-import { ToolBarService } from '../../../shared/services/toolbar.service';
 import { ProductEditComponent } from '../product/product-edit/product-edit.component';
 import { CategoryEditComponent } from '../category/category-edit/category-edit.component';
 @Component({
@@ -35,7 +34,6 @@ export class PcSetupBoardComponent implements OnInit {
   constructor(
     protected productService:ProductService,
     protected categoryService:CategoryService,
-    protected toolbarService:ToolBarService,
     protected bottomSheet:MatBottomSheet,
     protected dialog:MatDialog
   ) { }
