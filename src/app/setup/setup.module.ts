@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 //import {MatRippleModule} from '@angular/material/core';
@@ -39,7 +39,7 @@ import { AngularMaterialModule } from '../angular-material.module';
   imports: [
     CommonModule,
     SharedModule,
-    HttpClientModule,
+    //HttpClientModule,
     ReactiveFormsModule,
     AngularMaterialModule
   ],
