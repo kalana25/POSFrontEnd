@@ -1,5 +1,5 @@
 <div class="form-container">
-    <h1 class="login-header">Login</h1>
+    <h1 class="login-header">Sign in</h1>
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="OnSubmit()" autocomplete="off">
         <mat-form-field appearance="standard" class="full-width">
             <mat-label>Email</mat-label>
@@ -18,6 +18,10 @@
         </mat-form-field>
     
         <button type="submit" mat-raised-button color="primary" 
-        class="btn-login">Login</button>
+        class="btn-login">Sign in</button>
     </form>
 </div>
+<button mat-stroked-button 
+color="primary" 
+(click)="SignUp()"
+class="btn-signup">Sign up</button>
