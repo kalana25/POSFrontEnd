@@ -57,6 +57,10 @@ export class RegisterComponent implements OnInit {
           return null;
         return {'notEqual': {value: control.value}};
     };
-}
+  }
+
+  public SignIn() {
+    this.router.navigate(['/login-user']);
+  }
 
 }
