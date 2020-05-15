@@ -85,10 +85,10 @@ export class ProductAddEditComponent implements OnInit {
   SaveProduct(product:Product) {
     this.productService.add(product)
     .subscribe(res=>{
-      if(this.routeStateService.getPreviousUrl()==="/product-list"){
-        this.router.navigate(['/product-list']);
+      if(this.routeStateService.getPreviousUrl()==="/home-page/product-list"){
+        this.router.navigate(['../product-list'],{relativeTo:this.activatedRoute});
       } else {
-        this.router.navigate(['/product-config']);
+        this.router.navigate(['../product-config'],{relativeTo:this.activatedRoute});
       }
     },err=>{
       console.error(err);

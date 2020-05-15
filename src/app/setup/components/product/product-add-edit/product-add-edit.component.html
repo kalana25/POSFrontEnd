@@ -1,4 +1,4 @@
-<form class="product-form" [formGroup]="prouctFormGroup" (ngSubmit)="OnSubmit()">
+<form class="product-form" [formGroup]="prouctFormGroup" (ngSubmit)="OnSubmit()" autocomplete="off">
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Code</mat-label>
         <input matInput placeholder="Placeholder" formControlName="Code">

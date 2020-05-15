@@ -1,5 +1,5 @@
 <h3 class="card-header">Edit Supplier</h3>
-<form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()">
+<form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()" autocomplete="off">
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Code</mat-label>
         <input matInput placeholder="Placeholder" formControlName="code">

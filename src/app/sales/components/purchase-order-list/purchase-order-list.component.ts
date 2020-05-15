@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { ResponseData } from 'src/app/core/response-data';
 import { PurchaseOrder } from '../../models/purchase-order';
@@ -29,6 +29,7 @@ export class PurchaseOrderListComponent implements OnInit {
     protected purchaseOrderService:PurchaseOrderService,
     protected dialog:MatDialog,
     protected bottomSheet:MatBottomSheet,
+    protected route:ActivatedRoute,
     protected router:Router) { 
 
   }
@@ -60,7 +61,7 @@ export class PurchaseOrderListComponent implements OnInit {
   }
 
   public OnAddClick() {
-    this.router.navigate(['/purchase-order-add'])
+    this.router.navigate(['../purchase-order-add'],{relativeTo:this.route});
   }
 
   OnDelete(id:number) {
@@ -88,7 +89,7 @@ export class PurchaseOrderListComponent implements OnInit {
   }
 
   public OnViewDetails(purchaseOrder:PurchaseOrder) {
-    this.router.navigate(['po-list-details',purchaseOrder.id]);
+    this.router.navigate(['../po-list-details',purchaseOrder.id],{relativeTo:this.route});
   }
 
 }

@@ -34,7 +34,7 @@ export class PurchaseOrderListDetailComponent implements OnInit {
   }
 
   public OnGoBack() {
-    this.router.navigate(['purchase-order-list']);
+    this.router.navigate(['../../purchase-order-list'],{relativeTo:this.route});
   }
 
 }
