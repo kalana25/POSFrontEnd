@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/product';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data';
 import { ProductDeleteAction } from '../dialog-action/confirmation-action';
@@ -27,6 +27,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     public productService:ProductService,
     private router:Router,
+    private route:ActivatedRoute,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -57,7 +58,7 @@ export class ProductListComponent implements OnInit {
   }
 
   OnAddClick() {
-    this.router.navigate(['/product-new'])
+    this.router.navigate(['../product-new'],{relativeTo:this.route});
   }
 
   OnDelete(id:number) {

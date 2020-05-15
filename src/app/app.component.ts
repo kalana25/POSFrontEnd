@@ -7,7 +7,6 @@ import { RouteStateService } from './shared/services/route-state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PosFrontend';
   
   constructor(
     public routeStateService:RouteStateService) {

@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
+import { HomePageComponent } from './shared/components/home-page/home-page.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 import { SupplierListComponent } from './setup/components/supplier/supplier-list/supplier-list.component';
 import { SupplierAddEditComponent } from './setup/components/supplier/supplier-add-edit/supplier-add-edit.component';
@@ -26,23 +28,28 @@ import { PurchaseOrderEditDetailComponent } from './sales/components/purchase-or
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},
+  {path:'home-page',component:HomePageComponent,
+    children:[
+      {path:'supplier-list',component:SupplierListComponent},
+      {path:'supplier-new',component:SupplierAddEditComponent},
+      {path:'supplier-edit',component:SupplierEditComponent},
 
-  {path:'supplier-list',component:SupplierListComponent},
-  {path:'supplier-new',component:SupplierAddEditComponent},
-  {path:'supplier-edit',component:SupplierEditComponent},
-  
-  {path:'category-list',component:CategoryListComponent},
-  {path:'category-new',component:CategoryAddEditComponent},
-  
-  {path:'product-list',component:ProductListComponent},
-  {path:'product-new',component:ProductAddEditComponent},
-  {path:'product-config',component:PcSetupBoardComponent},
-  
-  {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
-  {path:'purchase-order-list',component:PurchaseOrderListComponent},
-  {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
-  {path:'purchase-order-edit-header',component:PurchaseOrderEditHeaderComponent},
-  {path:'purchase-order-edit-detail',component:PurchaseOrderEditDetailComponent},
+      {path:'category-list',component:CategoryListComponent},
+      {path:'category-new',component:CategoryAddEditComponent},
+
+      {path:'product-list',component:ProductListComponent},
+      {path:'product-new',component:ProductAddEditComponent},
+      {path:'product-config',component:PcSetupBoardComponent},
+
+      {path:'purchase-order-list',component:PurchaseOrderListComponent},
+      {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
+      {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
+      {path:'purchase-order-edit-header',component:PurchaseOrderEditHeaderComponent},
+      {path:'purchase-order-edit-detail',component:PurchaseOrderEditDetailComponent},
+    ]
+  },
+  {path:'',redirectTo:'/login-user',pathMatch:'full'},
+  {path:'**',component:PageNotFoundComponent}
 ];
 
 @NgModule({

@@ -12,13 +12,16 @@ import { ItemPickerComponent } from './components/item-picker/item-picker.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './providers/interceptor-provider';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     DialogContentComponent, 
     HeaderComponent, 
-    ItemPickerComponent
+    ItemPickerComponent, 
+    HomePageComponent, PageNotFoundComponent
   ],
   imports: [
     RouterModule,

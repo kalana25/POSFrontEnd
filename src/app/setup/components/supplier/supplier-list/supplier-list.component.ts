@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../../../services/supplier.service';
 import { Supplier } from '../../../models/supplier';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
 import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
@@ -26,6 +26,7 @@ export class SupplierListComponent implements OnInit {
   constructor(
     public supplierService:SupplierService,
     private router:Router,
+    private route:ActivatedRoute,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class SupplierListComponent implements OnInit {
   }
 
   OnAddClick() {
-    this.router.navigate(['/supplier-new'])
+    this.router.navigate(['../supplier-new'],{relativeTo:this.route});
   }
 
   public OnDelete(id:number) {

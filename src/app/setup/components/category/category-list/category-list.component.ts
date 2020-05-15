@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { Category } from '../../../models/category';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data';
 import { CategoryDeleteAction } from '../dialog-actions/confirmation-action';
@@ -27,6 +27,7 @@ export class CategoryListComponent implements OnInit {
   constructor(
     public categoryService:CategoryService,
     private router:Router,
+    private route:ActivatedRoute,
     private dialog:MatDialog) { }
 
     ngOnInit() {
@@ -56,7 +57,7 @@ export class CategoryListComponent implements OnInit {
     }
 
     OnAddClick() {
-      this.router.navigate(['/category-new'])
+      this.router.navigate(['../category-new'],{relativeTo:this.route});
     }
 
     public OnDelete(id:number) {
