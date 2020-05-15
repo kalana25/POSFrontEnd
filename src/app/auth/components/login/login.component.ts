@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         if(res.isSuccess) {
           this.sharedMemoryService.setToken(res.message);
           this.sharedMemoryService.setLoggedUserEmail(model.email);
+          this.sharedMemoryService.setLoggedUserId(res.loggedUser.id);
           this.router.navigate(['/home-page']);
         }
       },err=>{

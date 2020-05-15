@@ -7,16 +7,16 @@ import { Key } from '../models/key';
 export class SharedMemoryService {
   private token:string;
   private loggedUserEmail:string;
+  private loggedUserId:string;
 
   constructor() { }
 
+  //Token
   public getToken():string {
     if(this.token) {
-      console.log("from service");
       return this.token;
     }
     else {
-      console.log("from local storage");
       this.token =  localStorage.getItem(Key.Token.toString());
       return this.token;
     }
@@ -27,6 +27,7 @@ export class SharedMemoryService {
     localStorage.setItem(Key.Token.toString(),value);
   }
 
+  //Email
   public getLoggedUserEmail():string {
     if(this.loggedUserEmail) {
       return this.loggedUserEmail;
@@ -40,5 +41,21 @@ export class SharedMemoryService {
   public setLoggedUserEmail(value:string) {
     this.loggedUserEmail = value;
     localStorage.setItem(Key.LoggedUserEmail.toString(),value);
+  }
+
+  //UserId
+  public getLoggedUserId():string {
+    if(this.loggedUserId) {
+      return this.loggedUserId;
+    }
+    else {
+      this.loggedUserId = localStorage.getItem(Key.LoggedUserId.toString());
+      return this.loggedUserId;
+    }
+  }
+
+  public setLoggedUserId(value:string) {
+    this.loggedUserId = value;
+    localStorage.setItem(Key.LoggedUserId.toString(),value);
   }
 }

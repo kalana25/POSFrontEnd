@@ -6,6 +6,7 @@ import { Login } from '../models/login';
 import { Register } from '../models/register';
 import { UserManagerResponse } from '../models/user-manager-response';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { LoginResultResponse } from '../models/login-result-response';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -23,11 +24,11 @@ export class AuthService {
 
   }
 
-  public login(model:Login):Observable<UserManagerResponse> {
+  public login(model:Login):Observable<LoginResultResponse> {
     const url:string =`${this.config.apiUrl}/Auth/login`;
-    return this.http.post<UserManagerResponse>(url,model,httpOptions)
+    return this.http.post<LoginResultResponse>(url,model,httpOptions)
     .pipe(
-      tap((resPro:UserManagerResponse)=>console.log(`user has login with ${model.email}`))
+      tap((resPro:LoginResultResponse)=>console.log(`user has login with ${model.email}`))
     );
   }
 

@@ -7,12 +7,7 @@
             <span *ngIf="purchaseOrderHeader.get('code').errors.required">Mandatory</span>
         </mat-error>
     </mat-form-field>
-
-    <mat-form-field appearance="standard" class="full-width">
-        <mat-label>User</mat-label>
-        <input matInput placeholder="User" formControlName="userId">
-    </mat-form-field>
-
+    
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Date</mat-label>
         <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
@@ -22,7 +17,23 @@
             <span *ngIf="purchaseOrderHeader.get('date').errors.required">Mandatory</span>
         </mat-error>
     </mat-form-field>
+    
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Delivery Date</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="deliveryDate" [matDatepicker]="DeliveryDatepicker">
+        <mat-datepicker-toggle matSuffix [for]="DeliveryDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #DeliveryDatepicker></mat-datepicker>
+        <mat-error *ngIf="purchaseOrderHeader.get('deliveryDate').invalid">
+            <span *ngIf="purchaseOrderHeader.get('deliveryDate').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
 
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>User</mat-label>
+        <input formControlName="createdBy" type="hidden">
+        <input matInput placeholder="User" formControlName="user">
+    </mat-form-field>
+    
     <mat-form-field appearance="standard" class="full-width">
         <mat-label>Price</mat-label>
         <input matInput placeholder="Placeholder" formControlName="totalPrice">
