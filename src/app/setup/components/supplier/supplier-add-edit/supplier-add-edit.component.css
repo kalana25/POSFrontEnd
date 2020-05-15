@@ -13,6 +13,10 @@
     float: right;
 }
 
+h2{
+    margin-left: 47px;
+}
+
 /* :host {
     display: block;
     border: 1px solid black;

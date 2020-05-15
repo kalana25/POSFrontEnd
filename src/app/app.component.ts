@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouteStateService } from './shared/services/route-state.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +7,6 @@ import { RouteStateService } from './shared/services/route-state.service';
 })
 export class AppComponent {
   
-  constructor(
-    public routeStateService:RouteStateService) {
-      this.routeStateService.loadRouting();
+  constructor() {
   }
 }

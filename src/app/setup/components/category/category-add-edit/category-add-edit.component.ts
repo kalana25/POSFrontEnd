@@ -88,10 +88,10 @@ export class CategoryAddEditComponent implements OnInit {
   SaveCategory(category:Category) {
     this.categoryService.add(category)
     .subscribe(res=>{
-      if(this.routeStateService.getPreviousUrl()==="/category-list") {
-        this.router.navigate(['/category-list']);
+      if(this.routeStateService.getPreviousUrl()==="/home-page/category-list") {
+        this.router.navigate(['../category-list'],{relativeTo:this.activatedRoute});
       } else {
-        this.router.navigate(['/product-config']);
+        this.router.navigate(['../product-config'],{relativeTo:this.activatedRoute});
       }
     },err=>{
       console.error(err);

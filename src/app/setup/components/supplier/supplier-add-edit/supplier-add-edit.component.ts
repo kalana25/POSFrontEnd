@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { Supplier } from '../../../models/supplier';
 import { SupplierService } from '../../../services/supplier.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { noTwoWhiteSpacesValidator,numbersValidator } from 'src/app/shared/Validations/common-validation'
 
 @Component({
@@ -17,6 +17,7 @@ export class SupplierAddEditComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private router:Router,
+    private route:ActivatedRoute,
     private supplierService:SupplierService
   ) { 
 
@@ -49,7 +50,7 @@ export class SupplierAddEditComponent implements OnInit {
   SaveSupplier(supplier:Supplier) {
     this.supplierService.add(supplier)
     .subscribe(res=>{
-      this.router.navigate(['/supplier-list']);
+      this.router.navigate(['../supplier-list'],{relativeTo:this.route});
     },err=>{
       console.error(err);
     })
