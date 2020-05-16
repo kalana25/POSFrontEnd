@@ -20,9 +20,7 @@ import { PcSetupBoardComponent } from './setup/components/pc-setup-board/pc-setu
 import { PurchaseOrderListComponent } from './sales/components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderListDetailComponent } from './sales/components/purchase-order-list-detail/purchase-order-list-detail.component';
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
-import { PurchaseOrderEditHeaderComponent } from './sales/components/purchase-order-edit-header/purchase-order-edit-header.component';
-import { PurchaseOrderEditDetailComponent } from './sales/components/purchase-order-edit-detail/purchase-order-edit-detail.component';
-
+import { PurchaseOrderEditComponent } from './sales/components/purchase-order-edit/purchase-order-edit.component';
 
 
 const routes: Routes = [
@@ -44,8 +42,7 @@ const routes: Routes = [
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
       {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
-      {path:'purchase-order-edit-header',component:PurchaseOrderEditHeaderComponent},
-      {path:'purchase-order-edit-detail',component:PurchaseOrderEditDetailComponent},
+      {path:'purchase-order-edit/:id',component:PurchaseOrderEditComponent}
     ]
   },
   {path:'',redirectTo:'/login-user',pathMatch:'full'},
