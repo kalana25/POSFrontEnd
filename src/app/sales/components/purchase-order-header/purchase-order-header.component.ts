@@ -43,7 +43,6 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
       const model = new PurchaseOrderSave();
       model.code = this.purchaseOrderHeader.get('code').value;
       model.totalPrice = Number(this.purchaseOrderHeader.get('totalPrice').value);
-      model.createdBy = this.purchaseOrderHeader.get('createdBy').value;
       model.date = this.purchaseOrderHeader.get('date').value;
       model.deliveryDate = this.purchaseOrderHeader.get('deliveryDate').value;
       this.purchaseOrderSaveModel.emit(model);
