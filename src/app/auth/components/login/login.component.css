@@ -24,3 +24,14 @@ mat-form-field {
     right: 20px;
     top: 20px;
 }
+
+
+.loading-spinner{
+    display: inline-block;
+    position: relative;
+    left: -14px;
+}
+
+.mat-spinner::ng-deep circle {
+  stroke: rgb(255, 255, 255);
+}
