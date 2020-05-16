@@ -10,7 +10,6 @@ import { PurchaseOrderDeleteAction } from '../dialog-action/confirmation-action'
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import { BsActionMenuComponent } from '../bs-action-menu/bs-action-menu.component';
 
 @Component({
   selector: 'app-purchase-order-list',
@@ -84,8 +83,7 @@ export class PurchaseOrderListComponent implements OnInit {
   }
 
   public OnEdit(purchaseOrder:PurchaseOrder) {
-    console.log(purchaseOrder);
-    this.bottomSheet.open(BsActionMenuComponent)
+    this.router.navigate(['../purchase-order-edit',purchaseOrder.id],{relativeTo:this.route});
   }
 
   public OnViewDetails(purchaseOrder:PurchaseOrder) {
