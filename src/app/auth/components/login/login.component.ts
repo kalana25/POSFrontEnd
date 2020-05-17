@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
   loading:boolean=false;
+  ResponseError:string;
 
   constructor(
     public fb:FormBuilder,
@@ -50,6 +51,9 @@ export class LoginComponent implements OnInit {
           this.sharedMemoryService.setLoggedUserEmail(model.email);
           this.sharedMemoryService.setLoggedUserId(res.loggedUser.id);
           this.router.navigate(['/home-page']);
+        } else {
+          this.loading = false;
+          this.ResponseError = res.message;
         }
       },err=>{
         this.loading = false;

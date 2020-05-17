@@ -32,6 +32,29 @@
       <span class="aligned-with-icon">Purchase Order</span>
     </span>
   </div>
+
+  <div class="header-menu-200" class="menu-profile">
+    <span [matMenuTriggerFor]="profilemenu">
+      <mat-icon class="profile-icon">account_circle</mat-icon>
+    </span>
+
+    <mat-menu #profilemenu="matMenu" class="menu-width">
+      <mat-list>
+        <mat-list-item>
+          <span class="profile-name">
+            {{LoggedUser}}
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <a mat-menu-item routerLink="/home-page/supplier-list">
+            <span class="aligned-with-icon">Sign out</span>
+          </a>
+        </mat-list-item>
+      </mat-list>
+    </mat-menu>
+  </div>
+
 </mat-toolbar>
 
 

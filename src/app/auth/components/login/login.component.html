@@ -20,6 +20,9 @@
         <button type="submit" mat-raised-button color="primary" class="btn-login">
             <mat-spinner class="loading-spinner" [strokeWidth]="3" [diameter]="20" *ngIf="loading"></mat-spinner>Sign in
         </button>
+        <mat-error>
+            <span>{{ResponseError}}</span>
+        </mat-error>
     </form>
 </div>
 <button mat-stroked-button color="primary" (click)="SignUp()" class="btn-signup">
