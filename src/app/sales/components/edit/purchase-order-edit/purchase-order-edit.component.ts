@@ -3,10 +3,11 @@ import { PurchaseOrderService } from '../../../services/purchase-order.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { PurchaseOrderFullInfo } from '../../../models/purchase-order-fullinfo';
-import { Item } from 'src/app/shared/models/item';
+import { Product } from '../../../../setup/models/product';
 import { MatTable } from '@angular/material';
 import { PurchaseOrderDetailWithItem } from '../../../models/purchase-order-detail-withItem';
 import { MatDialog } from '@angular/material/dialog';
+import { PoDetailPickerComponent } from '../../po-detail-picker/po-detail-picker.component';
 import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purchase-order-edit-item.component';
 
 @Component({
@@ -101,6 +102,21 @@ export class PurchaseOrderEditComponent implements OnInit {
 
   public OnGoBack() {
     this.router.navigate(['../../purchase-order-list'],{relativeTo:this.route});
+  }
+
+  public OnSelectProduct(product:Product) {
+    let dialogRef = this.dialog.open(PoDetailPickerComponent,
+      {
+        data:product
+      });
+
+      dialogRef.afterClosed().subscribe(res=>{
+        if(res) {
+          debugger;
+          //this.purchaseOrder.items.push({product:product,details:res});
+          // re calculate total Price
+        }
+      });
   }
 
 }
