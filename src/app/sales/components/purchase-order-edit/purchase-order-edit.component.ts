@@ -14,6 +14,8 @@ export class PurchaseOrderEditComponent implements OnInit {
   public purchaseOrder:PurchaseOrderFullInfo
   public editForm:FormGroup;
 
+  public displayedColumns: string[] = ['code', 'name', 'price', 'barcode','quantity','unit','action'];
+
   constructor(
     protected fb:FormBuilder,
     protected router:Router,
