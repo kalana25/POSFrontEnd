@@ -4,4 +4,5 @@ export class PurchaseOrder extends BaseEntity {
     public date:Date;
     public deliveryDate:Date;
     public totalPrice:number;
+    public createdByName:string;
 }

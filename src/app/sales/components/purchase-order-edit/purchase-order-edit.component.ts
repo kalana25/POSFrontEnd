@@ -26,14 +26,29 @@ export class PurchaseOrderEditComponent implements OnInit {
     
     this.route.params.subscribe(para=>{
       this.id = para['id'];
+      this.getPurchaseOrderInfo();
     });
 
+  }
+  
+  private getPurchaseOrderInfo() {    
     this.purchaseOrderService.getWithFullInfo(Number(this.id))
     .subscribe(res=>{
       this.purchaseOrder = res;
-      console.log(res);
+      this.patchForm();
     },err=>{
       console.error(err);
+    })
+  }
+
+  private patchForm() {
+    this.editForm.patchValue({
+      id:this.purchaseOrder.id,
+      code:this.purchaseOrder.code,
+      date:this.purchaseOrder.date,
+      deliveryDate:this.purchaseOrder.deliveryDate,
+      createdByName:this.purchaseOrder.createdByName,
+      totalPrice:this.purchaseOrder.totalPrice
     })
   }
 
@@ -43,6 +58,8 @@ export class PurchaseOrderEditComponent implements OnInit {
       code:['',Validators.required],
       date:['',Validators.required],
       deliveryDate:[''],
+      createdByName:['',Validators.required],
+      totalPrice:['',Validators.required]
     });
   }
 

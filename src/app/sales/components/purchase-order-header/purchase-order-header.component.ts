@@ -32,7 +32,6 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
       date:[new Date(),Validators.required],
       deliveryDate:[new Date()],
       code:['',Validators.required],
-      createdBy:[this.sharedMemoryservice.getLoggedUserId()],
       user:[{value:this.sharedMemoryservice.getLoggedUserEmail(), disabled:true}],
       totalPrice:[0,Validators.required]
     });

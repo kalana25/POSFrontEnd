@@ -1,1 +1,50 @@
-<p>purchase-order-edit works!</p>
+<div class="po-header">
+    <form class="category-form" [formGroup]="editForm" (ngSubmit)="OnSubmit()">
+        
+        <input type="hidden" formControlName="id">
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Code</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="code">
+            <mat-error *ngIf="editForm.get('code').invalid">
+                <span *ngIf="editForm.get('code').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Date</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="editForm.get('date').invalid">
+                <span *ngIf="editForm.get('date').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Delivery Date</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="deliveryDate" [matDatepicker]="DeliveryDatepicker">
+            <mat-datepicker-toggle matSuffix [for]="DeliveryDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #DeliveryDatepicker></mat-datepicker>
+            <mat-error *ngIf="editForm.get('deliveryDate').invalid">
+                <span *ngIf="editForm.get('deliveryDate').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Created By</mat-label>
+            <input matInput placeholder="Created By" formControlName="createdByName">
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="totalPrice">
+        </mat-form-field>
+        
+        <button type="submit" mat-raised-button color="primary" 
+        class="btn-po-save">Save</button>
+    </form>
+</div>
+<div class="po-detail">
+    
+</div>
+
