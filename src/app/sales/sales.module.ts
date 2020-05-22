@@ -10,7 +10,7 @@ import { PoDetailPickerComponent } from './components/po-detail-picker/po-detail
 import { SharedModule } from '../shared/shared.module';
 import { PurchaseOrderListComponent } from './components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderListDetailComponent } from './components/purchase-order-list-detail/purchase-order-list-detail.component';
-import { PurchaseOrderEditComponent } from './components/purchase-order-edit/purchase-order-edit.component';
+import { PurchaseOrderEditComponent } from './components/edit/purchase-order-edit/purchase-order-edit.component';
 
 @NgModule({
   declarations: [

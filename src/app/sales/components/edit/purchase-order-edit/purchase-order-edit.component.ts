@@ -1,11 +1,11 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { PurchaseOrderService } from '../../services/purchase-order.service';
+import { PurchaseOrderService } from '../../../services/purchase-order.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
-import { PurchaseOrderFullInfo } from '../../models/purchase-order-fullinfo';
+import { PurchaseOrderFullInfo } from '../../../models/purchase-order-fullinfo';
 import { Item } from 'src/app/shared/models/item';
 import { MatTable } from '@angular/material';
-import { PurchaseOrderDetailWithItem } from '../../models/purchase-order-detail-withItem';
+import { PurchaseOrderDetailWithItem } from '../../../models/purchase-order-detail-withItem';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -82,6 +82,10 @@ export class PurchaseOrderEditComponent implements OnInit {
       this.purchaseOrder.items.splice(index,1);
       this.tableReference.renderRows();
     }
+  }
+
+  public OnItemEdit(column) {
+
   }
 
 }

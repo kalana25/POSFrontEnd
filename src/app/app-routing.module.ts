@@ -20,7 +20,7 @@ import { PcSetupBoardComponent } from './setup/components/pc-setup-board/pc-setu
 import { PurchaseOrderListComponent } from './sales/components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderListDetailComponent } from './sales/components/purchase-order-list-detail/purchase-order-list-detail.component';
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
-import { PurchaseOrderEditComponent } from './sales/components/purchase-order-edit/purchase-order-edit.component';
+import { PurchaseOrderEditComponent } from './sales/components/edit/purchase-order-edit/purchase-order-edit.component';
 
 
 const routes: Routes = [
