@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
+import { PurchaseOrderDetailWithItem } from '../../models/purchase-order-detail-withItem';
 import { Product } from '../../../setup/models/product';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
 })
 export class PoDetailPickerComponent implements OnInit {
 
-  model:PurchaseOrderDetail;
+  model:PurchaseOrderDetailWithItem;
   quantity = new FormControl('1');
 
   constructor(
@@ -20,7 +20,7 @@ export class PoDetailPickerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.model = new PurchaseOrderDetail();
+    this.model = new PurchaseOrderDetailWithItem
   }
 
   public OnCancel() {
@@ -33,6 +33,7 @@ export class PoDetailPickerComponent implements OnInit {
       this.model.unit = 1;
       this.model.itemId = this.data.id;
       this.model.quantity = Number(this.quantity.value);
+      this.model.item = this.data;
       this.dialogRef.close(this.model);
     }
 

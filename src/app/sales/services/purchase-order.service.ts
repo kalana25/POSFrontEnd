@@ -44,6 +44,14 @@ export class PurchaseOrderService {
     );
   }
 
+  update(id:number, model:PurchaseOrderSave):Observable<PurchaseOrder> {
+    return this.http.put<PurchaseOrder>(`${this.config.apiUrl}/${this.resource}/update/${id}`,model,httpOptions)
+    .pipe(
+      tap(resPro=>console.log(`updated ${typeof(resPro)} ${resPro .id }`)),
+      catchError(this.handleError<PurchaseOrder>(`update${typeof(model)}`))
+    );
+  }
+
   getWithFullInfo(id:number):Observable<PurchaseOrderFullInfo> {
     return this.http.get<PurchaseOrderFullInfo>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/${id}`)
     .pipe(
@@ -63,7 +71,7 @@ export class PurchaseOrderService {
         tap(_=>console.log('fetched resources')),
         //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))
     )
-}
+  }
 
   private handleError<T>(operation='operation',result?:T) {
     return (error:any):Observable<T> => {

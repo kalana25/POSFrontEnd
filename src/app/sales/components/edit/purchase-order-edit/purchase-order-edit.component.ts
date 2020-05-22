@@ -9,6 +9,9 @@ import { PurchaseOrderDetailWithItem } from '../../../models/purchase-order-deta
 import { MatDialog } from '@angular/material/dialog';
 import { PoDetailPickerComponent } from '../../po-detail-picker/po-detail-picker.component';
 import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purchase-order-edit-item.component';
+import { PurchaseOrderSave } from 'src/app/sales/models/purchase-order-save';
+import { PurchaseOrderDetail } from 'src/app/sales/models/purchase-order-detail';
+import { RouteStateService } from 'src/app/shared/services/route-state.service';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -33,6 +36,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
+    protected routerService:RouteStateService,
     protected purchaseOrderService:PurchaseOrderService
   ) { }
 
@@ -112,11 +116,43 @@ export class PurchaseOrderEditComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(res=>{
         if(res) {
-          debugger;
-          //this.purchaseOrder.items.push({product:product,details:res});
           // re calculate total Price
+          this.purchaseOrder.items.push(res);
+          this.tableReference.renderRows();
         }
       });
+  }
+
+  public OnSave() {
+    if(this.editForm.valid) {
+      //Access service and save
+      if(this.purchaseOrder.items.length==0) {
+        
+      } else {
+        //Wrappe to save model
+        const model = new PurchaseOrderSave();
+        model.code = this.editForm.get('code').value;
+        model.totalPrice = Number(this.editForm.get('totalPrice').value);
+        model.date = this.editForm.get('date').value;
+        model.deliveryDate = this.editForm.get('deliveryDate').value;
+        let itemList:Array<PurchaseOrderDetail> = this.purchaseOrder.items.map(x=>{
+          const item = new PurchaseOrderDetail();
+          item.itemId = x.itemId;
+          item.unit = x.unit;
+          item.quantity = x.quantity;
+          return item;
+        });
+        model.items = itemList;
+        debugger;
+        this.purchaseOrderService.update(this.purchaseOrder.id,model)
+        .subscribe(res=>{
+          const previousUrl = this.routerService.getPreviousUrl();
+          this.router.navigate([`${previousUrl}`]);
+        },err=>{
+          console.error(err);
+        })
+      }
+    }
   }
 
 }
