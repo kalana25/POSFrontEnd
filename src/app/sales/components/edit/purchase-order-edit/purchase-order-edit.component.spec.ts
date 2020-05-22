@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BsActionMenuComponent } from './bs-action-menu.component';
+import { PurchaseOrderEditComponent } from './purchase-order-edit.component';
 
-describe('BsActionMenuComponent', () => {
-  let component: BsActionMenuComponent;
-  let fixture: ComponentFixture<BsActionMenuComponent>;
+describe('PurchaseOrderEditComponent', () => {
+  let component: PurchaseOrderEditComponent;
+  let fixture: ComponentFixture<PurchaseOrderEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BsActionMenuComponent ]
+      declarations: [ PurchaseOrderEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BsActionMenuComponent);
+    fixture = TestBed.createComponent(PurchaseOrderEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

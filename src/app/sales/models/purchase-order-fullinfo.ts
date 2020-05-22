@@ -3,5 +3,5 @@ import { PurchaseOrderDetailWithItem } from './purchase-order-detail-withItem';
 
 
 export class PurchaseOrderFullInfo extends PurchaseOrder {
-    public items:PurchaseOrderDetailWithItem;
+    public items:Array<PurchaseOrderDetailWithItem>;
 }

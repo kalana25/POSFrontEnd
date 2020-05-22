@@ -38,7 +38,7 @@ export class PurchaseOrderAddComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(res=>{
         if(res) {
-          this.selectedProductList.push({product:product,details:res});
+          this.selectedProductList.push({product:res.item,details:res});
           this.totalPrice =this.totalPrice + product.price* res.quantity;
         }
       });

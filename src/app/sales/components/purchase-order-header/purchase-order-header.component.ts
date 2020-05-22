@@ -32,7 +32,6 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
       date:[new Date(),Validators.required],
       deliveryDate:[new Date()],
       code:['',Validators.required],
-      createdBy:[this.sharedMemoryservice.getLoggedUserId()],
       user:[{value:this.sharedMemoryservice.getLoggedUserEmail(), disabled:true}],
       totalPrice:[0,Validators.required]
     });
@@ -43,7 +42,6 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
       const model = new PurchaseOrderSave();
       model.code = this.purchaseOrderHeader.get('code').value;
       model.totalPrice = Number(this.purchaseOrderHeader.get('totalPrice').value);
-      model.createdBy = this.purchaseOrderHeader.get('createdBy').value;
       model.date = this.purchaseOrderHeader.get('date').value;
       model.deliveryDate = this.purchaseOrderHeader.get('deliveryDate').value;
       this.purchaseOrderSaveModel.emit(model);
