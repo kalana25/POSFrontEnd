@@ -6,6 +6,8 @@ import { PurchaseOrderFullInfo } from '../../../models/purchase-order-fullinfo';
 import { Item } from 'src/app/shared/models/item';
 import { MatTable } from '@angular/material';
 import { PurchaseOrderDetailWithItem } from '../../../models/purchase-order-detail-withItem';
+import { MatDialog } from '@angular/material/dialog';
+import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purchase-order-edit-item.component';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -26,6 +28,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   private tableReference:MatTable<PurchaseOrderDetailWithItem>
 
   constructor(
+    protected dialog:MatDialog,
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
@@ -84,8 +87,20 @@ export class PurchaseOrderEditComponent implements OnInit {
     }
   }
 
-  public OnItemEdit(column) {
+  public OnItemEdit(column:PurchaseOrderDetailWithItem) {
+    const dialogRef = this.dialog.open(PurchaseOrderEditItemComponent,{
+      data:column
+    });
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        //re calculate grand total
+        this.tableReference.renderRows();
+      }
+    });
+  }
 
+  public OnGoBack() {
+    this.router.navigate(['../../purchase-order-list'],{relativeTo:this.route});
   }
 
 }

@@ -1,0 +1,19 @@
+<h3 mat-dialog-title>Item Edit</h3>
+
+<mat-dialog-content>
+    <form class="category-form" [formGroup]="itemEditFormGroup">
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input matInput placeholder="Pickup your quantity" formControlName="quantity" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Unit</mat-label>
+            <input matInput placeholder="Pickup your unit" formControlName="unit">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button  mat-raised-button class="float-right" (click)="OnCancel()">Cancel</button>
+    <button  mat-raised-button class="float-right" color="primary" (click)="OnConfirm()">Confirm</button>
+</mat-dialog-actions>

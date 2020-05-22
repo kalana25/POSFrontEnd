@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PurchaseOrderListComponent } from './components/purchase-order-list/purchase-order-list.component';
 import { PurchaseOrderListDetailComponent } from './components/purchase-order-list-detail/purchase-order-list-detail.component';
 import { PurchaseOrderEditComponent } from './components/edit/purchase-order-edit/purchase-order-edit.component';
+import { PurchaseOrderEditItemComponent } from './components/edit/purchase-order-edit-item/purchase-order-edit-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { PurchaseOrderEditComponent } from './components/edit/purchase-order-edi
     PurchaseOrderDetailComponent, 
     PoDetailPickerComponent, 
     PurchaseOrderListComponent, 
-    PurchaseOrderListDetailComponent, PurchaseOrderEditComponent
+    PurchaseOrderListDetailComponent, PurchaseOrderEditComponent, PurchaseOrderEditItemComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +35,7 @@ import { PurchaseOrderEditComponent } from './components/edit/purchase-order-edi
   ],
   entryComponents:[
     PoDetailPickerComponent,
+    PurchaseOrderEditItemComponent
   ]
 })
 export class SalesModule { }

@@ -22,7 +22,6 @@ import { PurchaseOrderListDetailComponent } from './sales/components/purchase-or
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
 import { PurchaseOrderEditComponent } from './sales/components/edit/purchase-order-edit/purchase-order-edit.component';
 
-
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},

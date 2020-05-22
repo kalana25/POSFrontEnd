@@ -44,7 +44,7 @@
         class="btn-po-save">Save</button>
     </form>
 </div>
-<div class="po-container mat-elevation-z8" *ngIf="!IsLoading">
+<div class="mat-elevation-z8 table-container" *ngIf="!IsLoading">
     <div class="po-detail-table-container">
         <table mat-table [dataSource]="purchaseOrder.items">
 
@@ -96,3 +96,6 @@
     </div>
 </div>
 
+<button mat-fab class="fab-back" (click)="OnGoBack()">
+    <mat-icon>arrow_back</mat-icon>
+</button>
