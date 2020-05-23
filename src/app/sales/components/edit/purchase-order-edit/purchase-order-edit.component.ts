@@ -12,6 +12,7 @@ import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purc
 import { PurchaseOrderSave } from 'src/app/sales/models/purchase-order-save';
 import { PurchaseOrderDetail } from 'src/app/sales/models/purchase-order-detail';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -33,6 +34,7 @@ export class PurchaseOrderEditComponent implements OnInit {
 
   constructor(
     protected dialog:MatDialog,
+    protected snackBar:MatSnackBar,
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
@@ -134,7 +136,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     if(this.editForm.valid) {
       //Access service and save
       if(this.purchaseOrder.items.length==0) {
-        
+        this.snackBar.open("Please select items","OK",{duration:2500});
       } else {
         //Wrappe to save model
         const model = new PurchaseOrderSave();
