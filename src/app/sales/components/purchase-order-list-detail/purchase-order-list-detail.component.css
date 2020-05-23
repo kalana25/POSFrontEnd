@@ -1,5 +1,10 @@
+div.po-header-container, div.po-detail-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .fab-back {
-    position:absolute;
+    position:fixed;
     left: 0;
     bottom: 0;
     margin-left: 15px;
