@@ -83,10 +83,12 @@ export class PurchaseOrderEditComponent implements OnInit {
     });
   }
 
-  public OnItemRemove(id:number){
-    let index:number = this.purchaseOrder.items.findIndex(x=>x.itemId===id);
+  public OnItemRemove(model:PurchaseOrderDetailWithItem){
+    let index:number = this.purchaseOrder.items.findIndex(x=>x.itemId===model.itemId);
     if(index!==-1) {
       // re calculate grant total
+      this.purchaseOrder.totalPrice -=model.item.price*model.quantity;
+      this.editForm.get('totalPrice').patchValue(this.purchaseOrder.totalPrice);
       this.purchaseOrder.items.splice(index,1);
       this.tableReference.renderRows();
     }
@@ -99,7 +101,12 @@ export class PurchaseOrderEditComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res=>{
       if(res){
         //re calculate grand total
+        let total:number =0;
+        this.purchaseOrder.items.forEach(item=>{
+          total +=item.quantity*item.item.price;
+        })
         this.tableReference.renderRows();
+        this.editForm.get('totalPrice').patchValue(total);
       }
     });
   }

@@ -83,7 +83,7 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let column">
-                        <button mat-icon-button (click)="OnItemRemove(column.itemId)" class="icon-red">
+                        <button mat-icon-button (click)="OnItemRemove(column)" class="icon-red">
                             <mat-icon class="icon-red">remove_circle_outline</mat-icon>
                         </button>
                         <button mat-icon-button (click)="OnItemEdit(column)">
