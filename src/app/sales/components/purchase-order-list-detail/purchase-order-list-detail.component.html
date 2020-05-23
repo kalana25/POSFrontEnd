@@ -1,11 +1,11 @@
-<div *ngIf="!IsLoading">
+<div class="po-header-container" *ngIf="!IsLoading">
     <h2>Purchase Order Details</h2>
     Code :{{result.code}}<br>
     Date :{{result.date| date}}<br>
     Userid :{{result.userId}}<br>
     Grand Total :{{result.totalPrice}}<br><br>
 </div>
-<div class="po-container mat-elevation-z8" *ngIf="!IsLoading">
+<div class="po-detail-container mat-elevation-z8" *ngIf="!IsLoading">
     <div class="po-detail-loading-shade" *ngIf="IsLoading">
         <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
     </div> 
