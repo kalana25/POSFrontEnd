@@ -23,7 +23,7 @@ export class PurchaseOrderListComponent implements OnInit {
   purchaseOrderRequest:RequestData;
   IsLoading:boolean=false;
 
-  displayedColumns: string[] = ['id', 'code', 'date','supplier', 'totalPrice', 'userId','action'];
+  displayedColumns: string[] = ['id', 'code', 'date','supplierName', 'totalPrice', 'userId','action'];
 
   constructor(
     protected purchaseOrderService:PurchaseOrderService,

@@ -71,7 +71,8 @@ export class PurchaseOrderEditComponent implements OnInit {
       date:this.purchaseOrder.date,
       deliveryDate:this.purchaseOrder.deliveryDate,
       createdByName:this.purchaseOrder.createdByName,
-      totalPrice:this.purchaseOrder.totalPrice
+      totalPrice:this.purchaseOrder.totalPrice,
+      supplierId:this.purchaseOrder.supplier.id
     })
   }
 
@@ -139,6 +140,7 @@ export class PurchaseOrderEditComponent implements OnInit {
         model.totalPrice = Number(this.editForm.get('totalPrice').value);
         model.date = this.editForm.get('date').value;
         model.deliveryDate = this.editForm.get('deliveryDate').value;
+        model.supplierId = this.editForm.get('supplierId').value;
         let itemList:Array<PurchaseOrderDetail> = this.purchaseOrder.items.map(x=>{
           const item = new PurchaseOrderDetail();
           item.itemId = x.itemId;
@@ -147,7 +149,6 @@ export class PurchaseOrderEditComponent implements OnInit {
           return item;
         });
         model.items = itemList;
-        debugger;
         this.purchaseOrderService.update(this.purchaseOrder.id,model)
         .subscribe(res=>{
           const previousUrl = this.routerService.getPreviousUrl();

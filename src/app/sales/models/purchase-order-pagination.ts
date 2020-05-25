@@ -6,7 +6,7 @@ export class PurchaseOrderPagination extends BaseEntity{
     public date:Date;
     public deliveryDate:Date;
     public status:number;
-    public supplier:string;
+    public supplierName:string;
     public totalPrice:number;
     public createdByName:string;
 }
