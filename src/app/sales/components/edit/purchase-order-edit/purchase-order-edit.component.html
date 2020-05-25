@@ -5,7 +5,7 @@
         <form class="category-form" [formGroup]="editForm">
             
             <input type="hidden" formControlName="id">
-            <mat-form-field appearance="standard" class="full-width">
+            <mat-form-field class="full-width">
                 <mat-label>Code</mat-label>
                 <input matInput placeholder="Placeholder" formControlName="code">
                 <mat-error *ngIf="editForm.get('code').invalid">
@@ -13,7 +13,7 @@
                 </mat-error>
             </mat-form-field>
             
-            <mat-form-field appearance="standard" class="full-width">
+            <mat-form-field class="full-width">
                 <mat-label>Date</mat-label>
                 <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -23,7 +23,7 @@
                 </mat-error>
             </mat-form-field>
             
-            <mat-form-field appearance="standard" class="full-width">
+            <mat-form-field class="full-width">
                 <mat-label>Delivery Date</mat-label>
                 <input matInput placeholder="Placeholder" formControlName="deliveryDate" [matDatepicker]="DeliveryDatepicker">
                 <mat-datepicker-toggle matSuffix [for]="DeliveryDatepicker"></mat-datepicker-toggle>
@@ -33,12 +33,24 @@
                 </mat-error>
             </mat-form-field>
         
-            <mat-form-field appearance="standard" class="full-width">
+            <mat-form-field class="full-width">
+                <mat-label>Supplier</mat-label>
+                <mat-select formControlName="supplierId"placeholder="Supplier">
+                    <mat-option *ngFor="let supplier of supplierList" [value]="supplier.id">
+                        {{supplier.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="editForm.get('supplierId').invalid">
+                    <span *ngIf="editForm.get('supplierId').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
                 <mat-label>Created By</mat-label>
                 <input matInput placeholder="Created By" formControlName="createdByName">
             </mat-form-field>
         
-            <mat-form-field appearance="standard" class="full-width">
+            <mat-form-field class="full-width">
                 <mat-label>Price</mat-label>
                 <input matInput placeholder="Placeholder" formControlName="totalPrice">
             </mat-form-field>

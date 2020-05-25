@@ -12,6 +12,8 @@ import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purc
 import { PurchaseOrderSave } from 'src/app/sales/models/purchase-order-save';
 import { PurchaseOrderDetail } from 'src/app/sales/models/purchase-order-detail';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
+import { Supplier } from 'src/app/setup/models/supplier';
+import { SupplierService } from 'src/app/setup/services/supplier.service';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -23,7 +25,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   public IsLoading:boolean;
   public purchaseOrder:PurchaseOrderFullInfo
   public editForm:FormGroup;
-
+  public supplierList:Array<Supplier>;
   public displayedColumns: string[] = ['code', 'name', 'price', 'barcode','quantity','unit','action'];
 
   @ViewChild(MatTable,{
@@ -36,6 +38,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
+    protected supplierService:SupplierService,
     protected routerService:RouteStateService,
     protected purchaseOrderService:PurchaseOrderService
   ) { }
@@ -47,7 +50,7 @@ export class PurchaseOrderEditComponent implements OnInit {
       this.id = para['id'];
       this.getPurchaseOrderInfo();
     });
-
+    this.GetSupplierData();
   }
   
   private getPurchaseOrderInfo() {    
@@ -78,6 +81,7 @@ export class PurchaseOrderEditComponent implements OnInit {
       code:['',Validators.required],
       date:['',Validators.required],
       deliveryDate:[''],
+      supplierId:['',Validators.required],
       createdByName:['',Validators.required],
       totalPrice:['',Validators.required]
     });
@@ -153,6 +157,15 @@ export class PurchaseOrderEditComponent implements OnInit {
         })
       }
     }
+  }
+
+  public GetSupplierData() {
+    this.supplierService.get("findall")
+    .subscribe(res=>{
+      this.supplierList = res;
+    },err=>{
+      console.error(err);
+    })
   }
 
 }
