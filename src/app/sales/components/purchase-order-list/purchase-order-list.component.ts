@@ -10,6 +10,7 @@ import { PurchaseOrderDeleteAction } from '../dialog-action/confirmation-action'
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { PurchaseOrderPagination } from '../../models/purchase-order-pagination';
 
 @Component({
   selector: 'app-purchase-order-list',
@@ -18,11 +19,11 @@ import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet
 })
 export class PurchaseOrderListComponent implements OnInit {
 
-  purchaseOrderResponse:ResponseData<PurchaseOrder>;
+  purchaseOrderResponse:ResponseData<PurchaseOrderPagination>;
   purchaseOrderRequest:RequestData;
   IsLoading:boolean=false;
 
-  displayedColumns: string[] = ['id', 'code', 'date', 'totalPrice', 'userId','action'];
+  displayedColumns: string[] = ['id', 'code', 'date','supplier', 'totalPrice', 'userId','action'];
 
   constructor(
     protected purchaseOrderService:PurchaseOrderService,
