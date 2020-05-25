@@ -5,5 +5,6 @@ export class PurchaseOrderSave {
     date:Date;
     totalPrice:number;
     deliveryDate:Date;
+    supplierId:number;
     items:Array<PurchaseOrderDetail>;
 }

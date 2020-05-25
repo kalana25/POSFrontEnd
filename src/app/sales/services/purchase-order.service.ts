@@ -8,6 +8,7 @@ import { PurchaseOrderSave } from '../models/purchase-order-save';
 import { PurchaseOrderFullInfo } from '../models/purchase-order-fullinfo';
 import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-Data';
+import { PurchaseOrderPagination } from '../models/purchase-order-pagination';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -60,13 +61,13 @@ export class PurchaseOrderService {
     );
   }
 
-  pagination(requestData:RequestData):Observable<ResponseData<PurchaseOrder>>{
+  pagination(requestData:RequestData):Observable<ResponseData<PurchaseOrderPagination>>{
     const keys:Array<string> =[];
     Object.keys(requestData).forEach(element => {
         keys.push(`${element}=${requestData[element]}`);
     });
     let params = `?${keys.join('&')}`;
-    return this.http.get<ResponseData<PurchaseOrder>>(`${this.config.apiUrl}/${this.resource}/pagination/${params}`)
+    return this.http.get<ResponseData<PurchaseOrderPagination>>(`${this.config.apiUrl}/${this.resource}/pagination/${params}`)
     .pipe(
         tap(_=>console.log('fetched resources')),
         //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))

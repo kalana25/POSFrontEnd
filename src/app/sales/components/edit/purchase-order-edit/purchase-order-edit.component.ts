@@ -13,6 +13,8 @@ import { PurchaseOrderSave } from 'src/app/sales/models/purchase-order-save';
 import { PurchaseOrderDetail } from 'src/app/sales/models/purchase-order-detail';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Supplier } from 'src/app/setup/models/supplier';
+import { SupplierService } from 'src/app/setup/services/supplier.service';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -24,7 +26,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   public IsLoading:boolean;
   public purchaseOrder:PurchaseOrderFullInfo
   public editForm:FormGroup;
-
+  public supplierList:Array<Supplier>;
   public displayedColumns: string[] = ['code', 'name', 'price', 'barcode','quantity','unit','action'];
 
   @ViewChild(MatTable,{
@@ -38,6 +40,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
+    protected supplierService:SupplierService,
     protected routerService:RouteStateService,
     protected purchaseOrderService:PurchaseOrderService
   ) { }
@@ -49,7 +52,7 @@ export class PurchaseOrderEditComponent implements OnInit {
       this.id = para['id'];
       this.getPurchaseOrderInfo();
     });
-
+    this.GetSupplierData();
   }
   
   private getPurchaseOrderInfo() {    
@@ -70,7 +73,8 @@ export class PurchaseOrderEditComponent implements OnInit {
       date:this.purchaseOrder.date,
       deliveryDate:this.purchaseOrder.deliveryDate,
       createdByName:this.purchaseOrder.createdByName,
-      totalPrice:this.purchaseOrder.totalPrice
+      totalPrice:this.purchaseOrder.totalPrice,
+      supplierId:this.purchaseOrder.supplier.id
     })
   }
 
@@ -80,6 +84,7 @@ export class PurchaseOrderEditComponent implements OnInit {
       code:['',Validators.required],
       date:['',Validators.required],
       deliveryDate:[''],
+      supplierId:['',Validators.required],
       createdByName:['',Validators.required],
       totalPrice:['',Validators.required]
     });
@@ -144,6 +149,7 @@ export class PurchaseOrderEditComponent implements OnInit {
         model.totalPrice = Number(this.editForm.get('totalPrice').value);
         model.date = this.editForm.get('date').value;
         model.deliveryDate = this.editForm.get('deliveryDate').value;
+        model.supplierId = this.editForm.get('supplierId').value;
         let itemList:Array<PurchaseOrderDetail> = this.purchaseOrder.items.map(x=>{
           const item = new PurchaseOrderDetail();
           item.itemId = x.itemId;
@@ -152,7 +158,6 @@ export class PurchaseOrderEditComponent implements OnInit {
           return item;
         });
         model.items = itemList;
-        debugger;
         this.purchaseOrderService.update(this.purchaseOrder.id,model)
         .subscribe(res=>{
           const previousUrl = this.routerService.getPreviousUrl();
@@ -162,6 +167,15 @@ export class PurchaseOrderEditComponent implements OnInit {
         })
       }
     }
+  }
+
+  public GetSupplierData() {
+    this.supplierService.get("findall")
+    .subscribe(res=>{
+      this.supplierList = res;
+    },err=>{
+      console.error(err);
+    })
   }
 
 }
