@@ -42,7 +42,7 @@ const routes: Routes = [
       {path:'product-config',component:PcSetupBoardComponent},
 
       {path:'discount-list',component:DiscountListComponent},
-      {path:'discount-add',component:DiscountAddComponent},
+      {path:'discount-new',component:DiscountAddComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},

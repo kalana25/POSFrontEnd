@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,Router } from '@angular/router';
+import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-discount-add',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiscountAddComponent implements OnInit {
 
-  constructor() { }
+  public discountForm:FormGroup;
+
+
+  constructor(
+    protected fb:FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  private initForm() {
+    this.discountForm = this.fb.group({
+      id:['',Validators.required ],
+      itemName:['',Validators.required],
+      itemId:['',Validators.required],
+      rate:['',Validators.required],
+      startDate:['',Validators.required],
+      endDate:['',Validators.required]
+    });
   }
 
 }

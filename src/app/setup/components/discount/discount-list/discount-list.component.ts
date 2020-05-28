@@ -55,9 +55,9 @@ export class DiscountListComponent implements OnInit {
     this.getDiscountPagination(this.discountRequest);
   }
 
-  // OnAddClick() {
-  //   this.router.navigate(['../discount-new'],{relativeTo:this.route});
-  // }
+  OnAddClick() {
+    this.router.navigate(['../discount-new'],{relativeTo:this.route});
+  }
 
   OnDelete(id:number) {
     let confrimData = new DialogData();
