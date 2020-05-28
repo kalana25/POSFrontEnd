@@ -22,6 +22,9 @@ import { PurchaseOrderListDetailComponent } from './sales/components/purchase-or
 import { PurchaseOrderAddComponent } from './sales/components/purchase-order-add/purchase-order-add.component';
 import { PurchaseOrderEditComponent } from './sales/components/edit/purchase-order-edit/purchase-order-edit.component';
 
+import { DiscountListComponent } from './setup/components/discount/discount-list/discount-list.component';
+import { DiscountAddComponent } from './setup/components/discount/discount-add/discount-add.component';
+
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},
@@ -37,6 +40,9 @@ const routes: Routes = [
       {path:'product-list',component:ProductListComponent},
       {path:'product-new',component:ProductAddEditComponent},
       {path:'product-config',component:PcSetupBoardComponent},
+
+      {path:'discount-list',component:DiscountListComponent},
+      {path:'discount-add',component:DiscountAddComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
