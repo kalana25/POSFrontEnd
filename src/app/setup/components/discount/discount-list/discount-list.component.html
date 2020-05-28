@@ -1,1 +1,60 @@
-<p>discount-list works!</p>
+
+<h1 class="page-header">Discounts</h1>
+<div class="discount-container mat-elevation-z8">
+
+    <div class="discount-loading-shade" *ngIf="IsLoading">
+        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+    </div>
+    <div class="discount-table-container">
+        <table *ngIf="discountResponse" mat-table [dataSource]="discountResponse.items">
+
+            <ng-container matColumnDef="itemName">
+            <th mat-header-cell *matHeaderCellDef> Item </th>
+            <td mat-cell *matCellDef="let column"> {{column.itemName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rate">
+            <th mat-header-cell *matHeaderCellDef> Rate </th>
+            <td mat-cell *matCellDef="let column"> {{column.rate}} </td>
+            </ng-container>
+            
+
+            <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start Date </th>
+            <td mat-cell *matCellDef="let column"> {{column.startDate}} </td>
+            </ng-container>
+
+        
+            <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End Date </th>
+            <td mat-cell *matCellDef="let column"> {{column.endDate}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let column">
+                    <button mat-icon-button (click)="OnDelete(column.id)" >
+                        <mat-icon class="icon-red">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="OnEdit(column)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <mat-paginator
+        *ngIf="discountResponse"
+        [length]="discountResponse.totalCount"
+        [pageSize]="discountResponse.pageSize"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        (page)="OnPage($event)">
+    </mat-paginator>
+</div>
+<button mat-fab class="fab-plus" (click)="OnAddClick()">
+    <mat-icon>add</mat-icon>
+</button>
