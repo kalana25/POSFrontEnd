@@ -1,8 +1,9 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscountService } from 'src/app/setup/services/discount.service';
+import { DiscountSave } from 'src/app/setup/models/discount-save';
 
 @Component({
   selector: 'app-discount-edit',
@@ -19,6 +20,7 @@ export class DiscountEditComponent implements OnInit {
     protected route:ActivatedRoute,
     protected router:Router,
     protected snackBar:MatSnackBar,
+    public dialogRef:MatDialogRef<DiscountEditComponent>,
     protected discountService:DiscountService
   ) { }
 
@@ -48,6 +50,18 @@ export class DiscountEditComponent implements OnInit {
       startDate:['',Validators.required],
       endDate:['',Validators.required]
     });
+  }
+
+  private OnUpdate() {
+    if(this.discountForm.valid) {
+      const model:DiscountSave = this.discountForm.value;
+      this.discountService.update(this.data.id,model)
+      .subscribe(res=>{
+        this.dialogRef.close();
+      },err=>{
+        console.error(err);
+      })
+    }
   }
 
 }
