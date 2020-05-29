@@ -24,6 +24,7 @@ import { PurchaseOrderEditComponent } from './sales/components/edit/purchase-ord
 
 import { DiscountListComponent } from './setup/components/discount/discount-list/discount-list.component';
 import { DiscountAddComponent } from './setup/components/discount/discount-add/discount-add.component';
+import { DiscountEditComponent } from './setup/components/discount/discount-edit/discount-edit.component';
 
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
 
       {path:'discount-list',component:DiscountListComponent},
       {path:'discount-new',component:DiscountAddComponent},
+      {path:'discount-edit',component:DiscountEditComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},

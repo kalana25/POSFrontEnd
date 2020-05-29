@@ -1,0 +1,46 @@
+<h2>Update Discount</h2>
+<form class="discount-form" [formGroup]="discountForm" autocomplete="off" (ngSubmit)="OnSave()">
+            
+    <input type="hidden" formControlName="id">
+    <input type="hidden" formControlName="itemId">
+    <mat-form-field class="full-width">
+        <mat-label>Item</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="itemName">
+        <mat-error *ngIf="discountForm.get('itemName').invalid">
+            <span *ngIf="discountForm.get('itemName').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+        <mat-label>Rate</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="rate" type="number" max="100">
+        <mat-error *ngIf="discountForm.get('rate').invalid">
+            <span *ngIf="discountForm.get('rate').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Start Date</mat-label>
+        <input matInput placeholder="Discount Start Date" formControlName="startDate" [matDatepicker]="discountStartDatepicker">
+        <mat-datepicker-toggle matSuffix [for]="discountStartDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #discountStartDatepicker></mat-datepicker>
+        <mat-error *ngIf="discountForm.get('startDate').invalid">
+            <span *ngIf="discountForm.get('startDate').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+        <mat-label>End Date</mat-label>
+        <input matInput placeholder="Discount End Date" formControlName="endDate" [matDatepicker]="discountEndDatepicker">
+        <mat-datepicker-toggle matSuffix [for]="discountEndDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #discountEndDatepicker></mat-datepicker>
+        <mat-error *ngIf="discountForm.get('endDate').invalid">
+            <span *ngIf="discountForm.get('endDate').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+
+    <button type="submit" mat-button color="primary" class="float-right">
+        Update
+    </button>
+</form>

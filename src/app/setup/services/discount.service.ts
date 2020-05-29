@@ -41,7 +41,7 @@ export class DiscountService {
   }
 
   getWithItemInfo(id:number):Observable<DiscountWithItem> {
-    return this.http.get<DiscountWithItem>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/${id}`)
+    return this.http.get<DiscountWithItem>(`${this.config.apiUrl}/${this.resource}/find/${id}`)
     .pipe(
         tap(_=>console.log('fetched resource')),
         catchError(this.handleError<DiscountWithItem>(`getWithFullInfo=${id}`))

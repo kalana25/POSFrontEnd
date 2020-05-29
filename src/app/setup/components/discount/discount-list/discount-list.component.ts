@@ -8,6 +8,7 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { DiscountDeleteAction } from '../../product/dialog-action/disount-confirmation-action';
+import { DiscountEditComponent} from '../discount-edit/discount-edit.component';
 
 @Component({
   selector: 'app-discount-list',
@@ -78,15 +79,16 @@ export class DiscountListComponent implements OnInit {
     })
   }
 
-  // public OnEdit(supplier:Supplier) {
-  //   console.log(supplier);
-  //   let dialogRef = this.dialog.open(SupplierEditComponent,
-  //     {
-  //       data:supplier
-  //     });
-  //   dialogRef.afterClosed().subscribe(_=>{
-  //     this.getSupplierPagination(this.supplierRequest);
-  //   })
-  // }
+  public OnEdit(discountInfo:DiscountInfo) {
+    let dialogRef = this.dialog.open(DiscountEditComponent,
+      {
+        data:discountInfo,
+        width:'500px',
+        // height: '180px',
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.getDiscountPagination(this.discountRequest);
+    })
+  }
 
 }

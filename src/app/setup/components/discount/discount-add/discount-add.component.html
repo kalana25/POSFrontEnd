@@ -2,7 +2,7 @@
 <div class="parent">
 
     <div class="discount-header" *ngIf="!IsLoading">
-        <h1>Discount</h1>
+        <h2>New Discount</h2>
         <form class="discount-form" [formGroup]="discountForm" autocomplete="off" (ngSubmit)="OnSave()">
             
             <input type="hidden" formControlName="id">

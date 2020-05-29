@@ -21,6 +21,7 @@ import { ProductEditComponent } from './components/product/product-edit/product-
 import { AngularMaterialModule } from '../angular-material.module';
 import { DiscountListComponent } from './components/discount/discount-list/discount-list.component';
 import { DiscountAddComponent } from './components/discount/discount-add/discount-add.component';
+import { DiscountEditComponent } from './components/discount/discount-edit/discount-edit.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { DiscountAddComponent } from './components/discount/discount-add/discoun
     ProductEditComponent,
     DiscountListComponent,
     DiscountAddComponent,
+    DiscountEditComponent,
   ],
   imports: [
     CommonModule,
