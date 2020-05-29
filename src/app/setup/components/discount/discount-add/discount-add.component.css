@@ -8,11 +8,6 @@ div.discount-header {
     margin-left: 20px;
 }
 
-/* div.table-container {
-    width: 50%;
-    margin-left: 20px;
-}
-
 div.item-picker {
     width:45%;
     position:absolute;
@@ -20,6 +15,16 @@ div.item-picker {
     top: 0;
     margin-right: 20px;
 }
+
+form.discount-form {
+    display: block;
+}
+
+/* div.table-container {
+    width: 50%;
+    margin-left: 20px;
+}
+
 
 table {
     width: 100%;

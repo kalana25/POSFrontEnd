@@ -2,7 +2,8 @@
 <div class="parent">
 
     <div class="discount-header" *ngIf="!IsLoading">
-        <form class="discount-form" [formGroup]="discountForm">
+        <h1>Discount</h1>
+        <form class="discount-form" [formGroup]="discountForm" autocomplete="off" (ngSubmit)="OnSave()">
             
             <input type="hidden" formControlName="id">
             <input type="hidden" formControlName="itemId">
@@ -36,78 +37,25 @@
         
             <mat-form-field class="full-width">
                 <mat-label>Rate</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="rate">
+                <input matInput placeholder="Placeholder" formControlName="rate" type="number" max="100">
                 <mat-error *ngIf="discountForm.get('rate').invalid">
                     <span *ngIf="discountForm.get('rate').errors.required">Mandatory</span>
                 </mat-error>
             </mat-form-field>
-            
+
+            <button type="submit" mat-fab color="primary" class="fab-save">
+                <mat-icon>save</mat-icon>
+            </button>
         </form>
     </div>
     
-    <!-- <div class="mat-elevation-z8 table-container" *ngIf="!IsLoading">
-        <div class="po-detail-table-container">
-            <table mat-table [dataSource]="purchaseOrder.items">
-    
-                <ng-container matColumnDef="code">
-                <th mat-header-cell *matHeaderCellDef> Code </th>
-                <td mat-cell *matCellDef="let column"> {{column.item.code}} </td>
-                </ng-container>
-                
-                <ng-container matColumnDef="barcode">
-                <th mat-header-cell *matHeaderCellDef> Barcode </th>
-                <td mat-cell *matCellDef="let column"> {{column.item.barcode}} </td>
-                </ng-container>
-                
-                <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let column"> {{column.item.name}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef> Price </th>
-                <td mat-cell *matCellDef="let column"> {{column.item.price}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="quantity">
-                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                    <td mat-cell *matCellDef="let column"> {{column.quantity}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="unit">
-                    <th mat-header-cell *matHeaderCellDef> Unit </th>
-                    <td mat-cell *matCellDef="let column"> {{column.unit}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let column">
-                        <button mat-icon-button (click)="OnItemRemove(column)" class="icon-red">
-                            <mat-icon class="icon-red">remove_circle_outline</mat-icon>
-                        </button>
-                        <button mat-icon-button (click)="OnItemEdit(column)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </td>
-                </ng-container>
-            
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        </div>
-    </div> -->
-    
-    <!-- <div class="item-picker">
+    <div class="item-picker">
         <app-item-picker (itemselected)="OnSelectProduct($event)" >
         </app-item-picker>
-    </div> -->
+    </div>
     
     <button mat-fab class="fab-back" (click)="OnGoBack()">
         <mat-icon>arrow_back</mat-icon>
-    </button>
-
-    <button mat-fab color="primary" class="fab-save" (click)="OnSave()">
-        <mat-icon>save</mat-icon>
     </button>
 
 </div>
