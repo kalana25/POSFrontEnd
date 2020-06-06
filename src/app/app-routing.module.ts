@@ -26,6 +26,9 @@ import { DiscountListComponent } from './setup/components/discount/discount-list
 import { DiscountAddComponent } from './setup/components/discount/discount-add/discount-add.component';
 import { DiscountEditComponent } from './setup/components/discount/discount-edit/discount-edit.component';
 
+import { BaseUnitListComponent } from './setup/components/base-unit/base-unit-list/base-unit-list.component'
+import { BaseUnitAddComponent } from './setup/components/base-unit/base-unit-add/base-unit-add.component'
+
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},
@@ -45,6 +48,9 @@ const routes: Routes = [
       {path:'discount-list',component:DiscountListComponent},
       {path:'discount-new',component:DiscountAddComponent},
       {path:'discount-edit',component:DiscountEditComponent},
+
+      {path:'base-unit-list',component:BaseUnitListComponent},
+      {path:'base-unit-new',component:BaseUnitAddComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},

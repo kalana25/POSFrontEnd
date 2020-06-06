@@ -1,0 +1,12 @@
+form.base-unit-form {
+    width: 250px;
+    position: relative;
+}
+
+.mat-form-field {
+    width: 220px;
+}
+
+.float-right {
+    float: right;
+}
