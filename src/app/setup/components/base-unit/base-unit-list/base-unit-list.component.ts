@@ -4,13 +4,12 @@ import { BaseUnit } from '../../../models/base-unit';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
-// import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
-// import { SupplierEditComponent } from '../supplier-edit/supplier-edit.component';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
 import { BaseUnitDeleteAction } from '../dialog-action/base-unit-confirmation-action';
+import { BaseUnitEditComponent } from '../base-unit-edit/base-unit-edit.component';
 
 @Component({
   selector: 'app-base-unit-list',
@@ -80,15 +79,15 @@ export class BaseUnitListComponent implements OnInit {
     })
   }
 
-  // public OnEdit(supplier:Supplier) {
-  //   console.log(supplier);
-  //   let dialogRef = this.dialog.open(SupplierEditComponent,
-  //     {
-  //       data:supplier
-  //     });
-  //   dialogRef.afterClosed().subscribe(_=>{
-  //     this.getSupplierPagination(this.supplierRequest);
-  //   })
-  // }
+  public OnEdit(baseUnit:BaseUnit) {
+    console.log(baseUnit);
+    let dialogRef = this.dialog.open(BaseUnitEditComponent,
+      {
+        data:baseUnit
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.getBaseUnitPagination(this.baseUnitRequest);
+    })
+  }
 
 }

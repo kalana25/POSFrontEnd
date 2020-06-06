@@ -24,6 +24,7 @@ import { DiscountAddComponent } from './components/discount/discount-add/discoun
 import { DiscountEditComponent } from './components/discount/discount-edit/discount-edit.component';
 import { BaseUnitListComponent } from './components/base-unit/base-unit-list/base-unit-list.component';
 import { BaseUnitAddComponent } from './components/base-unit/base-unit-add/base-unit-add.component';
+import { BaseUnitEditComponent } from './components/base-unit/base-unit-edit/base-unit-edit.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { BaseUnitAddComponent } from './components/base-unit/base-unit-add/base-
     DiscountEditComponent,
     BaseUnitListComponent,
     BaseUnitAddComponent,
+    BaseUnitEditComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { BaseUnitAddComponent } from './components/base-unit/base-unit-add/base-
     BsActionMenuComponent,
     SupplierDeleteDialogComponent,
     CategoryEditComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    BaseUnitEditComponent,
   ]
 })
 export class SetupModule { }
