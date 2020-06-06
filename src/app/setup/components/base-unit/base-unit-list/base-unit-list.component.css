@@ -1,0 +1,39 @@
+h1.page-header, div.base-unit-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .fab-plus {
+      position:fixed;
+      right: 0;
+      bottom: 0;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      background-color:#009432;
+      color: white;
+  }
+  
+  .base-unit-loading-shade {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-red {
+    color: rgb(218, 30, 30)
+  }
+  
+  .icon-small {
+    font-size: 24px;
+  }
