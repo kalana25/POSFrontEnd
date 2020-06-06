@@ -22,6 +22,8 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { DiscountListComponent } from './components/discount/discount-list/discount-list.component';
 import { DiscountAddComponent } from './components/discount/discount-add/discount-add.component';
 import { DiscountEditComponent } from './components/discount/discount-edit/discount-edit.component';
+import { BaseUnitListComponent } from './components/base-unit/base-unit-list/base-unit-list.component';
+import { BaseUnitAddComponent } from './components/base-unit/base-unit-add/base-unit-add.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { DiscountEditComponent } from './components/discount/discount-edit/disco
     DiscountListComponent,
     DiscountAddComponent,
     DiscountEditComponent,
+    BaseUnitListComponent,
+    BaseUnitAddComponent,
   ],
   imports: [
     CommonModule,
