@@ -50,7 +50,7 @@ const routes: Routes = [
       {path:'discount-edit',component:DiscountEditComponent},
 
       {path:'base-unit-list',component:BaseUnitListComponent},
-      {path:'base-unit-add',component:BaseUnitAddComponent},
+      {path:'base-unit-new',component:BaseUnitAddComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},

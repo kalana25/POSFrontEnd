@@ -55,9 +55,9 @@ export class BaseUnitListComponent implements OnInit {
     this.getBaseUnitPagination(this.baseUnitRequest);
   }
 
-  // OnAddClick() {
-  //   this.router.navigate(['../supplier-new'],{relativeTo:this.route});
-  // }
+  OnAddClick() {
+    this.router.navigate(['../base-unit-new'],{relativeTo:this.route});
+  }
 
   // public OnDelete(id:number) {
   //   let dialogRef = this.dialog.open(SupplierDeleteDialogComponent,

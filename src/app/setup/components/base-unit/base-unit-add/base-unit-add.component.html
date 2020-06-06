@@ -1,1 +1,39 @@
-<p>base-unit-add works!</p>
+
+<div class="parent">
+
+    <div class="base-unit-header" *ngIf="!IsLoading">
+        <h2>New Base Unit</h2>
+        <form class="base-unit-form" [formGroup]="baseUnitForm" autocomplete="off" (ngSubmit)="OnSave()">
+            
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Unit name" formControlName="name">
+                <mat-error *ngIf="baseUnitForm.get('name').invalid">
+                    <span *ngIf="baseUnitForm.get('name').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Symbol</mat-label>
+                <input matInput placeholder="Symbol" formControlName="symbol">
+                <mat-error *ngIf="baseUnitForm.get('symbol').invalid">
+                    <span *ngIf="baseUnitForm.get('symbol').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Unit description" formControlName="description"></textarea>
+            </mat-form-field>
+
+            <button type="submit" mat-fab color="primary" class="fab-save">
+                <mat-icon>save</mat-icon>
+            </button>
+        </form>
+    </div>
+    
+    <button mat-fab class="fab-back" (click)="OnGoBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+</div>
