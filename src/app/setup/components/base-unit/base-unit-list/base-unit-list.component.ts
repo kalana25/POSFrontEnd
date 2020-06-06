@@ -6,9 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from 'src/app/core/dialog-data'
 // import { SupplierDeleteDialogComponent } from '../supplier-delete-dialog/supplier-delete-dialog.component';
 // import { SupplierEditComponent } from '../supplier-edit/supplier-edit.component';
+import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
+import { BaseUnitDeleteAction } from '../dialog-action/base-unit-confirmation-action';
 
 @Component({
   selector: 'app-base-unit-list',
@@ -59,17 +61,24 @@ export class BaseUnitListComponent implements OnInit {
     this.router.navigate(['../base-unit-new'],{relativeTo:this.route});
   }
 
-  // public OnDelete(id:number) {
-  //   let dialogRef = this.dialog.open(SupplierDeleteDialogComponent,
-  //     {
-  //       width:'500px',
-  //       height: '180px',
-  //       data:id
-  //     });
-  //   dialogRef.afterClosed().subscribe(_=>{
-  //     this.getSupplierPagination(this.supplierRequest);
-  //   })
-  // }
+  OnDelete(id:number) {
+    let confrimData = new DialogData();
+    confrimData.buttonCancel = true;
+    confrimData.buttonConfim = true;
+    confrimData.dialogTitle = "Base Unit Delete";
+    confrimData.dialogContent = "Are you sure you want to delete this base unit ?";
+    confrimData.action = new BaseUnitDeleteAction(this.baseUnitService,id);
+
+    let dialogRef = this.dialog.open(DialogContentComponent,
+      {
+        width:'500px',
+        height: '200px',
+        data:confrimData
+      });
+    dialogRef.afterClosed().subscribe(res=>{
+      this.getBaseUnitPagination(this.baseUnitRequest);
+    })
+  }
 
   // public OnEdit(supplier:Supplier) {
   //   console.log(supplier);
