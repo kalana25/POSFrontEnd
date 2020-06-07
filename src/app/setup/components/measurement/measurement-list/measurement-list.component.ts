@@ -6,9 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, PageEvent } from '@angular/material';
 import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
-import { DiscountDeleteAction } from '../../product/dialog-action/disount-confirmation-action';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { MeasurementInfo } from 'src/app/setup/models/measurement-info';
+import { MeasurementDeleteAction } from '../dialog-action/measurement-confirmation-action';
 // import { DiscountEditComponent} from '../discount-edit/discount-edit.component';
 
 @Component({
@@ -26,6 +26,7 @@ export class MeasurementListComponent implements OnInit {
   constructor(
     public route:ActivatedRoute,
     public router:Router,
+    protected dialog:MatDialog,
     public measurementService:MeasurementService
   ) { }
 
@@ -64,6 +65,25 @@ export class MeasurementListComponent implements OnInit {
 
   public OnGoBack() {
     this.router.navigate(['../product-list'],{relativeTo:this.route});
+  }
+
+  OnDelete(id:number) {
+    let confrimData = new DialogData();
+    confrimData.buttonCancel = true;
+    confrimData.buttonConfim = true;
+    confrimData.dialogTitle = "Measurement Delete";
+    confrimData.dialogContent = "Are you sure you want to delete this measurement ?";
+    confrimData.action = new MeasurementDeleteAction(this.measurementService,id);
+
+    let dialogRef = this.dialog.open(DialogContentComponent,
+      {
+        width:'500px',
+        height: '200px',
+        data:confrimData
+      });
+    dialogRef.afterClosed().subscribe(res=>{
+      this.getMeasurementPagination(this.measurementRequest);
+    })
   }
 
 }

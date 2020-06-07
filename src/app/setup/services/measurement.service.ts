@@ -48,6 +48,15 @@ export class MeasurementService {
     );
   }
 
+  delete(model:MeasurementInfo | number): Observable<MeasurementInfo> {
+    const id = typeof model === 'number' ? model: model.id;
+    return this.http.delete<MeasurementInfo>(`${this.config.apiUrl}/${this.resource}/delete/${id}`,httpOptions)
+    .pipe(
+      tap(_=>console.log(`deleted ${typeof(model)} /w id ${id}`)),
+      catchError(this.handleError<MeasurementInfo>(`delete${typeof(model)}`))
+    );
+  }
+
   private handleError<T>(operation='operation',result?:T) {
     return (error:any):Observable<T> => {
         console.error(error);
