@@ -71,7 +71,6 @@ export class MeasurementListComponent implements OnInit {
     let dialogRef = this.dialog.open(MeasurementEditComponent,
       {
         data:measurementInfo,
-        width:'500px',
       });
     dialogRef.afterClosed().subscribe(_=>{
       this.getMeasurementPagination(this.measurementRequest);
