@@ -5,7 +5,7 @@ import { Product } from 'src/app/setup/models/product';
 import { BaseUnitService } from 'src/app/setup/services/base-unit.service';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { BaseUnit } from 'src/app/setup/models/base-unit';
-import { MeasurementSave } from 'src/app/setup/models/measurement-save';
+import { Measurement } from 'src/app/setup/models/measurement';
 
 @Component({
   selector: 'app-measurement-add',
@@ -58,7 +58,7 @@ export class MeasurementAddComponent implements OnInit {
 
   public OnSave() {
     if(this.measurementForm.valid){
-      let model:MeasurementSave = this.measurementForm.value;
+      let model:Measurement = this.measurementForm.value;
       this.measurementService.add(model)
       .subscribe(res=>{
         this.router.navigate(['../measurement-list',this.item],{relativeTo:this.route});

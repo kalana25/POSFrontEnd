@@ -73,6 +73,7 @@ import { MeasurementEditComponent } from './components/measurement/measurement-e
     CategoryEditComponent,
     ProductEditComponent,
     BaseUnitEditComponent,
+    MeasurementEditComponent
   ]
 })
 export class SetupModule { }

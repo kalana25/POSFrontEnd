@@ -9,7 +9,7 @@ import { DialogContentComponent } from 'src/app/shared/components/dialog-content
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { MeasurementInfo } from 'src/app/setup/models/measurement-info';
 import { MeasurementDeleteAction } from '../dialog-action/measurement-confirmation-action';
-// import { DiscountEditComponent} from '../discount-edit/discount-edit.component';
+import { MeasurementEditComponent} from '../measurement-edit/measurement-edit.component';
 
 @Component({
   selector: 'app-measurement-list',
@@ -65,6 +65,17 @@ export class MeasurementListComponent implements OnInit {
 
   public OnGoBack() {
     this.router.navigate(['../product-list'],{relativeTo:this.route});
+  }
+
+  public OnEdit(measurementInfo:MeasurementInfo) {
+    let dialogRef = this.dialog.open(MeasurementEditComponent,
+      {
+        data:measurementInfo,
+        width:'500px',
+      });
+    dialogRef.afterClosed().subscribe(_=>{
+      this.getMeasurementPagination(this.measurementRequest);
+    })
   }
 
   OnDelete(id:number) {

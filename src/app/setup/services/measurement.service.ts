@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-data';
 import { MeasurementInfo } from '../models/measurement-info';
-import { MeasurementSave } from '../models/measurement-save';
+import { Measurement } from '../models/measurement';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -40,11 +40,27 @@ export class MeasurementService {
     )
   }
 
-  add(model:MeasurementSave):Observable<MeasurementSave> {
-    return this.http.post<MeasurementSave>(`${this.config.apiUrl}/${this.resource}/save`,model,httpOptions)
+  get(id:number):Observable<Measurement> {
+    return this.http.get<Measurement>(`${this.config.apiUrl}/${this.resource}/find/${id}`)
     .pipe(
-      tap((resPro:MeasurementSave) => console.log(`added ${typeof(resPro)} /w id${resPro.id }`)),
-      catchError(this.handleError<MeasurementSave>(`add${typeof(model)}`))
+        tap(_=>console.log('fetched resource')),
+        catchError(this.handleError<Measurement>(`get=${id}`))
+    );
+  }
+
+  add(model:Measurement):Observable<Measurement> {
+    return this.http.post<Measurement>(`${this.config.apiUrl}/${this.resource}/save`,model,httpOptions)
+    .pipe(
+      tap((resPro:Measurement) => console.log(`added ${typeof(resPro)} /w id${resPro.id }`)),
+      catchError(this.handleError<Measurement>(`add${typeof(model)}`))
+    );
+  }
+
+  update(id:number, model:Measurement):Observable<Measurement> {
+    return this.http.put<Measurement>(`${this.config.apiUrl}/${this.resource}/update/${id}`,model,httpOptions)
+    .pipe(
+      tap(resPro=>console.log(`updated ${typeof(resPro)} ${resPro .id }`)),
+      catchError(this.handleError<Measurement>(`update${typeof(model)}`))
     );
   }
 
