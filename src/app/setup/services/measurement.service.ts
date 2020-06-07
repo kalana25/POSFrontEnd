@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/core/api-service';
 import { Product } from '../models/product';
-import { Observable } from 'rxjs'
-import { tap } from 'rxjs/operators'
+import { Observable,of } from 'rxjs'
+import { tap,catchError } from 'rxjs/operators'
 import { AppSettingsService } from 'src/app/core/app-settings.service'; 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-data';
 import { MeasurementInfo } from '../models/measurement-info';
+import { MeasurementSave } from '../models/measurement-save';
+
+const httpOptions ={
+  headers:new HttpHeaders({'Content-Type':'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +28,7 @@ export class MeasurementService {
     this.resource = "Units/purchase";
   }
 
-  pagination(requestData:RequestData):Observable<ResponseData<MeasurementInfo>>{
+  pagination(requestData:RequestData):Observable<ResponseData<MeasurementInfo>> {
     const keys:Array<string> =[];
     Object.keys(requestData).forEach(element => {
         keys.push(`${element}=${requestData[element]}`);
@@ -32,8 +37,23 @@ export class MeasurementService {
     return this.http.get<ResponseData<MeasurementInfo>>(`${this.config.apiUrl}/${this.resource}/pagination/${params}`)
     .pipe(
         tap(_=>console.log('fetched resources')),
-        //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))
     )
+  }
+
+  add(model:MeasurementSave):Observable<MeasurementSave> {
+    return this.http.post<MeasurementSave>(`${this.config.apiUrl}/${this.resource}/save`,model,httpOptions)
+    .pipe(
+      tap((resPro:MeasurementSave) => console.log(`added ${typeof(resPro)} /w id${resPro.id }`)),
+      catchError(this.handleError<MeasurementSave>(`add${typeof(model)}`))
+    );
+  }
+
+  private handleError<T>(operation='operation',result?:T) {
+    return (error:any):Observable<T> => {
+        console.error(error);
+        console.log(`${operation} failed: ${error.message}`);
+        return of(result as T);     
+    }
   }
 
 

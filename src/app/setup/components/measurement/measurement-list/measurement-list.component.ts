@@ -59,7 +59,7 @@ export class MeasurementListComponent implements OnInit {
   }
 
   OnAddClick() {
-    this.router.navigate(['../measurement-new'],{relativeTo:this.route});
+    this.router.navigate(['../measurement-new',this.item],{relativeTo:this.route});
   }
 
   public OnGoBack() {

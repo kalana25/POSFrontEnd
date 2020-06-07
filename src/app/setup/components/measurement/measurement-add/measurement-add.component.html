@@ -1,1 +1,58 @@
-<p>measurement-add works!</p>
+<div class="parent">
+
+    <div class="measurement-header" *ngIf="!IsLoading">
+        <h2>New Measurement</h2>
+        <form class="measurement-form" [formGroup]="measurementForm" autocomplete="off" (ngSubmit)="OnSave()">
+            
+            <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="name">
+                <mat-error *ngIf="measurementForm.get('name').invalid">
+                    <span *ngIf="measurementForm.get('name').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Symbol</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="symbol">
+                <mat-error *ngIf="measurementForm.get('symbol').invalid">
+                    <span *ngIf="measurementForm.get('symbol').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Quantity</mat-label>
+                <input type="number" matInput placeholder="Placeholder" formControlName="quantity">
+                <mat-error *ngIf="measurementForm.get('quantity').invalid">
+                    <span *ngIf="measurementForm.get('quantity').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="full-width">
+                <mat-label>Base Unit</mat-label>
+                <mat-select formControlName="baseUnitId"placeholder="Base Unit">
+                    <mat-option *ngFor="let baseUnit of baseUnits" [value]="baseUnit.id">
+                        {{baseUnit.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="measurementForm.get('baseUnitId').invalid">
+                    <span *ngIf="measurementForm.get('baseUnitId').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Comment</mat-label>
+                <textarea matInput placeholder="Placeholder" formControlName="comment" type="number" max="100"></textarea>
+            </mat-form-field>
+
+            <button type="submit" mat-fab color="primary" class="fab-save">
+                <mat-icon>save</mat-icon>
+            </button>
+        </form>
+    </div>
+    
+    <button mat-fab class="fab-back" (click)="OnGoBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+</div>
