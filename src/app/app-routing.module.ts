@@ -29,6 +29,9 @@ import { DiscountEditComponent } from './setup/components/discount/discount-edit
 import { BaseUnitListComponent } from './setup/components/base-unit/base-unit-list/base-unit-list.component'
 import { BaseUnitAddComponent } from './setup/components/base-unit/base-unit-add/base-unit-add.component'
 
+import { MeasurementListComponent } from './setup/components/measurement/measurement-list/measurement-list.component'
+import { MeasurementAddComponent } from './setup/components/measurement/measurement-add/measurement-add.component'
+
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},
@@ -51,6 +54,9 @@ const routes: Routes = [
 
       {path:'base-unit-list',component:BaseUnitListComponent},
       {path:'base-unit-new',component:BaseUnitAddComponent},
+
+      {path:'measurement-list',component:MeasurementListComponent},
+      {path:'measurement-new',component:MeasurementAddComponent},
 
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},

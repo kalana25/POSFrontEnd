@@ -1,0 +1,73 @@
+<h1 class="page-header">Measurements</h1>
+<div class="item-info">
+    <span class="item-name">
+        {{item.name}}&nbsp;-&nbsp;
+    </span>
+    <span class="item-barcode">{{item.barcode}}</span>
+</div>
+<br>
+<div class="measurement-container mat-elevation-z8">
+    <div class="measurement-loading-shade" *ngIf="IsLoading">
+        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+    </div>
+    <div class="measurement-table-container">
+        <table *ngIf="measurementResponse" mat-table [dataSource]="measurementResponse.items">
+
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let column"> {{column.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let column"> {{column.symbol}} </td>
+            </ng-container>
+            
+
+            <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let column"> {{column.quantity}} </td>
+            </ng-container>
+
+        
+            <ng-container matColumnDef="baseUnitName">
+            <th mat-header-cell *matHeaderCellDef> Base Unit </th>
+            <td mat-cell *matCellDef="let column"> {{column.baseUnitName}} </td>
+            </ng-container>
+            
+
+            <ng-container matColumnDef="comment">
+                <th mat-header-cell *matHeaderCellDef> Comment </th>
+                <td mat-cell *matCellDef="let column"> {{column.comment}} </td>
+                </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let column">
+                    <button mat-icon-button (click)="OnDelete(column.id)" >
+                        <mat-icon class="icon-red">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="OnEdit(column)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <mat-paginator
+        *ngIf="measurementResponse"
+        [length]="measurementResponse.totalCount"
+        [pageSize]="measurementResponse.pageSize"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        (page)="OnPage($event)">
+    </mat-paginator>
+</div>
+<button mat-fab class="fab-plus" (click)="OnAddClick()">
+    <mat-icon>add</mat-icon>
+</button>
+<button mat-fab class="fab-back" (click)="OnGoBack()">
+    <mat-icon>arrow_back</mat-icon>
+</button>

@@ -1,0 +1,50 @@
+<h2>Measurement Update</h2>
+<form class="measurement-form" [formGroup]="measurementForm" autocomplete="off" (ngSubmit)="OnUpdate()">
+            
+    <input type="hidden" formControlName="id">
+    <input type="hidden" formControlName="itemId">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Unit name" formControlName="name">
+        <mat-error *ngIf="measurementForm.get('name').invalid">
+            <span *ngIf="measurementForm.get('name').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Symbol</mat-label>
+        <input matInput placeholder="Symbol" formControlName="symbol">
+        <mat-error *ngIf="measurementForm.get('symbol').invalid">
+            <span *ngIf="measurementForm.get('symbol').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input type="number" matInput placeholder="Quantity" formControlName="quantity">
+        <mat-error *ngIf="measurementForm.get('quantity').invalid">
+            <span *ngIf="measurementForm.get('quantity').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Base Unit</mat-label>
+        <mat-select formControlName="baseUnitId"placeholder="Base Unit">
+            <mat-option *ngFor="let baseUnit of baseUnits" [value]="baseUnit.id">
+                {{baseUnit.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="measurementForm.get('baseUnitId').invalid">
+            <span *ngIf="measurementForm.get('baseUnitId').errors.required">Mandatory</span>
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="comment">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="comment" formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <button type="submit" mat-button color="primary" class="float-right">
+        Update
+    </button>
+</form>

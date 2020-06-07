@@ -25,6 +25,9 @@ import { DiscountEditComponent } from './components/discount/discount-edit/disco
 import { BaseUnitListComponent } from './components/base-unit/base-unit-list/base-unit-list.component';
 import { BaseUnitAddComponent } from './components/base-unit/base-unit-add/base-unit-add.component';
 import { BaseUnitEditComponent } from './components/base-unit/base-unit-edit/base-unit-edit.component';
+import { MeasurementListComponent } from './components/measurement/measurement-list/measurement-list.component';
+import { MeasurementAddComponent } from './components/measurement/measurement-add/measurement-add.component';
+import { MeasurementEditComponent } from './components/measurement/measurement-edit/measurement-edit.component';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { BaseUnitEditComponent } from './components/base-unit/base-unit-edit/bas
     BaseUnitListComponent,
     BaseUnitAddComponent,
     BaseUnitEditComponent,
+    MeasurementListComponent,
+    MeasurementAddComponent,
+    MeasurementEditComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +73,7 @@ import { BaseUnitEditComponent } from './components/base-unit/base-unit-edit/bas
     CategoryEditComponent,
     ProductEditComponent,
     BaseUnitEditComponent,
+    MeasurementEditComponent
   ]
 })
 export class SetupModule { }
