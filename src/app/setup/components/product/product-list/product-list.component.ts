@@ -90,5 +90,9 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  public OnMeasurementView(product:Product) {
+    this.router.navigate(['../measurement-list',product],{relativeTo:this.route});
+  }
+
 
 }
