@@ -2,8 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { PurchaseOrderDetailWithItem } from '../../models/purchase-order-detail-withItem';
 import { Product } from '../../../setup/models/product';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
-import { MeasurementService } from 'src/app/setup/services/measurement.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MeasurementWithBaseUnit } from 'src/app/setup/models/measurement-with-baseunit';
 
 @Component({
@@ -14,23 +13,19 @@ import { MeasurementWithBaseUnit } from 'src/app/setup/models/measurement-with-b
 export class PoDetailPickerComponent implements OnInit {
 
   model:PurchaseOrderDetailWithItem;
-  quantity = new FormControl('1');
   measurements:Array<MeasurementWithBaseUnit>;
+  poDetailPickerFormGroup:FormGroup;
 
   constructor(
+    private fb:FormBuilder,
     public dialogRef:MatDialogRef<PoDetailPickerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:Product,
-    private measurementService:MeasurementService
+    @Inject(MAT_DIALOG_DATA) public data:{product:Product,measurement:Array<MeasurementWithBaseUnit>},
   ) { }
 
   ngOnInit() {
+    this.initFormGroup();
     this.model = new PurchaseOrderDetailWithItem;
-    this.measurementService.getByItem(this.data.id)
-    .subscribe(res=>{
-      this.measurements = res;
-    },err=>{
-      console.error(err);      
-    })
+    this.measurements = this.data.measurement;
   }
 
   public OnCancel() {
@@ -39,14 +34,21 @@ export class PoDetailPickerComponent implements OnInit {
 
   public OnConfirm() {
 
-    if(this.quantity.valid) {
-      this.model.unit = 1;
-      this.model.itemId = this.data.id;
-      this.model.quantity = Number(this.quantity.value);
-      this.model.item = this.data;
+    if(this.poDetailPickerFormGroup.valid) {
+      this.model.unit = this.poDetailPickerFormGroup.get('unit').value;
+      this.model.itemId = this.data.product.id;
+      this.model.quantity = Number(this.poDetailPickerFormGroup.get('quantity').value);
+      this.model.item = this.data.product;
       this.dialogRef.close(this.model);
     }
 
+  }
+
+  private initFormGroup() {
+    this.poDetailPickerFormGroup = this.fb.group({
+      quantity:['',Validators.required],
+      unit:['',Validators.required]
+    });
   }
 
 }

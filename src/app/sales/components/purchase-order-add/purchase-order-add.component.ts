@@ -8,6 +8,7 @@ import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.component';
+import { MeasurementService } from 'src/app/setup/services/measurement.service';
 
 
 @Component({
@@ -24,24 +25,37 @@ export class PurchaseOrderAddComponent implements OnInit {
     private purchaseOrderService:PurchaseOrderService,
     private routerService:RouteStateService,
     private router:Router,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private measurementService:MeasurementService
   ) { }
 
   ngOnInit() {
   }
 
   public OnSelectProduct(product:Product) {
-    let dialogRef = this.dialog.open(PoDetailPickerComponent,
-      {
-        data:product
-      });
 
-      dialogRef.afterClosed().subscribe(res=>{
-        if(res) {
-          this.selectedProductList.push({product:res.item,details:res});
-          this.totalPrice =this.totalPrice + product.price* res.quantity;
-        }
-      });
+    this.measurementService.getByItem(product.id)
+    .subscribe(res=>{
+
+      if(res.length>0) {
+        let dialogRef = this.dialog.open(PoDetailPickerComponent,
+          {
+            data:{'product':product,'measurement':res}
+          });
+        dialogRef.afterClosed().subscribe(closeRes=>{
+          if(closeRes) {
+            this.selectedProductList.push({product:closeRes.item,details:closeRes});
+            this.totalPrice =this.totalPrice + product.price* closeRes.quantity;
+          }
+        });
+
+      } else {
+        this.snackBar.open("Please configure the measurements","OK",{duration:2500});
+      }
+    },err=>{
+      console.error(err);
+    });
+
   }
 
   public OnModelReceived(model:PurchaseOrderSave) {
