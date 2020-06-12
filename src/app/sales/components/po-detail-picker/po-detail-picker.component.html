@@ -5,6 +5,16 @@
         <mat-label>Quantity</mat-label>
         <input matInput placeholder="Pickup your quantity" [formControl]="quantity" type="number">
     </mat-form-field>
+    
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Unit</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let measurement of measurements" [value]="measurement.id">
+              {{measurement.name}}
+              <em class="unit-details">{{measurement.quantity}} {{measurement.baseUnit.symbol}}</em>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>

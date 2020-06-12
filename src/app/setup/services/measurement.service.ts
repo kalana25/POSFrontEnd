@@ -9,6 +9,7 @@ import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-data';
 import { MeasurementInfo } from '../models/measurement-info';
 import { Measurement } from '../models/measurement';
+import { MeasurementWithBaseUnit } from '../models/measurement-with-baseunit';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -45,6 +46,14 @@ export class MeasurementService {
     .pipe(
         tap(_=>console.log('fetched resource')),
         catchError(this.handleError<Measurement>(`get=${id}`))
+    );
+  }
+
+  getByItem(itemId:number):Observable<Array<MeasurementWithBaseUnit>> {
+    return this.http.get<Array<MeasurementWithBaseUnit>>(`${this.config.apiUrl}/${this.resource}/find/item/${itemId}`)
+    .pipe(
+        tap(_=>console.log('fetched resource')),
+        catchError(this.handleError<Array<MeasurementWithBaseUnit>>(`get=${itemId}`))
     );
   }
 
