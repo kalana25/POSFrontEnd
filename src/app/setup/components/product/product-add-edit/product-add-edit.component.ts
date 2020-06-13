@@ -53,7 +53,6 @@ export class ProductAddEditComponent implements OnInit {
       'Code':['',Validators.required],
       'Name':['',Validators.required],
       'CategoryId':['',Validators.required],
-      'Price':[''],
       'Barcode':[''],
       'reOrderLevel':[''],
       'Active':[true]
@@ -77,7 +76,6 @@ export class ProductAddEditComponent implements OnInit {
       'Name':['',Validators.required],
       'CategoryName':[{value:categoryName,disabled:true}],
       'CategoryId':[categoryId,Validators.required],
-      'Price':[''],
       'Barcode':[''],
       'reOrderLevel':[''],
       'Active':[true]

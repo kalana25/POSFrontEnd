@@ -44,7 +44,6 @@ export class ProductEditComponent implements OnInit {
       'code':['',Validators.required],
       'name':['',Validators.required],
       'categoryId':['',Validators.required],
-      'price':[''],
       'barcode':[''],
       'reOrderLevel':[''],
       'active':[true]
@@ -57,7 +56,6 @@ export class ProductEditComponent implements OnInit {
       'code':this.data.code,
       'name':this.data.name,
       'categoryId':this.data.categoryId,
-      'price':this.data.price,
       'barcode':this.data.barcode,
       'reOrderLevel':this.data.reOrderLevel,
       'active':this.data.active
