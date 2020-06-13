@@ -45,7 +45,7 @@ export class PurchaseOrderAddComponent implements OnInit {
         dialogRef.afterClosed().subscribe(closeRes=>{
           if(closeRes) {
             this.selectedProductList.push({product:closeRes.item,details:closeRes});
-            this.totalPrice =this.totalPrice + product.price* closeRes.quantity;
+            this.totalPrice =0;//this.totalPrice + product.price* closeRes.quantity;
           }
         });
 
@@ -77,7 +77,7 @@ export class PurchaseOrderAddComponent implements OnInit {
   }
 
   public OnItemDelete(item:{product:Product,details:PurchaseOrderDetail}){
-    this.totalPrice = this.totalPrice-item.product.price;
+    this.totalPrice = 0;//this.totalPrice-item.product.price;
   }
 
 }
