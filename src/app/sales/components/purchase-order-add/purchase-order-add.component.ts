@@ -40,7 +40,8 @@ export class PurchaseOrderAddComponent implements OnInit {
       if(res.length>0) {
         let dialogRef = this.dialog.open(PoDetailPickerComponent,
           {
-            data:{'product':product,'measurement':res}
+            data:{'product':product,'measurement':res},
+            width:'230px'
           });
         dialogRef.afterClosed().subscribe(closeRes=>{
           if(closeRes) {
