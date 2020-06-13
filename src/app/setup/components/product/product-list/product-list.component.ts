@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
   productRequest:RequestData;
   IsLoading:boolean = false;
 
-  displayedColumns: string[] = ['code', 'name', 'price', 'barcode','action'];
+  displayedColumns: string[] = ['code', 'name', 'barcode','action'];
 
   constructor(
     public productService:ProductService,
@@ -38,9 +38,9 @@ export class ProductListComponent implements OnInit {
   }
   
   
-  private getProductPagination(supplierRequest:RequestData) {
+  private getProductPagination(prodRequest:RequestData) {
     this.IsLoading = true;
-    this.productService.pagination(supplierRequest)
+    this.productService.pagination(prodRequest)
     .subscribe(res=>{
       this.productResponse = res;
       this.IsLoading = false;
