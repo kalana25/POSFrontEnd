@@ -46,6 +46,7 @@ export class ProductEditComponent implements OnInit {
       'categoryId':['',Validators.required],
       'price':[''],
       'barcode':[''],
+      'reOrderLevel':[''],
       'active':[true]
     });
   }
@@ -58,6 +59,7 @@ export class ProductEditComponent implements OnInit {
       'categoryId':this.data.categoryId,
       'price':this.data.price,
       'barcode':this.data.barcode,
+      'reOrderLevel':this.data.reOrderLevel,
       'active':this.data.active
     })
   }
