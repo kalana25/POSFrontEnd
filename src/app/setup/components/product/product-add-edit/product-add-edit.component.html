@@ -39,6 +39,12 @@
         <mat-label>Barcode</mat-label>
         <input matInput placeholder="Placeholder" formControlName="Barcode">
     </mat-form-field>
+
+    <mat-form-field appearance="standard" class="full-width">
+        <mat-label>Reorder Level</mat-label>
+        <input type="number" matInput placeholder="Minimum no of items in inventory" formControlName="reOrderLevel">
+    </mat-form-field>
+
     <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
     <button type="submit" mat-button class="float-right" >Save</button>
 </form>
