@@ -1,10 +1,10 @@
 <table>
     <thead>
         <tr>
-            <th>Description</th>
+            <th>Product</th>
             <th>Barcode</th>
             <th>Qty</th>
-            <th>Price</th>
+            <th>Unit Price</th>
             <th>Total</th>
             <th></th>
         </tr>
@@ -14,8 +14,8 @@
             <td>{{item.product.name}}</td>
             <td>{{item.product.barcode}}</td>
             <td>{{item.details.quantity}}</td>
-            <td>{{item.product.price}}</td>
-            <td>{{item.product.price * item.details.quantity}}</td>
+            <td>{{item.details.unitPrice}}</td>
+            <td>{{item.details.unitPrice * item.details.quantity}}</td>
             <td>
                 <!--<fa name="minus-circle" animation="spin"></fa>-->
                 <button mat-icon-button (click)="OnDeleteItem(item)" >

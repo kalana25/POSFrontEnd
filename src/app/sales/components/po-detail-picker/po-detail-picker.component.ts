@@ -35,6 +35,7 @@ export class PoDetailPickerComponent implements OnInit {
   public OnConfirm() {
 
     if(this.poDetailPickerFormGroup.valid) {
+      this.model.unitPrice = this.poDetailPickerFormGroup.get('unitPrice').value;
       this.model.unit = this.poDetailPickerFormGroup.get('unit').value;
       this.model.itemId = this.data.product.id;
       this.model.quantity = Number(this.poDetailPickerFormGroup.get('quantity').value);
@@ -47,7 +48,8 @@ export class PoDetailPickerComponent implements OnInit {
   private initFormGroup() {
     this.poDetailPickerFormGroup = this.fb.group({
       quantity:['',Validators.required],
-      unit:['',Validators.required]
+      unit:['',Validators.required],
+      unitPrice:['',Validators.required]
     });
   }
 

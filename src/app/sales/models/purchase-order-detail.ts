@@ -5,4 +5,5 @@ export class PurchaseOrderDetail extends BaseEntity {
     itemId:number;
     quantity:number;
     unit:number;
+    unitPrice:number;
 }
