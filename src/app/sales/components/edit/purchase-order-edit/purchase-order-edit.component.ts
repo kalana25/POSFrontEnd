@@ -15,6 +15,7 @@ import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Supplier } from 'src/app/setup/models/supplier';
 import { SupplierService } from 'src/app/setup/services/supplier.service';
+import { MeasurementService } from 'src/app/setup/services/measurement.service';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -27,7 +28,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   public purchaseOrder:PurchaseOrderFullInfo
   public editForm:FormGroup;
   public supplierList:Array<Supplier>;
-  public displayedColumns: string[] = ['code', 'name', 'price', 'barcode','quantity','unit','action'];
+  public displayedColumns: string[] = ['code', 'name', 'barcode','unit','quantity','price','action'];
 
   @ViewChild(MatTable,{
     static:false
@@ -40,6 +41,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     protected fb:FormBuilder,
     protected router:Router,
     protected route:ActivatedRoute,
+    private measurementService:MeasurementService,
     protected supplierService:SupplierService,
     protected routerService:RouteStateService,
     protected purchaseOrderService:PurchaseOrderService
@@ -94,7 +96,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     let index:number = this.purchaseOrder.items.findIndex(x=>x.itemId===model.itemId);
     if(index!==-1) {
       // re calculate grant total
-      this.purchaseOrder.totalPrice -=0;//model.item.price*model.quantity;
+      this.purchaseOrder.totalPrice -=model.unitPrice * model.quantity;
       this.editForm.get('totalPrice').patchValue(this.purchaseOrder.totalPrice);
       this.purchaseOrder.items.splice(index,1);
       this.tableReference.renderRows();
@@ -110,7 +112,7 @@ export class PurchaseOrderEditComponent implements OnInit {
         //re calculate grand total
         let total:number =0;
         this.purchaseOrder.items.forEach(item=>{
-          total +=0;//item.quantity*item.item.price;
+          total +=item.quantity*item.unitPrice;
         })
         this.tableReference.renderRows();
         this.editForm.get('totalPrice').patchValue(total);
@@ -123,18 +125,34 @@ export class PurchaseOrderEditComponent implements OnInit {
   }
 
   public OnSelectProduct(product:Product) {
-    let dialogRef = this.dialog.open(PoDetailPickerComponent,
-      {
-        data:product
-      });
 
-      dialogRef.afterClosed().subscribe(res=>{
-        if(res) {
-          // re calculate total Price
-          this.purchaseOrder.items.push(res);
-          this.tableReference.renderRows();
-        }
-      });
+    this.measurementService.getByItem(product.id)
+    .subscribe(mesRes=>{
+      if(mesRes.length>0) {
+
+        let dialogRef = this.dialog.open(PoDetailPickerComponent,
+        {
+          data:{'product':product,'measurement':mesRes},
+          width:'230px'
+        });
+
+        dialogRef.afterClosed().subscribe(res=>{
+          if(res) {
+            // re calculate total Price
+            this.purchaseOrder.items.push(res);
+            this.tableReference.renderRows();
+            this.purchaseOrder.totalPrice +=res.quantity*res.unitPrice;
+            this.editForm.get('totalPrice').patchValue(this.purchaseOrder.totalPrice); 
+          }
+        });
+
+      } else {
+        this.snackBar.open("Please configure the measurements","OK",{duration:2500});
+      }
+    }, err=>{
+      console.error(err);      
+    });
+
   }
 
   public OnSave() {
@@ -155,6 +173,7 @@ export class PurchaseOrderEditComponent implements OnInit {
           item.itemId = x.itemId;
           item.unit = x.unit;
           item.quantity = x.quantity;
+          item.unitPrice = x.unitPrice;
           return item;
         });
         model.items = itemList;

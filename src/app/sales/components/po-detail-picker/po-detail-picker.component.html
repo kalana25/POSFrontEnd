@@ -1,15 +1,7 @@
 <h3 mat-dialog-title>Product quanity</h3>
 
 <mat-dialog-content>
-    <form class="category-form" [formGroup]="poDetailPickerFormGroup">
-
-        <mat-form-field appearance="standard" class="full-width">
-            <mat-label>Quantity</mat-label>
-            <input matInput placeholder="Pickup your quantity" formControlName="quantity" type="number">
-            <mat-error *ngIf="poDetailPickerFormGroup.get('quantity').invalid">
-                <span *ngIf="poDetailPickerFormGroup.get('quantity').errors.required">Mandatory</span>
-            </mat-error>
-        </mat-form-field>
+    <form class="category-form" [formGroup]="poDetailPickerFormGroup" autocomplete="off">
 
         <mat-form-field appearance="standard" class="full-width">
             <mat-label>Unit</mat-label>
@@ -21,6 +13,14 @@
             </mat-select>
             <mat-error *ngIf="poDetailPickerFormGroup.get('unit').invalid">
                 <span *ngIf="poDetailPickerFormGroup.get('unit').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input matInput placeholder="Pickup your quantity" formControlName="quantity" type="number">
+            <mat-error *ngIf="poDetailPickerFormGroup.get('quantity').invalid">
+                <span *ngIf="poDetailPickerFormGroup.get('quantity').errors.required">Mandatory</span>
             </mat-error>
         </mat-form-field>
 
