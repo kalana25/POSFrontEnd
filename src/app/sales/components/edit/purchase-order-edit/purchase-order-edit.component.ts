@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Supplier } from 'src/app/setup/models/supplier';
 import { SupplierService } from 'src/app/setup/services/supplier.service';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-purchase-order-edit',
@@ -174,6 +175,7 @@ export class PurchaseOrderEditComponent implements OnInit {
           item.unitId = x.unitId;
           item.quantity = x.quantity;
           item.unitPrice = x.unitPrice;
+          item.isBaseUnit = x.isBaseUnit;
           return item;
         });
         model.items = itemList;
