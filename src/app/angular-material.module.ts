@@ -25,7 +25,8 @@ import {
    MatSlideToggleModule,
    MatBottomSheetModule,
    MatDialogModule,
-   MatMenuModule
+   MatMenuModule,
+   MatCheckboxModule
 } from '@angular/material';
 
 @NgModule({
@@ -79,7 +80,8 @@ import {
       MatSlideToggleModule,
       MatBottomSheetModule,
       MatDialogModule,
-      MatMenuModule
+      MatMenuModule,
+      MatCheckboxModule
    ],
    providers: [
       MatDatepickerModule,

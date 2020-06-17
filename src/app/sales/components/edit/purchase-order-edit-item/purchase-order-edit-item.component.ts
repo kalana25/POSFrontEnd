@@ -30,7 +30,7 @@ export class PurchaseOrderEditItemComponent implements OnInit {
   public OnConfirm() {
     if(this.itemEditFormGroup.valid) {
       this.data.quantity =this.itemEditFormGroup.get('quantity').value;
-      this.data.unit = this.itemEditFormGroup.get('unit').value;
+      this.data.unitId = this.itemEditFormGroup.get('unitId').value;
       this.dialogRef.close(this.data);
     }
   }
@@ -38,14 +38,14 @@ export class PurchaseOrderEditItemComponent implements OnInit {
   private initForm() {
     this.itemEditFormGroup = this.fb.group({
       quantity:['',Validators.required],
-      unit:['',Validators.required]
+      unitId:['',Validators.required]
     })
   }
 
   private patchValue() {
     this.itemEditFormGroup.setValue({
       quantity:this.data.quantity,
-      unit:this.data.unit
+      unitId:this.data.unitId
     });
   }
 

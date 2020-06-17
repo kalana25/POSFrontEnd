@@ -171,7 +171,7 @@ export class PurchaseOrderEditComponent implements OnInit {
         let itemList:Array<PurchaseOrderDetail> = this.purchaseOrder.items.map(x=>{
           const item = new PurchaseOrderDetail();
           item.itemId = x.itemId;
-          item.unit = x.unit;
+          item.unitId = x.unitId;
           item.quantity = x.quantity;
           item.unitPrice = x.unitPrice;
           return item;

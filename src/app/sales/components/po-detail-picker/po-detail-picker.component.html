@@ -2,17 +2,26 @@
 
 <mat-dialog-content>
     <form class="category-form" [formGroup]="poDetailPickerFormGroup" autocomplete="off">
+        <mat-checkbox formControlName="isBaseUnit" (change)="checkChange($event)">Base Unit</mat-checkbox>
 
         <mat-form-field appearance="standard" class="full-width">
             <mat-label>Unit</mat-label>
-            <mat-select formControlName="unit">
+            <mat-select formControlName="unitId" *ngIf="!IsBaseUnit">
                 <mat-option *ngFor="let measurement of measurements" [value]="measurement.id">
                   {{measurement.name}} &nbsp;
                   <em class="unit-details">({{measurement.quantity}} {{measurement.baseUnit.symbol}})</em>
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="poDetailPickerFormGroup.get('unit').invalid">
-                <span *ngIf="poDetailPickerFormGroup.get('unit').errors.required">Mandatory</span>
+
+            <mat-select formControlName="unitId" *ngIf="IsBaseUnit">
+                <mat-option *ngFor="let baseUnit of baseUnits" [value]="baseUnit.id">
+                  {{baseUnit.name}} &nbsp;
+                  <em class="unit-details">({{baseUnit.symbol}})</em>
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="poDetailPickerFormGroup.get('unitId').invalid">
+                <span *ngIf="poDetailPickerFormGroup.get('unitId').errors.required">Mandatory</span>
             </mat-error>
         </mat-form-field>
 
