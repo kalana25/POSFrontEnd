@@ -61,6 +61,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   private getPurchaseOrderInfo() {    
     this.purchaseOrderService.getWithFullInfo(Number(this.id))
     .subscribe(res=>{
+      debugger;
       this.purchaseOrder = res;
       this.IsLoading = false;
       this.patchForm();
@@ -105,20 +106,33 @@ export class PurchaseOrderEditComponent implements OnInit {
   }
 
   public OnItemEdit(column:PurchaseOrderDetailWithItem) {
-    const dialogRef = this.dialog.open(PurchaseOrderEditItemComponent,{
-      data:column
-    });
-    dialogRef.afterClosed().subscribe(res=>{
-      if(res){
-        //re calculate grand total
-        let total:number =0;
-        this.purchaseOrder.items.forEach(item=>{
-          total +=item.quantity*item.unitPrice;
-        })
-        this.tableReference.renderRows();
-        this.editForm.get('totalPrice').patchValue(total);
+    this.measurementService.getByItem(column.itemId)
+    .subscribe(mesRes=>{
+      if(mesRes.length) {
+
+        const dialogRef = this.dialog.open(PurchaseOrderEditItemComponent,{
+          data:{'poItem':column,'measurement':mesRes},
+          width:'230px'
+        });
+
+        dialogRef.afterClosed().subscribe(res=>{
+          if(res){
+            //re calculate grand total
+            let total:number =0;
+            this.purchaseOrder.items.forEach(item=>{
+              total +=item.quantity*item.unitPrice;
+            })
+            this.tableReference.renderRows();
+            this.editForm.get('totalPrice').patchValue(total);
+          }
+        });
+
+      } else {
+        this.snackBar.open("Please configure the measurements","OK",{duration:2500});
       }
-    });
+    },err=>{
+      console.error(err);
+    })
   }
 
   public OnGoBack() {

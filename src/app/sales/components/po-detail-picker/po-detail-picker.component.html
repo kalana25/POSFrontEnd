@@ -4,7 +4,7 @@
     <form class="category-form" [formGroup]="poDetailPickerFormGroup" autocomplete="off">
         <mat-checkbox formControlName="isBaseUnit" (change)="checkChange($event)">Base Unit</mat-checkbox>
 
-        <mat-form-field appearance="standard" class="full-width">
+        <mat-form-field class="full-width">
             <mat-label>Unit</mat-label>
             <mat-select formControlName="unitId" *ngIf="!IsBaseUnit">
                 <mat-option *ngFor="let measurement of measurements" [value]="measurement.id">
@@ -25,7 +25,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="standard" class="full-width">
+        <mat-form-field class="full-width">
             <mat-label>Quantity</mat-label>
             <input matInput placeholder="Pickup your quantity" formControlName="quantity" type="number">
             <mat-error *ngIf="poDetailPickerFormGroup.get('quantity').invalid">
@@ -33,7 +33,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="standard" class="full-width">
+        <mat-form-field class="full-width">
             <mat-label>Unit Price</mat-label>
             <input matInput placeholder="Price of a unit" formControlName="unitPrice" type="number">
             <mat-error *ngIf="poDetailPickerFormGroup.get('unitPrice').invalid">
