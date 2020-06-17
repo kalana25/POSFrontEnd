@@ -4,5 +4,7 @@ import { SupplierEditComponent } from '../../setup/components/supplier/supplier-
 export class PurchaseOrderDetail extends BaseEntity {
     itemId:number;
     quantity:number;
-    unit:number;
+    unitId:number;
+    isBaseUnit:boolean;
+    unitPrice:number;
 }

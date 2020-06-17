@@ -13,7 +13,7 @@ export class PurchaseOrderListDetailComponent implements OnInit {
   private Id:number;
   public IsLoading:boolean;
   public result:PurchaseOrderFullInfo
-  public displayedColumns: string[] = ['code', 'name', 'price', 'barcode','quantity','unit'];
+  public displayedColumns: string[] = ['code', 'name', 'barcode','unit','quantity','price','total'];
 
   constructor(
     private route:ActivatedRoute,

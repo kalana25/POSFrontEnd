@@ -4,8 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PurchaseOrderSave } from '../../models/purchase-order-save';
 import { PurchaseOrderDetail } from '../../models/purchase-order-detail';
 import { PurchaseOrderService } from '../../services/purchase-order.service';
-import { RouteStateService } from 'src/app/shared/services/route-state.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PoDetailPickerComponent } from '../po-detail-picker/po-detail-picker.component';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
@@ -23,8 +22,8 @@ export class PurchaseOrderAddComponent implements OnInit {
   constructor(
     private snackBar:MatSnackBar,
     private purchaseOrderService:PurchaseOrderService,
-    private routerService:RouteStateService,
     private router:Router,
+    private route:ActivatedRoute,
     private dialog:MatDialog,
     private measurementService:MeasurementService
   ) { }
@@ -40,12 +39,13 @@ export class PurchaseOrderAddComponent implements OnInit {
       if(res.length>0) {
         let dialogRef = this.dialog.open(PoDetailPickerComponent,
           {
-            data:{'product':product,'measurement':res}
+            data:{'product':product,'measurement':res},
+            width:'230px'
           });
         dialogRef.afterClosed().subscribe(closeRes=>{
           if(closeRes) {
             this.selectedProductList.push({product:closeRes.item,details:closeRes});
-            this.totalPrice =0;//this.totalPrice + product.price* closeRes.quantity;
+            this.totalPrice = this.totalPrice + closeRes.unitPrice * closeRes.quantity;
           }
         });
 
@@ -67,8 +67,7 @@ export class PurchaseOrderAddComponent implements OnInit {
         model.items = this.selectedProductList.map(x=>x.details);
         this.purchaseOrderService.add(model)
         .subscribe(res=>{
-          const previousUrl = this.routerService.getPreviousUrl();
-          this.router.navigate([`${previousUrl}`]);
+          this.router.navigate(['../purchase-order-list'],{relativeTo:this.route});
         },err=>{
           console.error(err);
         })
@@ -77,7 +76,7 @@ export class PurchaseOrderAddComponent implements OnInit {
   }
 
   public OnItemDelete(item:{product:Product,details:PurchaseOrderDetail}){
-    this.totalPrice = 0;//this.totalPrice-item.product.price;
+    this.totalPrice = this.totalPrice-item.details.unitPrice;
   }
 
 }
