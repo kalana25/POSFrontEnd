@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material';
-import { PurchaseOrderDetailWithItem } from 'src/app/sales/models/purchase-order-detail-withItem';
+import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order-detail-fullInfo';
 import { FormControl,FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { BaseUnitService } from 'src/app/setup/services/base-unit.service';
 import { BaseUnit } from 'src/app/setup/models/base-unit';
@@ -22,7 +22,7 @@ export class PurchaseOrderEditItemComponent implements OnInit {
     protected fb:FormBuilder,
     private baseUnitService:BaseUnitService,
     protected dialogRef:MatDialogRef<PurchaseOrderEditItemComponent>,
-    @Inject(MAT_DIALOG_DATA) protected data:{'poItem':PurchaseOrderDetailWithItem,'measurement':Array<MeasurementWithBaseUnit>},
+    @Inject(MAT_DIALOG_DATA) protected data:{'poItem':PurchaseOrderDetailFullItem,'measurement':Array<MeasurementWithBaseUnit>},
   ) { }
 
   ngOnInit() {
@@ -42,6 +42,11 @@ export class PurchaseOrderEditItemComponent implements OnInit {
       this.data.poItem.unitId = this.itemEditFormGroup.get('unitId').value;
       this.data.poItem.isBaseUnit = this.itemEditFormGroup.get('isBaseUnit').value;
       this.data.poItem.unitPrice = this.itemEditFormGroup.get('unitPrice').value;
+      if(this.data.poItem.isBaseUnit) {
+        this.data.poItem.unit = this.baseUnits.find(x=>x.id == this.data.poItem.unitId);
+      } else {
+        this.data.poItem.unit = this.measurements.find(x=>x.id == this.data.poItem.unitId);
+      }
       this.dialogRef.close(this.data);
     }
   }

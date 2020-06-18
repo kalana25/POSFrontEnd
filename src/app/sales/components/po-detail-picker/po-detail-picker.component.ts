@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { PurchaseOrderDetailWithItem } from '../../models/purchase-order-detail-withItem';
+import { PurchaseOrderDetailFullItem } from '../../models/purchase-order-detail-fullInfo';
 import { Product } from '../../../setup/models/product';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,7 +15,7 @@ import { BaseUnitService } from 'src/app/setup/services/base-unit.service';
 })
 export class PoDetailPickerComponent implements OnInit {
 
-  model:PurchaseOrderDetailWithItem;
+  model:PurchaseOrderDetailFullItem;
   measurements:Array<MeasurementWithBaseUnit>;
   baseUnits:Array<BaseUnit>;
   poDetailPickerFormGroup:FormGroup;
@@ -30,7 +30,7 @@ export class PoDetailPickerComponent implements OnInit {
 
   ngOnInit() {
     this.initFormGroup();
-    this.model = new PurchaseOrderDetailWithItem;
+    this.model = new PurchaseOrderDetailFullItem;
     this.measurements = this.data.measurement;
     this.loadBaseUnits();
   }
@@ -48,6 +48,11 @@ export class PoDetailPickerComponent implements OnInit {
       this.model.itemId = this.data.product.id;
       this.model.quantity = Number(this.poDetailPickerFormGroup.get('quantity').value);
       this.model.item = this.data.product;
+      if(this.model.isBaseUnit) {
+        this.model.unit = this.baseUnits.find(x=>x.id == this.model.unitId);
+      } else {
+        this.model.unit = this.measurements.find(x=>x.id == this.model.unitId);
+      }
       this.dialogRef.close(this.model);
     }
 

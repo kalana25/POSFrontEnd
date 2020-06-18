@@ -19,7 +19,6 @@
                   <em class="unit-details">({{baseUnit.symbol}})</em>
                 </mat-option>
             </mat-select>
-
             <mat-error *ngIf="poDetailPickerFormGroup.get('unitId').invalid">
                 <span *ngIf="poDetailPickerFormGroup.get('unitId').errors.required">Mandatory</span>
             </mat-error>

@@ -5,7 +5,7 @@ import { FormBuilder,FormGroup,Validator, Validators } from '@angular/forms';
 import { PurchaseOrderFullInfo } from '../../../models/purchase-order-fullinfo';
 import { Product } from '../../../../setup/models/product';
 import { MatTable } from '@angular/material';
-import { PurchaseOrderDetailWithItem } from '../../../models/purchase-order-detail-withItem';
+import { PurchaseOrderDetailFullItem } from '../../../models/purchase-order-detail-fullInfo';
 import { MatDialog } from '@angular/material/dialog';
 import { PoDetailPickerComponent } from '../../po-detail-picker/po-detail-picker.component';
 import { PurchaseOrderEditItemComponent } from '../purchase-order-edit-item/purchase-order-edit-item.component';
@@ -34,7 +34,7 @@ export class PurchaseOrderEditComponent implements OnInit {
   @ViewChild(MatTable,{
     static:false
   })
-  private tableReference:MatTable<PurchaseOrderDetailWithItem>
+  private tableReference:MatTable<PurchaseOrderDetailFullItem>
 
   constructor(
     protected dialog:MatDialog,
@@ -61,7 +61,6 @@ export class PurchaseOrderEditComponent implements OnInit {
   private getPurchaseOrderInfo() {    
     this.purchaseOrderService.getWithFullInfo(Number(this.id))
     .subscribe(res=>{
-      debugger;
       this.purchaseOrder = res;
       this.IsLoading = false;
       this.patchForm();
@@ -94,7 +93,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     });
   }
 
-  public OnItemRemove(model:PurchaseOrderDetailWithItem){
+  public OnItemRemove(model:PurchaseOrderDetailFullItem){
     let index:number = this.purchaseOrder.items.findIndex(x=>x.itemId===model.itemId);
     if(index!==-1) {
       // re calculate grant total
@@ -105,7 +104,7 @@ export class PurchaseOrderEditComponent implements OnInit {
     }
   }
 
-  public OnItemEdit(column:PurchaseOrderDetailWithItem) {
+  public OnItemEdit(column:PurchaseOrderDetailFullItem) {
     this.measurementService.getByItem(column.itemId)
     .subscribe(mesRes=>{
       if(mesRes.length) {
@@ -195,8 +194,7 @@ export class PurchaseOrderEditComponent implements OnInit {
         model.items = itemList;
         this.purchaseOrderService.update(this.purchaseOrder.id,model)
         .subscribe(res=>{
-          const previousUrl = this.routerService.getPreviousUrl();
-          this.router.navigate([`${previousUrl}`]);
+          this.router.navigate(['../../purchase-order-list'],{relativeTo:this.route});
         },err=>{
           console.error(err);
         })
