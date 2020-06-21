@@ -1,0 +1,47 @@
+
+<div class="parent">
+    <div class="grn-header">
+        <form class="grn-form" [formGroup]="grnForm" autocomplete="off">
+                    
+            <mat-form-field class="full-width">
+                <mat-label>Code</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="code">
+                <mat-error *ngIf="grnForm.get('code').invalid">
+                    <span *ngIf="grnForm.get('code').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="full-width">
+                <mat-label>GRN Date</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="grnDate" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="grnForm.get('grnDate').invalid">
+                    <span *ngIf="grnForm.get('grnDate').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="comment">
+                <mat-label>Comment</mat-label>
+                <textarea matInput placeholder="comment" formControlName="comment"></textarea>
+            </mat-form-field>
+        
+            <mat-form-field class="full-width">
+                <mat-label>Purchase Order</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="purchaseOrderId">
+                <mat-error *ngIf="grnForm.get('purchaseOrderId').invalid">
+                    <span *ngIf="grnForm.get('purchaseOrderId').errors.required">Mandatory</span>
+                </mat-error>
+            </mat-form-field>
+        
+            <button type="submit" mat-button color="primary" class="float-right">
+                Update
+            </button>
+            
+        </form>
+    </div>
+
+    <div class="po-picker">
+        <app-po-picker></app-po-picker>
+    </div>
+</div>

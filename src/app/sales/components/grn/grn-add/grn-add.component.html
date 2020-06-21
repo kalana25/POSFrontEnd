@@ -1,1 +1,22 @@
-<p>grn-add works!</p>
+
+<div class="parent">
+
+    <div class="grn-header" *ngIf="!IsLoading">
+        <h2>New Good Receipt Note</h2>
+    </div>
+    
+    <mat-horizontal-stepper> 
+        <mat-step label="Good Receipt Note">
+            <app-grn-form></app-grn-form>
+          </mat-step>
+          <mat-step label="Fill Items">
+            Items
+          </mat-step>
+          <mat-step label="Additional Items">
+              Additional Items
+          </mat-step>
+          <mat-step label="Finish">
+            Finish
+          </mat-step>
+    </mat-horizontal-stepper>
+</div>
