@@ -31,6 +31,8 @@ import { BaseUnitAddComponent } from './setup/components/base-unit/base-unit-add
 
 import { MeasurementListComponent } from './setup/components/measurement/measurement-list/measurement-list.component'
 import { MeasurementAddComponent } from './setup/components/measurement/measurement-add/measurement-add.component'
+import { GrnListComponent } from './sales/components/grn/grn-list/grn-list.component';
+import { GrnAddComponent } from './sales/components/grn/grn-add/grn-add.component';
 
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
@@ -61,7 +63,10 @@ const routes: Routes = [
       {path:'purchase-order-list',component:PurchaseOrderListComponent},
       {path:'po-list-details/:id',component:PurchaseOrderListDetailComponent},
       {path:'purchase-order-add',component:PurchaseOrderAddComponent},  
-      {path:'purchase-order-edit/:id',component:PurchaseOrderEditComponent}
+      {path:'purchase-order-edit/:id',component:PurchaseOrderEditComponent},
+
+      {path:'grn-list',component:GrnListComponent},
+      {path:'grn-add',component:GrnAddComponent}
     ]
   },
   {path:'',redirectTo:'/login-user',pathMatch:'full'},
