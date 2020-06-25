@@ -5,6 +5,7 @@ import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { MatDialog, MatBottomSheet, PageEvent } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PurchaseOrderPagination } from '../../models/purchase-order-pagination';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-po-picker',
@@ -16,6 +17,7 @@ export class PoPickerComponent implements OnInit {
   purchaseOrderResponse:ResponseData<PurchaseOrderPagination>;
   purchaseOrderRequest:RequestData;
   IsLoading:boolean=false;
+  searchForm:FormGroup;
 
   displayedColumns: string[] = ['code', 'date','supplierName', 'totalPrice', 'userId','action'];
 
@@ -24,11 +26,13 @@ export class PoPickerComponent implements OnInit {
     protected dialog:MatDialog,
     protected bottomSheet:MatBottomSheet,
     protected route:ActivatedRoute,
-    protected router:Router) { 
+    protected router:Router,
+    protected fb:FormBuilder) { 
 
   }
 
   ngOnInit() {
+    this.initForm();
     this.purchaseOrderRequest = new RequestData();
     this.purchaseOrderRequest.page=1;
     this.purchaseOrderRequest.pageSize=5;
@@ -52,6 +56,14 @@ export class PoPickerComponent implements OnInit {
       this.IsLoading = false;
       console.error(err);
     })
+  }
+
+  private initForm() {
+    this.searchForm = this.fb.group({
+      searchText:[''],
+      startDate:[''],
+      endDate:['']
+    });
   }
 
 }

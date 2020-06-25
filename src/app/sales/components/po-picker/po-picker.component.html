@@ -1,3 +1,23 @@
+<div class="search-form">
+    <form class="grn-form" [formGroup]="searchForm" autocomplete="off">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput formContolName="searchText" placeholder="Code" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>From</mat-label>
+            <input matInput placeholder="From Date" formControlName="startDate" [matDatepicker]="pickerFrm">
+            <mat-datepicker-toggle matSuffix [for]="pickerFrm"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrm></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>To</mat-label>
+            <input matInput placeholder="To Date" formControlName="endDate" [matDatepicker]="pickerTo">
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+    </form>
+</div>
 <div class="po-container mat-elevation-z8">
 
     <div class="po-loading-shade" *ngIf="IsLoading">
