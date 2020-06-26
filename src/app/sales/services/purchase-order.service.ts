@@ -62,12 +62,7 @@ export class PurchaseOrderService {
   }
 
   pagination(requestData:RequestData):Observable<ResponseData<PurchaseOrderPagination>>{
-    const keys:Array<string> =[];
-    Object.keys(requestData).forEach(element => {
-        keys.push(`${element}=${requestData[element]}`);
-    });
-    let params = `?${keys.join('&')}`;
-    return this.http.get<ResponseData<PurchaseOrderPagination>>(`${this.config.apiUrl}/${this.resource}/pagination/${params}`)
+    return this.http.post<ResponseData<PurchaseOrderPagination>>(`${this.config.apiUrl}/${this.resource}/pagination`,requestData)
     .pipe(
         tap(_=>console.log('fetched resources')),
         //catchError(this.handlePaginationError('get paginated resources',ResponseData<T>))
