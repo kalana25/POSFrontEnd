@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { ResponseData } from 'src/app/core/response-data';
 import { ExtendedRequestData } from 'src/app/core/extended-request-data';
 import { PurchaseOrderService } from '../../services/purchase-order.service';
@@ -20,6 +20,7 @@ export class PoPickerComponent implements OnInit {
   purchaseOrderRequest:ExtendedRequestData;
   IsLoading:boolean=false;
   public searchForm:FormGroup;
+  @Output() public purchaseOrderSelect = new EventEmitter<PurchaseOrderPagination>();
 
   displayedColumns: string[] = ['code', 'date','supplierName', 'totalPrice', 'userId','action'];
 
@@ -67,6 +68,10 @@ export class PoPickerComponent implements OnInit {
       startDate:[''],
       endDate:['']
     });
+  }
+
+  private OnSeeMore(po:PurchaseOrderPagination) {
+    this.purchaseOrderSelect.emit(po);
   }
 
   private SubcribeToEvent() {

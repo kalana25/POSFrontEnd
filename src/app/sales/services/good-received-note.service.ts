@@ -35,5 +35,21 @@ export class GoodReceivedNoteService {
     )
   }
 
+  getNextCode():Observable<{code:string}> {
+    return this.http.get<{code:string}> (`${this.config.apiUrl}/${this.resource}/find/next/code`)
+    .pipe(
+      tap(_=>console.log('fetched next code'))
+    );
+  }
+
+  private handleError<T>(operation='operation',result?:T) {
+    return (error:any):Observable<T> => {
+        console.error(error);
+        console.log(`${operation} failed: ${error.message}`);
+        return of(result as T);     
+    }
+  }
+
+
 
 }
