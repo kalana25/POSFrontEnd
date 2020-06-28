@@ -5,9 +5,9 @@
         <h2>New Good Receipt Note</h2>
     </div>
     
-    <mat-horizontal-stepper> 
-        <mat-step label="Good Receipt Note">
-            <app-grn-form></app-grn-form>
+    <mat-horizontal-stepper [linear]="true" #stepper> 
+        <mat-step label="Good Receipt Note" [completed]="step_One_Completed">
+            <app-grn-form (formValid)="OnFormOneValid($event)"></app-grn-form>
           </mat-step>
           <mat-step label="Fill Items">
             Items

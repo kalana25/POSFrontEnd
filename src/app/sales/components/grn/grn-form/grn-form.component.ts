@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GoodReceivedNoteService } from 'src/app/sales/services/good-received-note.service';
 import { PurchaseOrderPagination } from 'src/app/sales/models/purchase-order-pagination';
@@ -11,6 +11,7 @@ import { PurchaseOrderPagination } from 'src/app/sales/models/purchase-order-pag
 export class GrnFormComponent implements OnInit {
 
   grnForm:FormGroup;
+  @Output() public formValid = new EventEmitter<boolean>();
 
   constructor(
     private fb:FormBuilder,
@@ -42,6 +43,10 @@ export class GrnFormComponent implements OnInit {
   public OnPoSelect(model:PurchaseOrderPagination) {
     this.grnForm.get('purchaseOrderId').patchValue(model.id);
     this.grnForm.get('purchaseOrderCode').patchValue(model.code);
+  }
+
+  public OnSubmit() {
+    this.formValid.emit(this.grnForm.valid);
   }
 
 }

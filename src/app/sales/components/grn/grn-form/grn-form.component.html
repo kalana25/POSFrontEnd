@@ -1,7 +1,7 @@
 
 <div class="parent">
     <div class="grn-header">
-        <form class="grn-form" [formGroup]="grnForm" autocomplete="off">
+        <form class="grn-form" [formGroup]="grnForm" autocomplete="off" (ngSubmit)="OnSubmit()">
                     
             <mat-form-field class="full-width">
                 <mat-label>Code</mat-label>
