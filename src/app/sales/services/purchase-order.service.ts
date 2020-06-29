@@ -9,6 +9,7 @@ import { PurchaseOrderFullInfo } from '../models/purchase-order-fullinfo';
 import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-Data';
 import { PurchaseOrderPagination } from '../models/purchase-order-pagination';
+import { PurchaseOrderDetailFullItem } from '../models/purchase-order-detail-fullInfo';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -60,6 +61,14 @@ export class PurchaseOrderService {
         catchError(this.handleError<PurchaseOrderFullInfo>(`getWithFullInfo=${id}`))
     );
   }
+
+  getDetailsWithFullInfo(purchaseOrderId:number):Observable<Array<PurchaseOrderDetailFullItem>> {
+    return this.http.get<Array<PurchaseOrderDetailFullItem>> (`${this.config.apiUrl}/${this.resource}/detail/find/${purchaseOrderId}`)
+    .pipe(
+      tap(_=>console.log('fetched po details')),
+      catchError(this.handleError<Array<PurchaseOrderDetailFullItem>>(`getDetailsWithFullInfo=${purchaseOrderId}`))
+      );
+  } 
 
   pagination(requestData:RequestData):Observable<ResponseData<PurchaseOrderPagination>>{
     return this.http.post<ResponseData<PurchaseOrderPagination>>(`${this.config.apiUrl}/${this.resource}/pagination`,requestData)
