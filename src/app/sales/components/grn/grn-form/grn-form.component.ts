@@ -11,7 +11,7 @@ import { PurchaseOrderPagination } from 'src/app/sales/models/purchase-order-pag
 export class GrnFormComponent implements OnInit {
 
   grnForm:FormGroup;
-  @Output() public formValid = new EventEmitter<boolean>();
+  @Output() public formSubmit = new EventEmitter<FormGroup>();
 
   constructor(
     private fb:FormBuilder,
@@ -46,7 +46,7 @@ export class GrnFormComponent implements OnInit {
   }
 
   public OnSubmit() {
-    this.formValid.emit(this.grnForm.valid);
+    this.formSubmit.emit(this.grnForm);
   }
 
 }

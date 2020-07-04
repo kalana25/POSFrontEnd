@@ -7,10 +7,10 @@
     
     <mat-horizontal-stepper [linear]="true" #stepper> 
         <mat-step label="Good Receipt Note" [completed]="step_One_Completed">
-            <app-grn-form (formValid)="OnFormOneValid($event)"></app-grn-form>
+            <app-grn-form (formSubmit)="OnformSubmit($event)"></app-grn-form>
           </mat-step>
-          <mat-step label="Fill Items">
-            Items
+          <mat-step label="Good Receipt Note Items" [completed]="step_Two_Completed">
+            <app-grn-item [grnHeaderForm]="grnHeaderForm"></app-grn-item>
           </mat-step>
           <mat-step label="Additional Items">
               Additional Items
