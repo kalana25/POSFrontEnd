@@ -33,7 +33,7 @@ export class GrnFormComponent implements OnInit {
   initForm() {
     this.grnForm = this.fb.group({
       code:['',Validators.required],
-      grnDate:['',Validators.required],
+      grnDate:[new Date(),Validators.required],
       comment:[''],
       purchaseOrderCode:['',Validators.required],
       purchaseOrderId:['',Validators.required]

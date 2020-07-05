@@ -1,8 +1,11 @@
-import { Component, OnInit,Input,OnChanges } from '@angular/core';
+import { Component, OnInit,Input,OnChanges,ViewChild, ElementRef } from '@angular/core';
 import { PurchaseOrderPagination } from 'src/app/sales/models/purchase-order-pagination';
-import { FormGroup } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { PurchaseOrderService } from 'src/app/sales/services/purchase-order.service';
 import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order-detail-fullInfo';
+import { FormArray } from '@angular/forms';
+import { Unit } from 'src/app/sales/models/unit';
+import { MatExpansionPanel, MatAccordion } from '@angular/material';
 
 @Component({
   selector: 'app-grn-item',
@@ -11,12 +14,17 @@ import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order
 })
 export class GrnItemComponent implements OnInit,OnChanges {
   @Input() grnHeaderForm:FormGroup
-  public purchaseOrderDetails:Array<PurchaseOrderDetailFullItem>;
   public IsItemLoading:boolean = false;
-  displayedColumns: string[] = ['name','barcode','quantity','unit','action'];
+  public purchaseOrderDetails:Array<PurchaseOrderDetailFullItem>;
+  public grnItemFormArray:FormArray;
+
+  public unitArrayList:Array<Array<Unit>> =[];
+
+  @ViewChild('accordion',{static:false}) private accordion:MatAccordion;
 
   constructor(
-    private purchaseOrderService:PurchaseOrderService
+    private purchaseOrderService:PurchaseOrderService,
+    private fb:FormBuilder
   ) { }
 
   ngOnChanges() {
@@ -27,6 +35,33 @@ export class GrnItemComponent implements OnInit,OnChanges {
       .subscribe(res=>{
         this.IsItemLoading = false;
         this.purchaseOrderDetails = res;
+        console.log(this.purchaseOrderDetails);
+        
+        //Create form group array
+        this.grnItemFormArray = this.fb.array([]);
+        this.purchaseOrderDetails.forEach(purchaseOrderDetail => {
+          this.grnItemFormArray.push(
+            this.fb.group({
+              'expireDate':[''],
+              'quantity':[purchaseOrderDetail.quantity,Validators.required],
+              'unitId':[purchaseOrderDetail.unitId,Validators.required],
+              'purchasePrice':[purchaseOrderDetail.unitPrice,Validators.required],
+              'sellingPrice':['',Validators.required]
+            })
+          );
+
+          // unit list
+          const unit = new Unit();
+          unit.id = purchaseOrderDetail.unit.id;
+          unit.name = purchaseOrderDetail.unit.name;
+          unit.symbol = purchaseOrderDetail.unit.symbol;
+          const unitList:Array<Unit> =[];
+          unitList.push(unit);
+          this.unitArrayList.push(unitList);
+
+
+        });
+        console.log(this.grnItemFormArray);
       },err=>{
         console.error(err);
       })
@@ -36,6 +71,13 @@ export class GrnItemComponent implements OnInit,OnChanges {
 
   ngOnInit() {
     
+  }
+
+  public OnSubmit(index:number) {
+    if((this.grnItemFormArray.controls[index]).valid) {
+      // this.accordion.openAll();
+      
+    }
   }
 
 }
