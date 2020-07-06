@@ -6,6 +6,8 @@ import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order
 import { FormArray } from '@angular/forms';
 import { Unit } from 'src/app/sales/models/unit';
 import { MatExpansionPanel, MatAccordion } from '@angular/material';
+import { map } from 'rxjs/operators';
+import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
 
 @Component({
   selector: 'app-grn-item',
@@ -15,10 +17,7 @@ import { MatExpansionPanel, MatAccordion } from '@angular/material';
 export class GrnItemComponent implements OnInit,OnChanges {
   @Input() grnHeaderForm:FormGroup
   public IsItemLoading:boolean = false;
-  public purchaseOrderDetails:Array<PurchaseOrderDetailFullItem>;
-  public grnItemFormArray:FormArray;
-
-  public unitArrayList:Array<Array<Unit>> =[];
+  public grnExpansionItemDetails:Array<GrnItemExpansionPanelModel>;
 
   @ViewChild('accordion',{static:false}) private accordion:MatAccordion;
 
@@ -32,36 +31,35 @@ export class GrnItemComponent implements OnInit,OnChanges {
       this.IsItemLoading = true;
       const poId:number = this.grnHeaderForm.get('purchaseOrderId').value;
       this.purchaseOrderService.getDetailsWithFullInfo(poId)
+      .pipe(
+        map(list=>{
+          return list.map(elem=>{
+
+            const unit = new Unit();
+            unit.id = elem.unit.id;
+            unit.name = elem.unit.name;
+            unit.symbol = elem.unit.symbol;
+            const unitList:Array<Unit> =[];
+            unitList.push(unit);
+
+            return new GrnItemExpansionPanelModel(
+              elem,
+              this.fb.group({
+                'expireDate':[''],
+                'quantity':[elem.quantity,Validators.required],
+                'unitId':[elem.unitId,Validators.required],
+                'purchasePrice':[elem.unitPrice,Validators.required],
+                'sellingPrice':['',Validators.required]
+              }),
+              unitList,
+              false,
+              true);
+          })
+        })
+      )
       .subscribe(res=>{
         this.IsItemLoading = false;
-        this.purchaseOrderDetails = res;
-        console.log(this.purchaseOrderDetails);
-        
-        //Create form group array
-        this.grnItemFormArray = this.fb.array([]);
-        this.purchaseOrderDetails.forEach(purchaseOrderDetail => {
-          this.grnItemFormArray.push(
-            this.fb.group({
-              'expireDate':[''],
-              'quantity':[purchaseOrderDetail.quantity,Validators.required],
-              'unitId':[purchaseOrderDetail.unitId,Validators.required],
-              'purchasePrice':[purchaseOrderDetail.unitPrice,Validators.required],
-              'sellingPrice':['',Validators.required]
-            })
-          );
-
-          // unit list
-          const unit = new Unit();
-          unit.id = purchaseOrderDetail.unit.id;
-          unit.name = purchaseOrderDetail.unit.name;
-          unit.symbol = purchaseOrderDetail.unit.symbol;
-          const unitList:Array<Unit> =[];
-          unitList.push(unit);
-          this.unitArrayList.push(unitList);
-
-
-        });
-        console.log(this.grnItemFormArray);
+        this.grnExpansionItemDetails = res;
       },err=>{
         console.error(err);
       })
@@ -73,11 +71,20 @@ export class GrnItemComponent implements OnInit,OnChanges {
     
   }
 
-  public OnSubmit(index:number) {
-    if((this.grnItemFormArray.controls[index]).valid) {
-      // this.accordion.openAll();
+  public OnSubmit(expansionPanelItem:GrnItemExpansionPanelModel) {
+    if(expansionPanelItem.grnItemFormGroup.valid) {
+      expansionPanelItem.isConfirmed = true;
+      expansionPanelItem.expand = false;
       
     }
+  }
+
+  public OnExpansionPanelClosed(grnExpansionItem:GrnItemExpansionPanelModel) {
+    grnExpansionItem.expand = false;  
+  }
+
+  public OnExpansionPanelOpened(grnExpansionItem:GrnItemExpansionPanelModel) {
+    grnExpansionItem.expand = true;
   }
 
 }
