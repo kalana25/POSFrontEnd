@@ -17,6 +17,7 @@ import { GrnAddComponent } from './components/grn/grn-add/grn-add.component';
 import { GrnFormComponent } from './components/grn/grn-form/grn-form.component';
 import { PoPickerComponent } from './components/po-picker/po-picker.component';
 import { GrnItemComponent } from './components/grn/grn-item/grn-item.component';
+import { GrnAdditionalItemComponent } from './components/grn/grn-additional-item/grn-additional-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { GrnItemComponent } from './components/grn/grn-item/grn-item.component';
     PurchaseOrderEditComponent, 
     PurchaseOrderEditItemComponent, 
     GrnListComponent, 
-    GrnAddComponent, GrnFormComponent, PoPickerComponent, GrnItemComponent
+    GrnAddComponent, GrnFormComponent, PoPickerComponent, GrnItemComponent, GrnAdditionalItemComponent
   ],
   imports: [
     CommonModule,
