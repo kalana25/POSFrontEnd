@@ -3,6 +3,7 @@ import { MatStepper } from '@angular/material';
 import { interval,pipe } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
+import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
 
 @Component({
   selector: 'app-grn-add',
@@ -36,6 +37,20 @@ export class GrnAddComponent implements OnInit {
         console.info("Observable completed");
       });  
     }
+  }
+
+  public OnGrnItemsSubmit(value:Array<GrnItemExpansionPanelModel>) {
+    console.log(value);
+    this.step_Two_Completed = true;
+    const observable = interval(100).pipe(take(1));
+    observable.subscribe(res=>{
+      console.info("Observable 2 fired");    
+      this.grnStepper.next();
+    },err=>{
+
+    },()=>{
+      console.info("Observable 2 completed");
+    });  
   }
 
 }

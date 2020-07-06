@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,Input,OnChanges,Output,ViewChild, EventEmitter } from '@angular/core';
 import { PurchaseOrderPagination } from 'src/app/sales/models/purchase-order-pagination';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { PurchaseOrderService } from 'src/app/sales/services/purchase-order.service';
@@ -15,9 +15,12 @@ import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expans
   styleUrls: ['./grn-item.component.css']
 })
 export class GrnItemComponent implements OnInit,OnChanges {
-  @Input() grnHeaderForm:FormGroup
+  @Input() grnHeaderForm:FormGroup;
+  @Output() public grnExpansionPanelItemsSubmit = new EventEmitter<Array<GrnItemExpansionPanelModel>>();
+
   public IsItemLoading:boolean = false;
   public grnExpansionItemDetails:Array<GrnItemExpansionPanelModel>;
+  public IsProceedVisible:boolean = false;
 
   @ViewChild('accordion',{static:false}) private accordion:MatAccordion;
 
@@ -75,7 +78,10 @@ export class GrnItemComponent implements OnInit,OnChanges {
     if(expansionPanelItem.grnItemFormGroup.valid) {
       expansionPanelItem.isConfirmed = true;
       expansionPanelItem.expand = false;
-      
+      expansionPanelItem.purchasOrderDetail.quantity = expansionPanelItem.grnItemFormGroup.get('quantity').value;
+      const index = this.grnExpansionItemDetails.findIndex(x=>!x.isConfirmed);
+      if(index===-1)
+        this.IsProceedVisible = true;
     }
   }
 
@@ -85,6 +91,10 @@ export class GrnItemComponent implements OnInit,OnChanges {
 
   public OnExpansionPanelOpened(grnExpansionItem:GrnItemExpansionPanelModel) {
     grnExpansionItem.expand = true;
+  }
+
+  public OnProceedClick() {
+    this.grnExpansionPanelItemsSubmit.emit(this.grnExpansionItemDetails);
   }
 
 }

@@ -11,8 +11,8 @@
                 <mat-expansion-panel-header>
                     <mat-panel-title class="flex-container">
                         <div>
-                            <span class="material-icons" *ngIf="!grnExpansionItem.isConfirmed">pending_actions</span>
-                            <span class="material-icons" *ngIf="grnExpansionItem.isConfirmed">done</span>
+                            <span class="material-icons orange" *ngIf="!grnExpansionItem.isConfirmed">pending_actions</span>
+                            <span class="material-icons green" *ngIf="grnExpansionItem.isConfirmed">done</span>
                         </div> 
                         <div>
                             {{grnExpansionItem.purchasOrderDetail.item.name}}
@@ -46,7 +46,7 @@
                             </mat-form-field>
                             
                             <mat-form-field class="full-width">
-                                <mat-label>Purchase Price</mat-label>
+                                <mat-label>Purchase Price (Per Unit)</mat-label>
                                 <input matInput placeholder="Placeholder" formControlName="purchasePrice">
                                 <mat-error *ngIf="grnExpansionItem.grnItemFormGroup.get('purchasePrice').invalid">
                                     <span *ngIf="grnExpansionItem.grnItemFormGroup.get('purchasePrice').errors.required">Mandatory</span>
@@ -75,6 +75,10 @@
                     </div>
             </mat-expansion-panel>
         </mat-accordion>
-    </div>
+        <br>
+        <button mat-raised-button color="primary" class="float-right"
+        (click)="OnProceedClick()"
+        *ngIf="IsProceedVisible">Proceed</button>
+    </div>   
 </div>
 

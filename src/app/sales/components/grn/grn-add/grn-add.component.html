@@ -9,7 +9,7 @@
         <app-grn-form (formSubmit)="OnformSubmit($event)"></app-grn-form>
       </mat-step>
       <mat-step label="Good Receipt Note Items" [completed]="step_Two_Completed">
-        <app-grn-item [grnHeaderForm]="grnHeaderForm"></app-grn-item>
+        <app-grn-item [grnHeaderForm]="grnHeaderForm" (grnExpansionPanelItemsSubmit)="OnGrnItemsSubmit($event)"></app-grn-item>
       </mat-step>
       <mat-step label="Additional Items">
           Additional Items

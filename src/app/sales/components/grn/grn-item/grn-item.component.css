@@ -17,3 +17,11 @@ mat-form-field.mat-form-field {
 div.form {
     width: 20%;
 }
+
+.green {
+    color:#8cc831;
+}
+
+.orange {
+    color:#ff8f00;
+}
