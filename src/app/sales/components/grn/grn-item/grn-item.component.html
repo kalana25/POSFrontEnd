@@ -10,20 +10,20 @@
             [expanded]="grnExpansionItem.expand">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="flex-container">
-                        <div>
+                        <div class="grn-item-status">
                             <span class="material-icons orange" *ngIf="!grnExpansionItem.isConfirmed">pending_actions</span>
                             <span class="material-icons green" *ngIf="grnExpansionItem.isConfirmed">done</span>
                         </div>
-                        <div>
+                        <div class="grn-item-code">
                             {{grnExpansionItem.purchasOrderDetail.item.code}}
                         </div> 
-                        <div>
+                        <div class="grn-item-name">
                             {{grnExpansionItem.purchasOrderDetail.item.name}}
                         </div>
-                        <div>
+                        <div class="grn-item-barcode">
                             {{grnExpansionItem.purchasOrderDetail.item.barcode}}
                         </div>
-                        <div>
+                        <div class="grn-item-unit-quantity">
                             {{grnExpansionItem.purchasOrderDetail.quantity}} &nbsp; {{grnExpansionItem.purchasOrderDetail.unit.name}}
                         </div>
                     </mat-panel-title>
