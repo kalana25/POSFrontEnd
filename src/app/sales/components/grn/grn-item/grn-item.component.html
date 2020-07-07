@@ -13,6 +13,9 @@
                         <div>
                             <span class="material-icons orange" *ngIf="!grnExpansionItem.isConfirmed">pending_actions</span>
                             <span class="material-icons green" *ngIf="grnExpansionItem.isConfirmed">done</span>
+                        </div>
+                        <div>
+                            {{grnExpansionItem.purchasOrderDetail.item.code}}
                         </div> 
                         <div>
                             {{grnExpansionItem.purchasOrderDetail.item.name}}

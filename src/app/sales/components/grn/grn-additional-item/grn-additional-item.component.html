@@ -1,1 +1,11 @@
-<p>grn-additional-item works!</p>
+<div class="flex-container">
+
+    <div>
+        {{itemList|json}}
+    </div>
+    <div class="item-picker">
+        <app-item-picker (itemselected)="OnSelectProduct($event)" >
+        </app-item-picker>
+    </div>
+
+</div>
