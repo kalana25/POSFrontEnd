@@ -9,6 +9,12 @@ import { PurchaseOrderFullInfo } from '../models/purchase-order-fullinfo';
 import { RequestData } from 'src/app/core/request-data';
 import { ResponseData } from 'src/app/core/response-Data';
 import { GrnPagination } from '../models/grn-pagination';
+import { GrnSave } from '../models/grn-save';
+import { Grn } from '../models/grn';
+
+const httpOptions ={
+  headers:new HttpHeaders({'Content-Type':'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +45,14 @@ export class GoodReceivedNoteService {
     return this.http.get<{code:string}> (`${this.config.apiUrl}/${this.resource}/find/next/code`)
     .pipe(
       tap(_=>console.log('fetched next code'))
+    );
+  }
+
+  add(model:GrnSave):Observable<Grn> {
+    return this.http.post<Grn>(`${this.config.apiUrl}/${this.resource}/save`,model,httpOptions)
+    .pipe(
+      tap((resPro:Grn) => console.log(`added ${typeof(resPro)} /w id${resPro.id }`)),
+      catchError(this.handleError<Grn>(`add${typeof(model)}`))
     );
   }
 

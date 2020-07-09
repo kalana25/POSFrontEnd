@@ -23,6 +23,10 @@ div.name {
     width: 150px;
 }
 
+div.items-from-po {
+    margin-bottom: 10px;
+}
+
 td.txt-right-align {
     text-align: right;
 }
