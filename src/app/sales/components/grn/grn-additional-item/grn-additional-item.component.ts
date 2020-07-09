@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import { Product } from 'src/app/setup/models/product';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { PoDetailPickerComponent } from '../../po-detail-picker/po-detail-picker.component';
-import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order-detail-fullInfo';
+import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Unit } from 'src/app/sales/models/unit';
 
 @Component({
   selector: 'app-grn-additional-item',
@@ -12,11 +14,16 @@ import { PurchaseOrderDetailFullItem } from 'src/app/sales/models/purchase-order
 })
 export class GrnAdditionalItemComponent implements OnInit {
 
-  public itemList:Array<PurchaseOrderDetailFullItem>=[];
+  public itemList:Array<GrnItemExpansionPanelModel>=[];
+  public IsProceedVisible:boolean = false;
+  @Output() public proceed = new EventEmitter<Array<GrnItemExpansionPanelModel>>();
+  @Output() public skip = new EventEmitter<boolean>();
+
   constructor(
     private measurementService:MeasurementService,
     private snackBar:MatSnackBar,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private fb:FormBuilder
   ) { }
 
   ngOnInit() {
@@ -36,12 +43,28 @@ export class GrnAdditionalItemComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(res=>{
           if(res) {
-            // re calculate total Price
-            // this.purchaseOrder.items.push(res);
-            this.itemList.push(res);
-            // this.tableReference.renderRows();
-            // this.purchaseOrder.totalPrice +=res.quantity*res.unitPrice;
-            // this.editForm.get('totalPrice').patchValue(this.purchaseOrder.totalPrice); 
+
+            const unit = new Unit();
+            unit.id = res.unit.id;
+            unit.name = res.unit.name;
+            unit.symbol = res.unit.symbol;
+            const unitList:Array<Unit> =[];
+            unitList.push(unit);
+
+            this.itemList.push (
+              new GrnItemExpansionPanelModel(
+                res,
+                this.fb.group({
+                  'expireDate':[''],
+                  'quantity':[res.quantity,Validators.required],
+                  'unitId':[res.unitId,Validators.required],
+                  'purchasePrice':[res.unitPrice,Validators.required],
+                  'sellingPrice':['',Validators.required]
+                }),
+                unitList,
+                false,
+                true)
+            );
           }
         });
 
@@ -52,6 +75,34 @@ export class GrnAdditionalItemComponent implements OnInit {
       console.error(err);      
     });
 
+  }
+
+  public OnSubmit(expansionPanelItem:GrnItemExpansionPanelModel) {
+    if(expansionPanelItem.grnItemFormGroup.valid) {
+      expansionPanelItem.isConfirmed = true;
+      expansionPanelItem.expand = false;
+      expansionPanelItem.purchasOrderDetail.quantity = expansionPanelItem.grnItemFormGroup.get('quantity').value;
+      const index = this.itemList.findIndex(x=>!x.isConfirmed);
+      if(index===-1)
+        this.IsProceedVisible = true;
+    }
+  }
+
+  public OnProceedClick() {
+    this.proceed.emit(this.itemList);
+  }
+
+  public OnSkipClick() {
+    this.skip.emit(true);
+  }
+
+
+  public OnExpansionPanelClosed(item:GrnItemExpansionPanelModel) {
+    item.expand = false;
+  }
+
+  public OnExpansionPanelOpened(item:GrnItemExpansionPanelModel) {
+    item.expand = true;
   }
 
 }

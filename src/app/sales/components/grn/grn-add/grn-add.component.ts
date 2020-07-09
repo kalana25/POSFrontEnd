@@ -16,6 +16,7 @@ export class GrnAddComponent implements OnInit {
   ) { }
   public step_One_Completed:boolean= false;
   public step_Two_Completed:boolean = false;
+  public step_Three_Completed:boolean = false;
   public grnHeaderForm:FormGroup;
 
   @ViewChild('stepper',{static:false}) private grnStepper:MatStepper;
@@ -40,7 +41,6 @@ export class GrnAddComponent implements OnInit {
   }
 
   public OnGrnItemsSubmit(value:Array<GrnItemExpansionPanelModel>) {
-    console.log(value);
     this.step_Two_Completed = true;
     const observable = interval(100).pipe(take(1));
     observable.subscribe(res=>{
@@ -51,6 +51,32 @@ export class GrnAddComponent implements OnInit {
     },()=>{
       console.info("Observable 2 completed");
     });  
+  }
+
+  public OnAdditionalGrnItemSubmit(value:Array<GrnItemExpansionPanelModel>) {
+    this.step_Three_Completed = true;
+    const observable = interval(100).pipe(take(1));
+    observable.subscribe(res=>{
+      console.info("Observable 3 fired");    
+      this.grnStepper.next();
+    },err=>{
+
+    },()=>{
+      console.info("Observable 3 completed");
+    }); 
+  }
+
+  public OnSkip() {
+    this.step_Three_Completed = true;
+    const observable = interval(100).pipe(take(1));
+    observable.subscribe(res=>{
+      console.info("Observable 3 fired");    
+      this.grnStepper.next();
+    },err=>{
+
+    },()=>{
+      console.info("Observable 3 completed");
+    }); 
   }
 
 }

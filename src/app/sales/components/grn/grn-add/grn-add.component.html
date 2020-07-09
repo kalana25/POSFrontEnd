@@ -11,8 +11,10 @@
       <mat-step label="Good Receipt Note Items" [completed]="step_Two_Completed">
         <app-grn-item [grnHeaderForm]="grnHeaderForm" (grnExpansionPanelItemsSubmit)="OnGrnItemsSubmit($event)"></app-grn-item>
       </mat-step>
-      <mat-step label="Additional Items">
-          <app-grn-additional-item></app-grn-additional-item>
+      <mat-step label="Additional Items" [completed]="step_Three_Completed">
+          <app-grn-additional-item 
+          (proceed)="OnAdditionalGrnItemSubmit($event)"
+          (skip)="OnSkip($event)"></app-grn-additional-item>
       </mat-step>
       <mat-step label="Finish">
         Finish
