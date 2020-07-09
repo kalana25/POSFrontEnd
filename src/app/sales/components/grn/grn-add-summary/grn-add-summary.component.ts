@@ -44,7 +44,7 @@ export class GrnAddSummaryComponent implements OnInit {
         data:confrimData
       });
     dialogRef.afterClosed().subscribe(res=>{
-      this.router.navigate(['../purchase-order-list'],{relativeTo:this.route});
+      this.router.navigate(['../grn-list'],{relativeTo:this.route});
     })
 
   }
@@ -60,13 +60,12 @@ export class GrnAddSummaryComponent implements OnInit {
       const grnDetailSave = new GrnDetailSave();
       grnDetailSave.quantity = grnItem.grnItemFormGroup.get('quantity').value;
       grnDetailSave.unitId =grnItem.grnItemFormGroup.get('unitId').value;
-      grnDetailSave.sellingPrice =grnItem.grnItemFormGroup.get('sellingPrice').value;
-      grnDetailSave.isBaseUnit =grnItem.grnItemFormGroup.get('isBaseUnit').value;
-      grnDetailSave.expireDate =grnItem.grnItemFormGroup.get('expireDate').value;
-      grnDetailSave.purchaseOrderDetailId =grnItem.grnItemFormGroup.get('purchaseOrderDetailId').value;
+      grnDetailSave.sellingPrice =Number(grnItem.grnItemFormGroup.get('sellingPrice').value);
+      grnDetailSave.isBaseUnit =grnItem.purchasOrderDetail.isBaseUnit;
+      grnDetailSave.expireDate =(grnItem.grnItemFormGroup.get('expireDate').value==="") ? null:grnItem.grnItemFormGroup.get('expireDate').value;
+      grnDetailSave.purchaseOrderDetailId =grnItem.purchasOrderDetail.id;
       saveModel.items.push(grnDetailSave);
     });
-
     return saveModel;
   }
 
