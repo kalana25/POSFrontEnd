@@ -17,7 +17,10 @@
           (skip)="OnSkip($event)"></app-grn-additional-item>
       </mat-step>
       <mat-step label="Finish">
-        Finish
+        <app-grn-add-summary 
+        [GrnHeader]="grnHeaderForm"
+        [GrnItems]="grnItems"
+        [AdditionalItems]="additionalItems"></app-grn-add-summary>
       </mat-step>
     </mat-horizontal-stepper>
 </div>

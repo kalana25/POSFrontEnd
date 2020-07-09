@@ -1,0 +1,40 @@
+div.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+div.grn-items {
+    display: flex;
+    flex-direction: column;
+}
+
+div.grn-header {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+div.grn-field {
+    display: flex;
+    flex-direction: row;
+}
+
+div.name {
+    width: 150px;
+}
+
+td.txt-right-align {
+    text-align: right;
+}
+
+td.txt-left-align {
+    text-align: left;
+}
+
+th.txt-left-align {
+    text-align: left;
+}
+
+span.tbl-header {
+    font-size: 14px;
+}

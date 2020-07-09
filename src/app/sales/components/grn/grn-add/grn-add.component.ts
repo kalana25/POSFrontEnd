@@ -14,10 +14,13 @@ export class GrnAddComponent implements OnInit {
 
   constructor(
   ) { }
+
   public step_One_Completed:boolean= false;
   public step_Two_Completed:boolean = false;
   public step_Three_Completed:boolean = false;
   public grnHeaderForm:FormGroup;
+  public grnItems:Array<GrnItemExpansionPanelModel>;
+  public additionalItems:Array<GrnItemExpansionPanelModel>;
 
   @ViewChild('stepper',{static:false}) private grnStepper:MatStepper;
 
@@ -44,7 +47,7 @@ export class GrnAddComponent implements OnInit {
     this.step_Two_Completed = true;
     const observable = interval(100).pipe(take(1));
     observable.subscribe(res=>{
-      console.info("Observable 2 fired");    
+      this.grnItems = value; 
       this.grnStepper.next();
     },err=>{
 
@@ -57,7 +60,7 @@ export class GrnAddComponent implements OnInit {
     this.step_Three_Completed = true;
     const observable = interval(100).pipe(take(1));
     observable.subscribe(res=>{
-      console.info("Observable 3 fired");    
+      this.additionalItems = value;   
       this.grnStepper.next();
     },err=>{
 
