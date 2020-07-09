@@ -1,0 +1,54 @@
+div.flex-container {
+    display:flex;
+    flex-direction: row;
+}
+
+div.item-picker {
+    width: 35%;
+    margin-left: 20px;
+}
+
+div.item-list {
+    width: 65%;
+    margin-top: 10px;
+}
+
+mat-form-field.mat-form-field {
+    width: 100%;
+}
+
+div.form {
+    width: 25%;
+}
+
+.green {
+    color:#8cc831;
+}
+
+.orange {
+    color:#ff8f00;
+}
+
+div.grn-item-status {
+    width: 35px;
+}
+
+div.grn-item-code {
+    width: 75px;
+}
+
+div.grn-item-barcode {
+    width: 180px;
+}
+
+div.grn-item-unit-quantity {
+    width: 100px;
+}
+
+div.grn-item-name {
+    width: 50%;
+}
+
+.float-right {
+    float:right;
+}

@@ -4,7 +4,7 @@ import { PurchaseOrderService } from '../../services/purchase-order.service';
 import { ResponseData } from 'src/app/core/response-data';
 import { PurchaseOrder } from '../../models/purchase-order';
 import { PageEvent } from '@angular/material';
-import { RequestData } from 'src/app/core/request-data';
+import { ExtendedRequestData } from 'src/app/core/extended-request-data';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOrderDeleteAction } from '../dialog-action/confirmation-action';
 import { DialogData } from 'src/app/core/dialog-data';
@@ -20,7 +20,7 @@ import { PurchaseOrderPagination } from '../../models/purchase-order-pagination'
 export class PurchaseOrderListComponent implements OnInit {
 
   purchaseOrderResponse:ResponseData<PurchaseOrderPagination>;
-  purchaseOrderRequest:RequestData;
+  purchaseOrderRequest:ExtendedRequestData;
   IsLoading:boolean=false;
 
   displayedColumns: string[] = ['id', 'code', 'date','supplierName', 'totalPrice', 'userId','action'];
@@ -35,7 +35,7 @@ export class PurchaseOrderListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.purchaseOrderRequest = new RequestData();
+    this.purchaseOrderRequest = new ExtendedRequestData();
     this.purchaseOrderRequest.page=1;
     this.purchaseOrderRequest.pageSize=5;
     this.getPurchaseOrderPagination(this.purchaseOrderRequest);
@@ -47,7 +47,7 @@ export class PurchaseOrderListComponent implements OnInit {
     this.getPurchaseOrderPagination(this.purchaseOrderRequest);
   }
 
-  private getPurchaseOrderPagination(poRequest:RequestData) {
+  private getPurchaseOrderPagination(poRequest:ExtendedRequestData) {
     this.IsLoading = true;
     this.purchaseOrderService.pagination(poRequest)
     .subscribe(res=>{

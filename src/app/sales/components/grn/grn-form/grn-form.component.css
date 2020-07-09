@@ -1,0 +1,18 @@
+div.parent {
+    position: relative;
+}
+
+div.grn-header {
+    width: 15%;
+}
+
+div.po-picker {
+    position:absolute;
+    width: 80%;
+    right: 0;
+    top:1px;
+}
+
+mat-form-field.mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,82 @@
+<p>
+    GRN Summary
+</p>
+<div class="flex-container">
+    <div class="grn-header" *ngIf="GrnHeader">
+        <div class="grn-field">
+            <div class="name">Code</div>
+            <div>{{GrnHeader.get('code').value}}</div>
+        </div>
+        <div class="grn-field">
+            <div class="name">Date</div>
+            <div>{{GrnHeader.get('grnDate').value | date}}</div>
+        </div>
+        <div class="grn-field">
+            <div class="name">Purchase Order</div>
+            <div>{{GrnHeader.get('purchaseOrderCode').value}}</div>
+        </div>
+        <div class="grn-field">
+            <div class="name">Comment</div>
+            <div>{{GrnHeader.get('comment').value}}</div>
+        </div>
+    </div> 
+    <div class="grn-items">
+        <div class="items-from-po" *ngIf="GrnItems">
+            <em><span class="tbl-header">Good Received Note Items</span></em>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="txt-left-align">Barcode</th>
+                        <th class="txt-left-align">Name</th>
+                        <th class="txt-left-align">Unit</th>
+                        <th>Quantity</th>
+                        <th>Expire Date</th>
+                        <th>Pur. Price</th>
+                        <th>Sel. Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let grnItem of GrnItems">
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.item.barcode}}</td>
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.item.name}}</td>
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.unit.name}}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('quantity').value }}</td>
+                        <td class="txt-left-align">{{grnItem.grnItemFormGroup.get('expireDate').value |date }}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('purchasePrice').value |currency }}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('sellingPrice').value |currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="new-items">
+            <em><span class="tbl-header">Additional Items</span></em>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="txt-left-align">Barcode</th>
+                        <th class="txt-left-align">Name</th>
+                        <th class="txt-left-align">Unit</th>
+                        <th>Quantity</th>
+                        <th>Expire Date</th>
+                        <th>Pur. Price</th>
+                        <th>Sel. Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let grnItem of AdditionalItems">
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.item.barcode}}</td>
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.item.name}}</td>
+                        <td class="txt-left-align">{{grnItem.purchasOrderDetail.unit.name}}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('quantity').value }}</td>
+                        <td class="txt-left-align">{{grnItem.grnItemFormGroup.get('expireDate').value |date }}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('purchasePrice').value |currency }}</td>
+                        <td class="txt-right-align">{{grnItem.grnItemFormGroup.get('sellingPrice').value |currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button mat-raised-button color="primary" class="float-right"
+(click)="OnFinishClick()">Finish</button>

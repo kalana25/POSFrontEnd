@@ -1,0 +1,87 @@
+<div class="parent">
+    <div class="grn-loading-shade" *ngIf="IsItemLoading">
+        <mat-spinner [diameter]="80" *ngIf="IsItemLoading"></mat-spinner>
+    </div>
+    <div class="child">
+        <mat-accordion multi="true" #accordion="matAccordion">
+            <mat-expansion-panel *ngFor="let grnExpansionItem of grnExpansionItemDetails" 
+            (closed)="OnExpansionPanelClosed(grnExpansionItem)"
+            (opened)="OnExpansionPanelOpened(grnExpansionItem)"
+            [expanded]="grnExpansionItem.expand">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="flex-container">
+                        <div class="grn-item-status">
+                            <span class="material-icons orange" *ngIf="!grnExpansionItem.isConfirmed">pending_actions</span>
+                            <span class="material-icons green" *ngIf="grnExpansionItem.isConfirmed">done</span>
+                        </div>
+                        <div class="grn-item-code">
+                            {{grnExpansionItem.purchasOrderDetail.item.code}}
+                        </div> 
+                        <div class="grn-item-name">
+                            {{grnExpansionItem.purchasOrderDetail.item.name}}
+                        </div>
+                        <div class="grn-item-barcode">
+                            {{grnExpansionItem.purchasOrderDetail.item.barcode}}
+                        </div>
+                        <div class="grn-item-unit-quantity">
+                            {{grnExpansionItem.purchasOrderDetail.quantity}} &nbsp; {{grnExpansionItem.purchasOrderDetail.unit.name}}
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                    <div class="form">
+                        <form [formGroup]="grnExpansionItem.grnItemFormGroup" (ngSubmit)="OnSubmit(grnExpansionItem)" autocomplete="off">
+                            <mat-form-field class="full-width">
+                                <mat-label>Quantity</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="quantity">
+                                <mat-error *ngIf="grnExpansionItem.grnItemFormGroup.get('quantity').invalid">
+                                    <span *ngIf="grnExpansionItem.grnItemFormGroup.get('quantity').errors.required">Mandatory</span>
+                                </mat-error>
+                            </mat-form-field>
+                            
+                            
+                            <mat-form-field class="full-width">
+                                <mat-label>Unit</mat-label>
+                                <mat-select formControlName="unitId" placeholder="Unit">
+                                    <mat-option *ngFor="let unit of grnExpansionItem.unitList" [value]="unit.id">
+                                        {{unit.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            
+                            <mat-form-field class="full-width">
+                                <mat-label>Purchase Price (Per Unit)</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="purchasePrice">
+                                <mat-error *ngIf="grnExpansionItem.grnItemFormGroup.get('purchasePrice').invalid">
+                                    <span *ngIf="grnExpansionItem.grnItemFormGroup.get('purchasePrice').errors.required">Mandatory</span>
+                                </mat-error>
+                            </mat-form-field>
+                            
+                            <mat-form-field class="full-width">
+                                <mat-label>Selling Price</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="sellingPrice">
+                                <mat-error *ngIf="grnExpansionItem.grnItemFormGroup.get('sellingPrice').invalid">
+                                    <span *ngIf="grnExpansionItem.grnItemFormGroup.get('sellingPrice').errors.required">Mandatory</span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width">
+                                <mat-label>Expire Date</mat-label>
+                                <input matInput placeholder="Item expire date if exist" formControlName="expireDate" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <button type="submit" mat-raised-button color="primary" class="float-right">
+                                Confirm
+                            </button>
+                        </form>
+                        
+                    </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+        <button mat-raised-button color="primary" class="float-right"
+        (click)="OnProceedClick()"
+        *ngIf="IsProceedVisible">Proceed</button>
+    </div>   
+</div>
+

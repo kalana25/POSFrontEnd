@@ -1,1 +1,26 @@
-<p>grn-add works!</p>
+
+<div class="parent">
+    <div class="grn-header" *ngIf="!IsLoading">
+        <h2>New Good Receipt Note</h2>
+    </div>
+
+    <mat-horizontal-stepper [linear]="true" #stepper> 
+      <mat-step label="Good Receipt Note" [completed]="step_One_Completed">
+        <app-grn-form (formSubmit)="OnformSubmit($event)"></app-grn-form>
+      </mat-step>
+      <mat-step label="Good Receipt Note Items" [completed]="step_Two_Completed">
+        <app-grn-item [grnHeaderForm]="grnHeaderForm" (grnExpansionPanelItemsSubmit)="OnGrnItemsSubmit($event)"></app-grn-item>
+      </mat-step>
+      <mat-step label="Additional Items" [completed]="step_Three_Completed">
+          <app-grn-additional-item 
+          (proceed)="OnAdditionalGrnItemSubmit($event)"
+          (skip)="OnSkip($event)"></app-grn-additional-item>
+      </mat-step>
+      <mat-step label="Finish">
+        <app-grn-add-summary 
+        [GrnHeader]="grnHeaderForm"
+        [GrnItems]="grnItems"
+        [AdditionalItems]="additionalItems"></app-grn-add-summary>
+      </mat-step>
+    </mat-horizontal-stepper>
+</div>

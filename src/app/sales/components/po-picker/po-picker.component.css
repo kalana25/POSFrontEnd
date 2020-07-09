@@ -1,0 +1,25 @@
+div.search-form, div.po-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+table {
+    width: 100%;
+}
+  
+.po-loading-shade {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-form-field.mat-form-field {
+    width: 33%;
+}

@@ -1,0 +1,47 @@
+
+div.child {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}
+
+mat-form-field.mat-form-field {
+    width: 100%;
+}
+
+div.form {
+    width: 20%;
+}
+
+.green {
+    color:#8cc831;
+}
+
+.orange {
+    color:#ff8f00;
+}
+
+div.grn-item-status {
+    width: 50px;
+}
+
+div.grn-item-code {
+    width: 100px;
+}
+
+div.grn-item-name {
+    width: 100%;
+}
+
+div.grn-item-barcode {
+    width: 250px;
+}
+
+div.grn-item-unit-quantity {
+    width: 100px;
+}

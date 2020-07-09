@@ -1,0 +1,9 @@
+div.parent {
+    position: relative;
+    margin-top: 30px;
+}
+
+div.grn-header {
+    width: 50%;
+    margin-left: 20px;
+}
