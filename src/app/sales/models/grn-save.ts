@@ -11,6 +11,7 @@ export class GrnDetailSave {
     quantity:number;
     unitId:number;
     sellingPrice:number;
+    PurchasingPrice:number;
     isBaseUnit:boolean;
     expireDate?:Date;
 }

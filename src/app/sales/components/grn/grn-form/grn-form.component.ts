@@ -36,7 +36,7 @@ export class GrnFormComponent implements OnInit {
       grnDate:[new Date(),Validators.required],
       comment:[''],
       purchaseOrderCode:['',Validators.required],
-      purchaseOrderId:['',Validators.required]
+      purchaseOrderId:['',Validators.required],
     });
   }
 
