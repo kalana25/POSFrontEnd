@@ -83,6 +83,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
       grnDetailSave.isBaseUnit =grnItem.purchasOrderDetail.isBaseUnit;
       grnDetailSave.expireDate =(grnItem.grnItemFormGroup.get('expireDate').value==="") ? null:grnItem.grnItemFormGroup.get('expireDate').value;
       grnDetailSave.purchaseOrderDetailId =grnItem.purchasOrderDetail.id;
+      grnDetailSave.itemId =grnItem.purchasOrderDetail.itemId;
       saveModel.items.push(grnDetailSave);
     });
 
@@ -95,6 +96,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
       grnDetailSave.isBaseUnit =newItem.purchasOrderDetail.isBaseUnit;
       grnDetailSave.expireDate =(newItem.grnItemFormGroup.get('expireDate').value==="") ? null:newItem.grnItemFormGroup.get('expireDate').value;
       grnDetailSave.purchaseOrderDetailId =null;
+      grnDetailSave.itemId = newItem.purchasOrderDetail.itemId;
       saveModel.items.push(grnDetailSave);
     });
     return saveModel;
