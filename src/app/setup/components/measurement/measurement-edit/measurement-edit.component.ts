@@ -64,7 +64,7 @@ export class MeasurementEditComponent implements OnInit {
     })
   }
 
-  private OnUpdate() {
+  public OnUpdate() {
     if(this.measurementForm.valid) {
       const model:Measurement = this.measurementForm.value;
       this.measurementService.update(this.data.id,model)

@@ -69,7 +69,7 @@ export class GrnAddComponent implements OnInit {
     }); 
   }
 
-  public OnSkip() {
+  public OnSkip(value) {
     this.step_Three_Completed = true;
     const observable = interval(100).pipe(take(1));
     observable.subscribe(res=>{

@@ -15,7 +15,7 @@ export class GrnListComponent implements OnInit {
 
   grnResponse:ResponseData<GrnPagination>;
   grnRequest:RequestData
-  IsLoading:boolean=false;
+  public IsLoading:boolean=false;
 
   displayedColumns: string[] = ['id', 'code', 'grnDate','time','comment', 'createdByName','purchaseOrderCode','action'];
 
@@ -56,6 +56,10 @@ export class GrnListComponent implements OnInit {
 
   public OnAddClick() {
     this.router.navigate(['../grn-add'],{relativeTo:this.route});
+  }
+
+  public OnViewDetails(value) {
+    
   }
 
 }

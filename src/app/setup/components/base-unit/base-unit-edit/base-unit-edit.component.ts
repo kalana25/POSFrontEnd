@@ -46,7 +46,7 @@ export class BaseUnitEditComponent implements OnInit {
     });
   }
 
-  private OnUpdate() {
+  public OnUpdate() {
     if(this.baseUnitForm.valid) {
       const model:BaseUnit = this.baseUnitForm.value;
       this.baseUnitService.update(model)

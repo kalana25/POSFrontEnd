@@ -18,7 +18,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
   @Input() public GrnHeader:FormGroup;
   @Input() public GrnItems:Array<GrnItemExpansionPanelModel>;
   @Input() public AdditionalItems:Array<GrnItemExpansionPanelModel>;
-  private totalPrice:number = 0;
+  public totalPrice:number = 0;
 
   constructor(
     private dialog:MatDialog,

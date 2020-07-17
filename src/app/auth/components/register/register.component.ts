@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     this.initForm();
   }
 
-  private OnSubmit() {
+  public OnSubmit() {
     if(this.registerForm.valid) {
       const model:Register = this.registerForm.value;
       this.authService.register(model)

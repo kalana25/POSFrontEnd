@@ -70,7 +70,7 @@ export class PoPickerComponent implements OnInit {
     });
   }
 
-  private OnSeeMore(po:PurchaseOrderPagination) {
+  public OnSeeMore(po:PurchaseOrderPagination) {
     this.purchaseOrderSelect.emit(po);
   }
 

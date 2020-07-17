@@ -52,7 +52,7 @@ export class DiscountEditComponent implements OnInit {
     });
   }
 
-  private OnUpdate() {
+  public OnUpdate() {
     if(this.discountForm.valid) {
       const model:DiscountSave = this.discountForm.value;
       this.discountService.update(this.data.id,model)
