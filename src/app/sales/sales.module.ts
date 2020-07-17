@@ -19,6 +19,7 @@ import { PoPickerComponent } from './components/po-picker/po-picker.component';
 import { GrnItemComponent } from './components/grn/grn-item/grn-item.component';
 import { GrnAdditionalItemComponent } from './components/grn/grn-additional-item/grn-additional-item.component';
 import { GrnAddSummaryComponent } from './components/grn/grn-add-summary/grn-add-summary.component';
+import { PoStatusPipe } from './pipes/po-status.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { GrnAddSummaryComponent } from './components/grn/grn-add-summary/grn-add
     PurchaseOrderEditComponent, 
     PurchaseOrderEditItemComponent, 
     GrnListComponent, 
-    GrnAddComponent, GrnFormComponent, PoPickerComponent, GrnItemComponent, GrnAdditionalItemComponent, GrnAddSummaryComponent
+    GrnAddComponent, GrnFormComponent, PoPickerComponent, GrnItemComponent, GrnAdditionalItemComponent, GrnAddSummaryComponent, PoStatusPipe
   ],
   imports: [
     CommonModule,

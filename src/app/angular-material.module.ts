@@ -28,7 +28,7 @@ import {
    MatMenuModule,
    MatCheckboxModule,
    MatStepperModule,
-   MatExpansionModule
+   MatExpansionModule,
 } from '@angular/material';
 
 @NgModule({
