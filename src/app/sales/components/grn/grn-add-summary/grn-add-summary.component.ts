@@ -87,18 +87,20 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
       saveModel.items.push(grnDetailSave);
     });
 
-    this.AdditionalItems.forEach(newItem => {
-      const grnDetailSave = new GrnDetailSave();
-      grnDetailSave.quantity = newItem.grnItemFormGroup.get('quantity').value;
-      grnDetailSave.unitId =newItem.grnItemFormGroup.get('unitId').value;
-      grnDetailSave.sellingPrice =Number(newItem.grnItemFormGroup.get('sellingPrice').value);
-      grnDetailSave.PurchasingPrice =Number(newItem.grnItemFormGroup.get('purchasePrice').value);
-      grnDetailSave.isBaseUnit =newItem.purchasOrderDetail.isBaseUnit;
-      grnDetailSave.expireDate =(newItem.grnItemFormGroup.get('expireDate').value==="") ? null:newItem.grnItemFormGroup.get('expireDate').value;
-      grnDetailSave.purchaseOrderDetailId =null;
-      grnDetailSave.itemId = newItem.purchasOrderDetail.itemId;
-      saveModel.items.push(grnDetailSave);
-    });
+    if(this.AdditionalItems && this.AdditionalItems.length>0) {
+      this.AdditionalItems.forEach(newItem => {
+        const grnDetailSave = new GrnDetailSave();
+        grnDetailSave.quantity = newItem.grnItemFormGroup.get('quantity').value;
+        grnDetailSave.unitId =newItem.grnItemFormGroup.get('unitId').value;
+        grnDetailSave.sellingPrice =Number(newItem.grnItemFormGroup.get('sellingPrice').value);
+        grnDetailSave.PurchasingPrice =Number(newItem.grnItemFormGroup.get('purchasePrice').value);
+        grnDetailSave.isBaseUnit =newItem.purchasOrderDetail.isBaseUnit;
+        grnDetailSave.expireDate =(newItem.grnItemFormGroup.get('expireDate').value==="") ? null:newItem.grnItemFormGroup.get('expireDate').value;
+        grnDetailSave.purchaseOrderDetailId =null;
+        grnDetailSave.itemId = newItem.purchasOrderDetail.itemId;
+        saveModel.items.push(grnDetailSave);
+      });
+    }
     return saveModel;
   }
 
