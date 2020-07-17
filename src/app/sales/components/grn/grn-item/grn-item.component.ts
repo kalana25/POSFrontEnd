@@ -78,7 +78,7 @@ export class GrnItemComponent implements OnInit,OnChanges {
     if(expansionPanelItem.grnItemFormGroup.valid) {
       expansionPanelItem.isConfirmed = true;
       expansionPanelItem.expand = false;
-      expansionPanelItem.purchasOrderDetail.quantity = expansionPanelItem.grnItemFormGroup.get('quantity').value;
+      expansionPanelItem.purchasOrderDetail.quantity = Number(expansionPanelItem.grnItemFormGroup.get('quantity').value);
       const index = this.grnExpansionItemDetails.findIndex(x=>!x.isConfirmed);
       if(index===-1)
         this.IsProceedVisible = true;

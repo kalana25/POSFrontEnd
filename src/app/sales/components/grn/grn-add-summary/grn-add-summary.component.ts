@@ -76,7 +76,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
 
     this.GrnItems.forEach(grnItem => {
       const grnDetailSave = new GrnDetailSave();
-      grnDetailSave.quantity = grnItem.grnItemFormGroup.get('quantity').value;
+      grnDetailSave.quantity = Number(grnItem.grnItemFormGroup.get('quantity').value);
       grnDetailSave.unitId =grnItem.grnItemFormGroup.get('unitId').value;
       grnDetailSave.sellingPrice =Number(grnItem.grnItemFormGroup.get('sellingPrice').value);
       grnDetailSave.PurchasingPrice =Number(grnItem.grnItemFormGroup.get('purchasePrice').value);
@@ -90,7 +90,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
     if(this.AdditionalItems && this.AdditionalItems.length>0) {
       this.AdditionalItems.forEach(newItem => {
         const grnDetailSave = new GrnDetailSave();
-        grnDetailSave.quantity = newItem.grnItemFormGroup.get('quantity').value;
+        grnDetailSave.quantity = Number(newItem.grnItemFormGroup.get('quantity').value);
         grnDetailSave.unitId =newItem.grnItemFormGroup.get('unitId').value;
         grnDetailSave.sellingPrice =Number(newItem.grnItemFormGroup.get('sellingPrice').value);
         grnDetailSave.PurchasingPrice =Number(newItem.grnItemFormGroup.get('purchasePrice').value);
