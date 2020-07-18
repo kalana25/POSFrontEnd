@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
 import { DialogData } from 'src/app/core/dialog-data';
 import { MatDialog } from '@angular/material';
@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GrnSaveConfirmationAction } from '../dialog-action/grn-save-confirmation-action';
 import { GoodReceivedNoteService } from 'src/app/sales/services/good-received-note.service';
 import { GrnSave, GrnDetailSave } from 'src/app/sales/models/grn-save';
+import { DropdownItem } from 'src/app/core/dropdown-item';
 
 @Component({
   selector: 'app-grn-add-summary',
@@ -19,6 +20,8 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
   @Input() public GrnItems:Array<GrnItemExpansionPanelModel>;
   @Input() public AdditionalItems:Array<GrnItemExpansionPanelModel>;
   public totalPrice:number = 0;
+  public PoStatus = new FormControl('',Validators.required);
+  public PoStatusList:Array<DropdownItem> =[];
 
   constructor(
     private dialog:MatDialog,
@@ -28,6 +31,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
   ) { }
 
   ngOnInit() {
+    this.GetPoStatusDropDownItems();
   }
 
   ngOnChanges() {
@@ -46,6 +50,10 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
   }
 
   public OnFinishClick() {
+    if(this.PoStatus.invalid){
+      this.PoStatus.markAsTouched();
+      return;
+    }
     let confrimData = new DialogData();
     confrimData.buttonCancel = true;
     confrimData.buttonConfim = true;
@@ -72,6 +80,7 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
     saveModel.grnDate = this.GrnHeader.get('grnDate').value;
     saveModel.purchaseOrderId = this.GrnHeader.get('purchaseOrderId').value;
     saveModel.totalPrice = this.totalPrice;
+    saveModel.purchaseOrderStatus = this.PoStatus.value;
     saveModel.items = [];
 
     this.GrnItems.forEach(grnItem => {
@@ -102,6 +111,11 @@ export class GrnAddSummaryComponent implements OnInit,OnChanges {
       });
     }
     return saveModel;
+  }
+
+  private GetPoStatusDropDownItems() {
+    this.PoStatusList.push(new DropdownItem(2,'In Progress'));
+    this.PoStatusList.push(new DropdownItem(4,'Completed'));
   }
 
 
