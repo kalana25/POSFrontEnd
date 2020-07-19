@@ -4,6 +4,7 @@ import { PurchaseOrderSave } from '../../models/purchase-order-save';
 import { SharedMemoryService } from '../../../shared/services/shared-memory.service';
 import { SupplierService } from 'src/app/setup/services/supplier.service';
 import { Supplier } from 'src/app/setup/models/supplier';
+import { PurchaseOrderService } from '../../services/purchase-order.service';
 
 @Component({
   selector: 'app-purchase-order-header',
@@ -19,6 +20,7 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
   constructor(
     public fb:FormBuilder,
     public supplierService:SupplierService,
+    protected purchaseOrderService:PurchaseOrderService,
     public sharedMemoryservice:SharedMemoryService
   ) { 
 
@@ -32,6 +34,19 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
 
   ngOnInit() {
     let userId= this.sharedMemoryservice.getLoggedUserId();
+    this.initForm();
+    this.purchaseOrderService.getNextCode()
+    .subscribe(res=>{
+      if(res){
+        this.purchaseOrderHeader.get('code').patchValue(res.code);
+      }
+    },err=>{
+      console.error(err);
+    })
+    this.GetSupplierData();
+  }
+
+  private initForm() {
     this.purchaseOrderHeader = this.fb.group({
       date:[new Date(),Validators.required],
       deliveryDate:[new Date()],
@@ -40,7 +55,6 @@ export class PurchaseOrderHeaderComponent implements OnInit,OnChanges {
       user:[{value:this.sharedMemoryservice.getLoggedUserEmail(), disabled:true}],
       totalPrice:[0,Validators.required]
     });
-    this.GetSupplierData();
   }
 
   public OnSubmit() {
