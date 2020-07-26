@@ -28,6 +28,7 @@
                         </div>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+                <div class="flex-container">
                     <div class="form">
                         <form [formGroup]="grnExpansionItem.grnItemFormGroup" (ngSubmit)="OnSubmit(grnExpansionItem)" autocomplete="off">
                             <mat-form-field class="full-width">
@@ -74,8 +75,22 @@
                                 Confirm
                             </button>
                         </form>
-                        
                     </div>
+                    <div>
+                        <div>
+                            Orderd amount : {{grnExpansionItem.profitSetting.orderedAmountText}}
+                        </div>
+                        <div>
+                            Purchase price of 1 unit : {{grnExpansionItem.profitSetting.purchasePricePerUnit}}
+                        </div>
+                        <div>
+                            Selling price of 1 unit : {{grnExpansionItem.profitSetting.sellingPricePerUnit}}
+                        </div>
+                        <div>
+                            Profit : {{grnExpansionItem.profitSetting.profit}}
+                        </div>
+                    </div>
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
         <br>

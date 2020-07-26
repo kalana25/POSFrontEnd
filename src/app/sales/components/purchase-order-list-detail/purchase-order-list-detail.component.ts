@@ -28,6 +28,7 @@ export class PurchaseOrderListDetailComponent implements OnInit {
     .subscribe(res=>{
       this.result = res;
       this.IsLoading= false;
+      debugger;
     },err=>{
       console.error(err);
     });

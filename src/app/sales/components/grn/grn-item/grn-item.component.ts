@@ -7,7 +7,7 @@ import { FormArray } from '@angular/forms';
 import { Unit } from 'src/app/sales/models/unit';
 import { MatExpansionPanel, MatAccordion } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
+import { GrnItemExpansionPanelModel, ProfitSetterInfoModel } from 'src/app/sales/models/grn-item-expansion-panel';
 
 @Component({
   selector: 'app-grn-item',
@@ -37,7 +37,6 @@ export class GrnItemComponent implements OnInit,OnChanges {
       .pipe(
         map(list=>{
           return list.map(elem=>{
-
             const unit = new Unit();
             unit.id = elem.unit.id;
             unit.name = elem.unit.name;
@@ -45,10 +44,21 @@ export class GrnItemComponent implements OnInit,OnChanges {
             const unitList:Array<Unit> =[];
             unitList.push(unit);
 
+            const profitSetting = new ProfitSetterInfoModel();
+            if(elem.isBaseUnit) {
+              profitSetting.orderedAmountText = `${elem.quantity} ${elem.unit.name}`;
+              profitSetting.purchasePricePerUnit = elem.unitPrice;
+            } else {
+              const unit:any = elem.unit;
+              profitSetting.orderedAmountText = `${elem.quantity} ${elem.unit.name} (${unit.quantity} ${unit.baseUnitName})`;
+              profitSetting.purchasePricePerUnit = elem.unitPrice/unit.quantity;
+            }
+
+
             return new GrnItemExpansionPanelModel(
               elem,
               this.fb.group({
-                'expireDate':[''],
+                'expireDate':[''], 
                 'quantity':[elem.quantity,Validators.required],
                 'unitId':[elem.unitId,Validators.required],
                 'purchasePrice':[elem.unitPrice,Validators.required],
@@ -56,7 +66,8 @@ export class GrnItemComponent implements OnInit,OnChanges {
               }),
               unitList,
               false,
-              true);
+              true,
+              profitSetting);
           })
         })
       )
