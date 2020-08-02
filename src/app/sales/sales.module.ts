@@ -39,7 +39,7 @@ import { PoStatusPipe } from './pipes/po-status.pipe';
     AngularMaterialModule,
     ReactiveFormsModule,
     SetupModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     PurchaseOrderListComponent,

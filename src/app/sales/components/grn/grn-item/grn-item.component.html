@@ -89,6 +89,9 @@
                         <div>
                             Profit : {{grnExpansionItem.profitSetting.profit}}
                         </div>
+                        <div>
+                            <mat-slider class="profit-slider" min="0" max="200" step="1" value="grnExpansionItem.profitSetting.profit" (input)="OnInput($event,grnExpansionItem)" ></mat-slider>
+                        </div>
                     </div>
                 </div>
             </mat-expansion-panel>
