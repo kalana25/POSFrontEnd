@@ -19,19 +19,24 @@ export class PoDetailPickerComponent implements OnInit {
   measurements:Array<MeasurementWithBaseUnit>;
   baseUnits:Array<BaseUnit>;
   poDetailPickerFormGroup:FormGroup;
-  IsBaseUnit:boolean=false;
+  IsBaseUnit:boolean;
 
   constructor(
     private fb:FormBuilder,
     private baseUnitService:BaseUnitService,
     public dialogRef:MatDialogRef<PoDetailPickerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:{product:Product,measurement:Array<MeasurementWithBaseUnit>},
+    @Inject(MAT_DIALOG_DATA) public data:{product:Product,baseUnitOnly:boolean,measurement:Array<MeasurementWithBaseUnit>},
   ) { }
 
   ngOnInit() {
     this.initFormGroup();
     this.model = new PurchaseOrderDetailFullItem;
     this.measurements = this.data.measurement;
+    this.poDetailPickerFormGroup.get('isBaseUnit').setValue(this.data.baseUnitOnly);
+    this.IsBaseUnit = this.data.baseUnitOnly;
+    if(this.data.baseUnitOnly) {
+      this.poDetailPickerFormGroup.get('isBaseUnit').disable();
+    }
     this.loadBaseUnits();
   }
 
