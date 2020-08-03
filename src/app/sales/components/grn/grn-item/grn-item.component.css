@@ -16,6 +16,7 @@ mat-form-field.mat-form-field {
 
 div.form {
     width: 20%;
+    margin-right: 100px;
 }
 
 .green {
@@ -44,4 +45,8 @@ div.grn-item-barcode {
 
 div.grn-item-unit-quantity {
     width: 100px;
+}
+
+.profit-slider {
+    width: 400px;
 }

@@ -1,5 +1,8 @@
 <div class="po-header-container" *ngIf="!IsLoading">
     <h2>Purchase Order Details</h2>
+    <mat-chip-list>
+        <mat-chip color="primary">{{result.status|poStatus}}</mat-chip>
+    </mat-chip-list>
     Code :{{result.code}}<br>
     Date :{{result.date| date}}<br>
     Userid :<br>
