@@ -11,6 +11,7 @@ import { ResponseData } from 'src/app/core/response-Data';
 import { GrnPagination } from '../models/grn-pagination';
 import { GrnSave } from '../models/grn-save';
 import { Grn } from '../models/grn';
+import { GrnFullInfo } from '../models/grn-fullInfo';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -53,6 +54,14 @@ export class GoodReceivedNoteService {
     .pipe(
       tap((resPro:Grn) => console.log(`added ${typeof(resPro)} /w id${resPro.id }`)),
       catchError(this.handleError<Grn>(`add${typeof(model)}`))
+    );
+  }
+
+  getWithFullInfo(id:number):Observable<GrnFullInfo> {
+    return this.http.get<GrnFullInfo>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/${id}`)
+    .pipe(
+        tap(_=>console.log('fetched resource')),
+        catchError(this.handleError<GrnFullInfo>(`getWithFullInfo=${id}`))
     );
   }
 

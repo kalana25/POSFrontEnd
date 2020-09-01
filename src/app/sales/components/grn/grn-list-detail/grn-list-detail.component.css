@@ -1,0 +1,29 @@
+div.flex-row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+div.flex-column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-l-20 {
+    margin-left: 20px;
+}
+
+.m-r-50{
+    margin-right: 50px;
+}
+
+.m-r-20{
+    margin-right: 20px;
+}
+
+.m-r-20 {
+    margin-right: 20px;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}

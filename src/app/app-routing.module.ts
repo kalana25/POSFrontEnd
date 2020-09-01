@@ -33,6 +33,7 @@ import { MeasurementListComponent } from './setup/components/measurement/measure
 import { MeasurementAddComponent } from './setup/components/measurement/measurement-add/measurement-add.component'
 import { GrnListComponent } from './sales/components/grn/grn-list/grn-list.component';
 import { GrnAddComponent } from './sales/components/grn/grn-add/grn-add.component';
+import { GrnListDetailComponent } from './sales/components/grn/grn-list-detail/grn-list-detail.component';
 
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
@@ -66,6 +67,7 @@ const routes: Routes = [
       {path:'purchase-order-edit/:id',component:PurchaseOrderEditComponent},
 
       {path:'grn-list',component:GrnListComponent},
+      {path:'grn-list-details/:id',component:GrnListDetailComponent},
       {path:'grn-add',component:GrnAddComponent}
     ]
   },

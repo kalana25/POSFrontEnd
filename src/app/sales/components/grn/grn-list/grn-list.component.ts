@@ -59,7 +59,7 @@ export class GrnListComponent implements OnInit {
   }
 
   public OnViewDetails(value) {
-    
+    this.router.navigate(['../grn-list-details',value.id],{relativeTo:this.route});
   }
 
 }
