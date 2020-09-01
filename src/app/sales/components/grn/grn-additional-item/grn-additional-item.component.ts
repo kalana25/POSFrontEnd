@@ -3,7 +3,7 @@ import { Product } from 'src/app/setup/models/product';
 import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { PoDetailPickerComponent } from '../../po-detail-picker/po-detail-picker.component';
-import { GrnItemExpansionPanelModel } from 'src/app/sales/models/grn-item-expansion-panel';
+import { GrnItemExpansionPanelModel, ProfitSetterInfoModel } from 'src/app/sales/models/grn-item-expansion-panel';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Unit } from 'src/app/sales/models/unit';
 
@@ -51,6 +51,8 @@ export class GrnAdditionalItemComponent implements OnInit {
             const unitList:Array<Unit> =[];
             unitList.push(unit);
 
+            const profitSetting = new ProfitSetterInfoModel();
+
             this.itemList.push (
               new GrnItemExpansionPanelModel(
                 res,
@@ -63,7 +65,8 @@ export class GrnAdditionalItemComponent implements OnInit {
                 }),
                 unitList,
                 false,
-                true)
+                true,
+                profitSetting)
             );
           }
         });

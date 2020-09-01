@@ -20,6 +20,7 @@ import { GrnItemComponent } from './components/grn/grn-item/grn-item.component';
 import { GrnAdditionalItemComponent } from './components/grn/grn-additional-item/grn-additional-item.component';
 import { GrnAddSummaryComponent } from './components/grn/grn-add-summary/grn-add-summary.component';
 import { GrnListDetailComponent } from './components/grn/grn-list-detail/grn-list-detail.component';
+import { PoStatusPipe } from './pipes/po-status.pipe';
 
 @NgModule({
   declarations: [
@@ -32,14 +33,21 @@ import { GrnListDetailComponent } from './components/grn/grn-list-detail/grn-lis
     PurchaseOrderEditComponent, 
     PurchaseOrderEditItemComponent, 
     GrnListComponent, 
-    GrnAddComponent, GrnFormComponent, PoPickerComponent, GrnItemComponent, GrnAdditionalItemComponent, GrnAddSummaryComponent, GrnListDetailComponent
+    GrnAddComponent, 
+    GrnFormComponent, 
+    PoPickerComponent, 
+    GrnItemComponent, 
+    GrnAdditionalItemComponent, 
+    GrnAddSummaryComponent, 
+    PoStatusPipe, 
+    GrnListDetailComponent
   ],
   imports: [
     CommonModule,
     AngularMaterialModule,
     ReactiveFormsModule,
     SetupModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     PurchaseOrderListComponent,

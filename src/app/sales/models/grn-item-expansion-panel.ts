@@ -10,9 +10,19 @@ export class GrnItemExpansionPanelModel {
         public grnItemFormGroup:FormGroup,
         public unitList:Array<Unit>,
         public isConfirmed:boolean,
-        public expand:boolean ) {
+        public expand:boolean,
+        public profitSetting:ProfitSetterInfoModel ) {
 
     }
     
     
+}
+
+export class ProfitSetterInfoModel
+{
+    public orderedAmountText:string;
+    public purchasePricePerUnit:number;
+    public sellingPricePerUnit:number;
+    public profit:number;
+
 }

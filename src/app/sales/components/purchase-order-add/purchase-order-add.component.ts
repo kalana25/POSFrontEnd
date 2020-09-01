@@ -35,23 +35,24 @@ export class PurchaseOrderAddComponent implements OnInit {
 
     this.measurementService.getByItem(product.id)
     .subscribe(res=>{
-
+      let input;
       if(res.length>0) {
-        let dialogRef = this.dialog.open(PoDetailPickerComponent,
-          {
-            data:{'product':product,'measurement':res},
-            width:'230px'
-          });
-        dialogRef.afterClosed().subscribe(closeRes=>{
-          if(closeRes) {
-            this.selectedProductList.push({product:closeRes.item,details:closeRes});
-            this.totalPrice = this.totalPrice + closeRes.unitPrice * closeRes.quantity;
-          }
-        });
-
+        input = {'product':product,'measurement':res,baseUnitOnly:false};
       } else {
-        this.snackBar.open("Please configure the measurements","OK",{duration:2500});
+        input = {'product':product,'measurement':res,baseUnitOnly:true};
       }
+      let dialogRef = this.dialog.open(PoDetailPickerComponent,
+        {
+          data:input,
+          width:'230px'
+        });
+      dialogRef.afterClosed().subscribe(closeRes=>{
+        if(closeRes) {
+          this.selectedProductList.push({product:closeRes.item,details:closeRes});
+          this.totalPrice = this.totalPrice + closeRes.unitPrice * closeRes.quantity;
+        }
+      });
+
     },err=>{
       console.error(err);
     });
