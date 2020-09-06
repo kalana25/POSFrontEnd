@@ -35,6 +35,9 @@ import { GrnListComponent } from './sales/components/grn/grn-list/grn-list.compo
 import { GrnAddComponent } from './sales/components/grn/grn-add/grn-add.component';
 import { GrnListDetailComponent } from './sales/components/grn/grn-list-detail/grn-list-detail.component';
 
+import { InventoryListComponent } from './sales/components/inventory/inventory-list/inventory-list.component';
+import { InventoryListDetailComponent } from './sales/components/inventory/inventory-list-detail/inventory-list-detail.component';
+
 const routes: Routes = [
   {path:'login-user',component:LoginComponent},
   {path:'register-user',component:RegisterComponent},
@@ -68,7 +71,10 @@ const routes: Routes = [
 
       {path:'grn-list',component:GrnListComponent},
       {path:'grn-list-details/:id',component:GrnListDetailComponent},
-      {path:'grn-add',component:GrnAddComponent}
+      {path:'grn-add',component:GrnAddComponent},
+
+      {path:'inventory-list',component:InventoryListComponent},
+      {path:'inventory-list-details/:id',component:InventoryListDetailComponent}
     ]
   },
   {path:'',redirectTo:'/login-user',pathMatch:'full'},
