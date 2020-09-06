@@ -1,49 +1,60 @@
 <div class="m-l-20 m-r-20" *ngIf="result">
     <h2>Good Receipt Note Details</h2>
     <div class="flex-row-container">
-        <!-- good received note info -->
+        
         <div class="flex-column-container">
-            <div class="flex-row-container">
-                <div class="flex-column-container f-w-600 m-r-20">
-                    <div>Code</div>
-                    <div>Price (Total)</div>
-                    <div>Date</div>
-                    <div>Time</div>
-                    <div>Created By</div>
-                    <div *ngIf="result.comment">Comment</div>
+            <!-- good received note info -->
+            <div class="flex-column-container">
+                <div class="flex-row-container">
+                    <div class="flex-column-container f-w-600 m-r-20">
+                        <div>Code</div>
+                        <div>Price (Total)</div>
+                        <div>Date</div>
+                        <div>Time</div>
+                        <div>Created By</div>
+                        <div *ngIf="result.comment">Comment</div>
+                    </div>
+                    <div class="flex-column-container m-r-50">
+                        <div>{{result.code}}</div>
+                        <div>{{result.totalPrice}}</div>
+                        <div>{{result.createdOn|date}}</div>
+                        <div>{{result.time|date:'shortTime'}}</div>
+                        <div>{{result.createdByName}}</div>
+                        <div *ngIf="result.comment">{{result.comment}}</div>
+                    </div>
                 </div>
-                <div class="flex-column-container m-r-50">
-                    <div>{{result.code}}</div>
-                    <div>{{result.totalPrice}}</div>
-                    <div>{{result.createdOn|date}}</div>
-                    <div>{{result.time|date:'shortTime'}}</div>
-                    <div>{{result.createdByName}}</div>
-                    <div *ngIf="result.comment">{{result.comment}}</div>
+            </div>
+    
+            <div class="po-section-header">
+                Purchase Order
+            </div>
+            <!-- purchase order infor -->
+            <div class="flex-column-container">
+                <div class="flex-row-container">
+                    <div class="flex-column-container f-w-600 m-r-20">
+                        <div>Code</div>
+                        <div>Price (Total)</div>
+                        <div>Date</div>
+                        <div>Delivery Date</div>
+                        <div>Created By</div>
+                        <div>Status</div>
+                        <div *ngIf="result.purchaseOrder.referenceId">Reference Id</div>
+                    </div>
+                    <div class="flex-column-container m-r-50">
+                        <div>{{result.purchaseOrder.code}}</div>
+                        <div>{{result.purchaseOrder.totalPrice}}</div>
+                        <div>{{result.purchaseOrder.date|date}}</div>
+                        <div>{{result.purchaseOrder.deliveryDate|date}}</div>
+                        <div>{{result.purchaseOrder.createdByName}}</div>
+                        <div>{{result.purchaseOrder.status|poStatus}}</div>
+                        <div *ngIf="result.purchaseOrder.referenceId">{{result.purchaseOrder.referenceId}}</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- purchase order infor -->
-        <div class="flex-column-container">
-            <div class="flex-row-container">
-                <div class="flex-column-container f-w-600 m-r-20">
-                    <div>Code</div>
-                    <div>Price (Total)</div>
-                    <div>Date</div>
-                    <div>Delivery Date</div>
-                    <div>Created By</div>
-                    <div>Status</div>
-                    <div>Reference Id</div>
-                </div>
-                <div class="flex-column-container m-r-50">
-                    <div>{{result.purchaseOrder.code}}</div>
-                    <div>{{result.purchaseOrder.totalPrice}}</div>
-                    <div>{{result.purchaseOrder.date|date}}</div>
-                    <div>{{result.purchaseOrder.deliveryDate|date}}</div>
-                    <div>{{result.purchaseOrder.createdByName}}</div>
-                    <div>{{result.purchaseOrder.status}}</div>
-                    <div>{{result.purchaseOrder.referenceId}}</div>
-                </div>
-            </div>
+
+        <div>
+            detail table
         </div>
 
     </div>

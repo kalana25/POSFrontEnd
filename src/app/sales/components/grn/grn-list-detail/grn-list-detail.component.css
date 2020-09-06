@@ -8,6 +8,12 @@ div.flex-column-container {
     flex-direction: column;
 }
 
+.po-section-header {
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
 .m-l-20 {
     margin-left: 20px;
 }
