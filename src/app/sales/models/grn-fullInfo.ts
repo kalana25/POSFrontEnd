@@ -9,5 +9,5 @@ export class GrnFullInfo extends Grn {
     createdBy:string;
     createdByName:string;
     purchaseOrder:PurchaseOrder;
-    details:Array<GrnDetailFullInfo>;
+    items:Array<GrnDetailFullInfo>;
 }

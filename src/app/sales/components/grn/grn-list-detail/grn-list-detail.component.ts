@@ -13,7 +13,7 @@ export class GrnListDetailComponent implements OnInit {
   public Id:number;
   public IsLoading:boolean;
   public result:GrnFullInfo;
-  // public displayedColumns: string[] = ['code', 'name', 'barcode','unit','quantity','price','total'];
+  public displayedColumns: string[] = ['code', 'name', 'barcode','quantity','sellingPrice','purchasingPrice','expireDate'];
 
   constructor(
     private route:ActivatedRoute,
@@ -27,13 +27,15 @@ export class GrnListDetailComponent implements OnInit {
     this.grnService.getWithFullInfo(this.Id)
     .subscribe(res=>{
       this.result = res;
-
-      this.result.comment;
-
+      this.result.items
       this.IsLoading = false;
     },err=>{
       console.error(err);
     })
+  }
+
+  public OnGoBack() {
+    this.router.navigate(['../../grn-list'],{relativeTo:this.route});
   }
 
 }

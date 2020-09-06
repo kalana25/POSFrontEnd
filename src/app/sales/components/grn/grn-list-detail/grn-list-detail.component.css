@@ -8,6 +8,20 @@ div.flex-column-container {
     flex-direction: column;
 }
 
+.po-section-header {
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+div.grn-detail-container{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
 .m-l-20 {
     margin-left: 20px;
 }
@@ -26,4 +40,27 @@ div.flex-column-container {
 
 .f-w-600 {
     font-weight: 600;
+}
+
+.fab-back {
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    background-color:rgba(0,0,0,.87);
+    color: white;
+}
+
+.grn-detail-loading-shade {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
