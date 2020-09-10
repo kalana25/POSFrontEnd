@@ -1,0 +1,35 @@
+h1.page-header, div.inventory-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+.inventory-loading-shade {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fab-plus {
+    position:fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color:#009432;
+    color: white;
+}
+
+.icon-red {
+    color: rgb(218, 30, 30)
+}

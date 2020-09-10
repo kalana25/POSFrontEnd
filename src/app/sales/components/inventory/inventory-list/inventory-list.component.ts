@@ -13,11 +13,11 @@ import { PageEvent } from '@angular/material';
 })
 export class InventoryListComponent implements OnInit {
 
-  grnResponse:ResponseData<InventoryPagination>;
-  grnRequest:RequestData
+  inventoryResponse:ResponseData<InventoryPagination>;
+  inventoryRequest:RequestData
   public IsLoading:boolean=false;
 
-  displayedColumns: string[] = ['id','action'];
+  displayedColumns: string[] = ['code','name','stock','reOrderLevel','barcode','unit'];
 
 
   constructor(
@@ -28,17 +28,17 @@ export class InventoryListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.grnRequest = new RequestData();
-    this.grnRequest.page=1;
-    this.grnRequest.pageSize=5;
-    this.getInventoryPagination(this.grnRequest);
+    this.inventoryRequest = new RequestData();
+    this.inventoryRequest.page=1;
+    this.inventoryRequest.pageSize=5;
+    this.getInventoryPagination(this.inventoryRequest);
   }
 
-  private getInventoryPagination(grnRequest:RequestData) {
+  private getInventoryPagination(invRequest:RequestData) {
     this.IsLoading = true;
-    this.inventoryService.pagination(grnRequest)
+    this.inventoryService.pagination(invRequest)
     .subscribe(res=>{
-      this.grnResponse = res;
+      this.inventoryResponse = res;
       this.IsLoading = false;
       console.log(res);
     },err=>{
@@ -48,9 +48,9 @@ export class InventoryListComponent implements OnInit {
   }
 
   public OnPage(event:PageEvent):void {
-    this.grnRequest.pageSize = event.pageSize;
-    this.grnRequest.page= event.pageIndex+1;
-    this.getInventoryPagination(this.grnRequest);
+    this.inventoryRequest.pageSize = event.pageSize;
+    this.inventoryRequest.page= event.pageIndex+1;
+    this.getInventoryPagination(this.inventoryRequest);
   }
 
 }
