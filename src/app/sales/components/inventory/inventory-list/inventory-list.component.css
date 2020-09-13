@@ -33,3 +33,13 @@ table {
 .icon-red {
     color: rgb(218, 30, 30)
 }
+
+tr.invntry-data-row:hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+
+tr.invntry-data-row:active {
+    background: #efefef;
+    cursor: pointer;
+}

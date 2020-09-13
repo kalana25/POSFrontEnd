@@ -16,6 +16,7 @@ export class InventoryListComponent implements OnInit {
   inventoryResponse:ResponseData<InventoryPagination>;
   inventoryRequest:RequestData
   public IsLoading:boolean=false;
+  public InventoryDetailsLoading:boolean = false;
 
   displayedColumns: string[] = ['code','name','stock','reOrderLevel','barcode','unit'];
 
@@ -51,6 +52,11 @@ export class InventoryListComponent implements OnInit {
     this.inventoryRequest.pageSize = event.pageSize;
     this.inventoryRequest.page= event.pageIndex+1;
     this.getInventoryPagination(this.inventoryRequest);
+  }
+
+  public OnRowClick(input) {
+    this.InventoryDetailsLoading = true;
+    debugger;
   }
 
 }

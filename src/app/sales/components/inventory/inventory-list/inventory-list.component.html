@@ -6,6 +6,7 @@
         <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
     </div>
     <div class="inventory-table-container">
+        <mat-progress-bar mode="indeterminate" *ngIf="InventoryDetailsLoading"></mat-progress-bar>
         <table *ngIf="inventoryResponse" mat-table [dataSource]="inventoryResponse.items">
             
             <ng-container matColumnDef="code">
@@ -35,12 +36,14 @@
             </ng-container>
 
             <ng-container matColumnDef="stock">
-                <th mat-header-cell *matHeaderCellDef> Stock Qty </th>
-                <td mat-cell *matCellDef="let column"> {{column.quantity}} {{column.unit.symbol}}</td>
+                <th mat-header-cell *matHeaderCellDef>Stock Qty </th>
+                    <td mat-cell *matCellDef="let column">{{column.quantity}} {{column.unit.symbol}}</td>
             </ng-container>
-        
+                
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+            class="invntry-data-row"
+            (click)="OnRowClick(row)"></tr>
         </table>
     </div>
     <mat-paginator
@@ -50,6 +53,10 @@
         [pageSizeOptions]="[5, 10, 25, 100]"
         (page)="OnPage($event)">
     </mat-paginator>
+</div>
+
+<div class="fab-plus">
+
 </div>
 <!-- <button mat-fab class="fab-plus" (click)="OnAddClick()">
     <mat-icon>add</mat-icon>
