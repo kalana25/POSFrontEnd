@@ -21,6 +21,8 @@ import { GrnAdditionalItemComponent } from './components/grn/grn-additional-item
 import { GrnAddSummaryComponent } from './components/grn/grn-add-summary/grn-add-summary.component';
 import { GrnListDetailComponent } from './components/grn/grn-list-detail/grn-list-detail.component';
 import { PoStatusPipe } from './pipes/po-status.pipe';
+import { InventoryListComponent } from './components/inventory/inventory-list/inventory-list.component';
+import { InventoryListDetailComponent } from './components/inventory/inventory-list-detail/inventory-list-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { PoStatusPipe } from './pipes/po-status.pipe';
     GrnAdditionalItemComponent, 
     GrnAddSummaryComponent, 
     PoStatusPipe, 
-    GrnListDetailComponent
+    GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent
   ],
   imports: [
     CommonModule,
