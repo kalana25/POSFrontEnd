@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AppSettingsService } from 'src/app/core/app-settings.service';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { InventoryPagination } from '../models/inventory-pagination';
-import { tap } from 'rxjs/operators';
-
+import { tap,catchError } from 'rxjs/operators';
+import { InventoryFullInfo } from '../models/inventory-fullInfo';
 
 const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'application/json'})
@@ -35,6 +35,22 @@ export class InventoryService {
     .pipe(
       tap(_=>console.log('fetched resources')),
     )
+  }
+
+  getWithFullInfo(itemId:number):Observable<InventoryFullInfo> {
+    return this.http.get<InventoryFullInfo>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/ItemId/${itemId}`)
+    .pipe(
+        tap(_=>console.log('fetched resource')),
+        catchError(this.handleError<InventoryFullInfo>(`getWithFullInfo=${itemId}`))
+    );
+  }
+
+  private handleError<T>(operation='operation',result?:T) {
+    return (error:any):Observable<T> => {
+        console.error(error);
+        console.log(`${operation} failed: ${error.message}`);
+        return of(result as T);     
+    }
   }
 
 
