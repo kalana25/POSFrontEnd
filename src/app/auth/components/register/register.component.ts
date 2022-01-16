@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from
 import { Register } from '../../models/register';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     public fb:FormBuilder,
     public router:Router,
-    public authService:AuthService
+    public authService:AuthService,
+    private toasterService:ToastrService
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,12 @@ export class RegisterComponent implements OnInit {
       this.authService.register(model)
       .subscribe(res=>{
         if(res.isSuccess) {
+          this.toasterService.success("User is created","Success");
           this.router.navigate(['/login-user']);
+        } else {
+          this.toasterService.warning(res.errors.join("<br>"),res.message,{
+            enableHtml:true
+          })
         }
       },err=>{
         console.error(err);
