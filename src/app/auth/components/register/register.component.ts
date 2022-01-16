@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
           })
         }
       },err=>{
+        this.toasterService.error("Please check the internet connection","Something Bad happen")
         console.error(err);
       })
     }

@@ -8,6 +8,7 @@ import { UserManagerResponse } from '../../models/user-manager-response';
 import { Key } from '../../../shared/models/key';
 import { Router } from '@angular/router';
 import { SharedMemoryService } from 'src/app/shared/services/shared-memory.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     public fb:FormBuilder,
     public router:Router,
     public sharedMemoryService:SharedMemoryService,
+    public toasterService:ToastrService,
     public authService:AuthService) { 
 
     }
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
         }
       },err=>{
         this.loading = false;
+        this.toasterService.error("Please check the internet connection","Something Bad happen")
         console.error(err);
       })
     }
