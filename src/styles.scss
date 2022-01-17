@@ -1,6 +1,23 @@
 html, body { height: 100%; }
 body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.flx-row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flx-col-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-code-field {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: dimgrey;
+}
+
 .h-1 {
     font-family: Roboto;
     display: block;
