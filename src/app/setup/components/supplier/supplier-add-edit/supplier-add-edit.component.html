@@ -1,12 +1,16 @@
 <h2>Supplier</h2>
 <form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()" autocomplete="off">
-  <mat-form-field appearance="standard" class="full-width">
+  <!-- <mat-form-field appearance="standard" class="full-width">
     <mat-label>Code</mat-label>
     <input matInput placeholder="Placeholder" formControlName="Code">
     <mat-error *ngIf="supplierFormGroup.get('Code').invalid">
       <span *ngIf="supplierFormGroup.get('Code').errors.required">Mandatory</span>
     </mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
+  <div>
+    <div>{{supplierFormGroup.get('Code').value}}</div>
+    <input type="hidden" formControlName="Code">
+  </div>
 
   <mat-form-field appearance="standard" class="full-width">
     <mat-label>Name</mat-label>
