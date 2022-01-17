@@ -5,7 +5,7 @@
         <div class="supplier-loading-shade" *ngIf="IsLoading">
             <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
         </div>
-        <div class="supplier-table-container">
+        <div class="supplier-table-container" *ngIf="supplierResponse?.items.length">
             <table *ngIf="supplierResponse" mat-table [dataSource]="supplierResponse.items">
     
                 <ng-container matColumnDef="code">
@@ -50,14 +50,17 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+            <mat-paginator
+                *ngIf="supplierResponse"
+                [length]="supplierResponse.totalCount"
+                [pageSize]="supplierResponse.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="OnPage($event)">
+            </mat-paginator>
         </div>
-        <mat-paginator
-            *ngIf="supplierResponse"
-            [length]="supplierResponse.totalCount"
-            [pageSize]="supplierResponse.pageSize"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            (page)="OnPage($event)">
-        </mat-paginator>
+        <div *ngIf="!supplierResponse?.items.length" class="no-records-found">
+            No Records Found
+        </div>
     </div>
 
     <button mat-fab class="fab-plus" (click)="OnAddClick()">
