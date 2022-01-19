@@ -1,52 +1,59 @@
 
-<h1 class="page-header">Base Units</h1>
-<div class="base-unit-container mat-elevation-z8">
+<div class="parent-container">
+    <div class="h-1">Base Units</div>
+    <div class="base-unit-container">
+    
+        <div class="base-unit-loading-shade" *ngIf="IsLoading">
+            <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+        </div>
 
-    <div class="base-unit-loading-shade" *ngIf="IsLoading">
-        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+        <div class="supplier-table-container"  *ngIf="baseUnitResponse?.items.length">
+            <table *ngIf="baseUnitResponse" mat-table [dataSource]="baseUnitResponse.items">
+    
+                <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let column"> {{column.name}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let column"> {{column.description}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                <td mat-cell *matCellDef="let column"> {{column.symbol}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let column">
+                        <button mat-icon-button (click)="OnDelete(column.id)" >
+                            <mat-icon class="icon-red">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="OnEdit(column)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator
+                *ngIf="baseUnitResponse"
+                [length]="baseUnitResponse.totalCount"
+                [pageSize]="baseUnitResponse.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="OnPage($event)">
+            </mat-paginator>
+        </div>
+        <div *ngIf="!baseUnitResponse?.items.length" class="no-records-found">
+            No Records Found
+        </div>
     </div>
-    <div class="supplier-table-container">
-        <table *ngIf="baseUnitResponse" mat-table [dataSource]="baseUnitResponse.items">
 
-            <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let column"> {{column.name}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let column"> {{column.description}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let column"> {{column.symbol}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let column">
-                    <button mat-icon-button (click)="OnDelete(column.id)" >
-                        <mat-icon class="icon-red">delete</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="OnEdit(column)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
-    <mat-paginator
-        *ngIf="baseUnitResponse"
-        [length]="baseUnitResponse.totalCount"
-        [pageSize]="baseUnitResponse.pageSize"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        (page)="OnPage($event)">
-    </mat-paginator>
+    <button mat-fab class="fab-plus" (click)="OnAddClick()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
-<button mat-fab class="fab-plus" (click)="OnAddClick()">
-    <mat-icon>add</mat-icon>
-</button>
