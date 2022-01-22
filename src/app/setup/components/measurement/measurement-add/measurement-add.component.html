@@ -1,9 +1,9 @@
 <div class="parent">
 
     <div class="measurement-header">
-        <h2>New Measurement</h2>
+        <div class="h-1">New Measurement</div>
         <form class="measurement-form" [formGroup]="measurementForm" autocomplete="off" (ngSubmit)="OnSave()">
-            
+
             <mat-form-field class="full-width">
                 <mat-label>Name</mat-label>
                 <input matInput placeholder="Placeholder" formControlName="name">

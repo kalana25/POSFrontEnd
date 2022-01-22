@@ -1,11 +1,11 @@
 div.parent {
     position: relative;
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 div.measurement-header {
     width: 50%;
-    margin-left: 20px;
 }
 
 .mat-form-field {
@@ -14,6 +14,7 @@ div.measurement-header {
 
 form.measurement-form {
     width: 280px;
+    margin-left: 50px;
 }
 
 .fab-save {
