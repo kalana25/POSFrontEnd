@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import { SetupModule } from './setup/setup.module';
 import { SalesModule } from './sales/sales.module';
@@ -27,6 +28,11 @@ import { AngularMaterialModule } from './angular-material.module';
     SalesModule,
     AuthModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     AngularMaterialModule
   ],
   providers: [],

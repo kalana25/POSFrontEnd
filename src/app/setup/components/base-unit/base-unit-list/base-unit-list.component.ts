@@ -10,6 +10,7 @@ import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
 import { BaseUnitDeleteAction } from '../dialog-action/base-unit-confirmation-action';
 import { BaseUnitEditComponent } from '../base-unit-edit/base-unit-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-base-unit-list',
@@ -28,6 +29,7 @@ export class BaseUnitListComponent implements OnInit {
     public baseUnitService:BaseUnitService,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class BaseUnitListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

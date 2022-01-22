@@ -5,6 +5,7 @@ import { RequestData } from 'src/app/core/request-data';
 import { InventoryService } from 'src/app/sales/services/inventory.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inventory-list',
@@ -24,6 +25,7 @@ export class InventoryListComponent implements OnInit {
   constructor(
     protected inventoryService:InventoryService,
     protected route:ActivatedRoute,
+    private toasterService:ToastrService,
     protected router:Router) { 
 
   }
@@ -44,6 +46,7 @@ export class InventoryListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

@@ -3,7 +3,7 @@
     <mat-label>Search</mat-label>
     <input matInput [formControl]="search" placeholder="Code, Name, Barcode" autocomplete="off">
 </mat-form-field>
-<div class="item-container mat-elevation-z8">
+<div class="item-container">
 
     <div class="item-loading-shade" *ngIf="IsLoading">
         <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>

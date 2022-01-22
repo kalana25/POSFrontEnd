@@ -9,6 +9,7 @@ import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { DiscountDeleteAction } from '../../product/dialog-action/disount-confirmation-action';
 import { DiscountEditComponent} from '../discount-edit/discount-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-discount-list',
@@ -27,6 +28,7 @@ export class DiscountListComponent implements OnInit {
     public discountService:DiscountService,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class DiscountListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

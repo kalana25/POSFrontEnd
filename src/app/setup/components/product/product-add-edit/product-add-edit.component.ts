@@ -10,6 +10,7 @@ import { pipe } from 'rxjs';
 import { Category } from '../../../models/category';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { CategoryAddEditComponent } from '../../category/category-add-edit/category-add-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-add-edit',
@@ -29,7 +30,8 @@ export class ProductAddEditComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private productService:ProductService,
     public routeStateService:RouteStateService,
-    private categoryService:CategoryService
+    private categoryService:CategoryService,
+    private toasterService:ToastrService
   ) { 
 
   }
@@ -45,6 +47,7 @@ export class ProductAddEditComponent implements OnInit {
         this.LoadCategories();
         this.initFormForNewProduct();
       }
+      this.getNextProductCode();
     });
   }
 
@@ -108,6 +111,18 @@ export class ProductAddEditComponent implements OnInit {
     if(this.prouctFormGroup.valid) {
       this.SaveProduct(this.prouctFormGroup.value);
     }
+  }
+
+  private getNextProductCode() {
+    this.productService.getNextProductCode()
+    .subscribe(res=>{
+      if(res.code) {
+        this.prouctFormGroup.get('Code').patchValue(res.code);
+      }
+    },err=>{
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
+      console.error(err);
+    })
   }
 
 }

@@ -1,62 +1,64 @@
-<div class="po-header-container" *ngIf="!IsLoading">
-    <h2>Purchase Order Details</h2>
-    <mat-chip-list>
-        <mat-chip color="primary">{{result.status|poStatus}}</mat-chip>
-    </mat-chip-list>
-    Code :{{result.code}}<br>
-    Date :{{result.date| date}}<br>
-    Userid :<br>
-    Supplier:{{result.supplier.name}}<br>
-    Grand Total :{{result.totalPrice}}<br><br>
-</div>
-<div class="po-detail-container mat-elevation-z8" *ngIf="!IsLoading">
-    <div class="po-detail-loading-shade" *ngIf="IsLoading">
-        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
-    </div> 
-    <div class="po-detail-table-container">
-        <table mat-table [dataSource]="result.items">
-
-            <ng-container matColumnDef="code">
-            <th mat-header-cell *matHeaderCellDef> Code </th>
-            <td mat-cell *matCellDef="let column"> {{column.item.code}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="barcode">
-            <th mat-header-cell *matHeaderCellDef> Barcode </th>
-            <td mat-cell *matCellDef="let column"> {{column.item.barcode}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let column"> {{column.item.name}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Unit Price </th>
-            <td mat-cell *matCellDef="let column"> {{column.unitPrice}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantity">
-                <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                <td mat-cell *matCellDef="let column"> {{column.quantity}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="unit">
-                <th mat-header-cell *matHeaderCellDef> Unit </th>
-                <td mat-cell *matCellDef="let column"> {{column.unit.symbol}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef> Total </th>
-                <td mat-cell *matCellDef="let column"> {{column.unitPrice * column.quantity}} </td>
-            </ng-container>
-       
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+<div class="parent-container">
+    <div class="h-1">Purchase Order Details</div>
+    <div class="po-header-container" *ngIf="!IsLoading">
+        <mat-chip-list>
+            <mat-chip color="primary">{{result.status|poStatus}}</mat-chip>
+        </mat-chip-list>
+        Code :{{result.code}}<br>
+        Date :{{result.date| date}}<br>
+        Userid :<br>
+        Supplier:{{result.supplier.name}}<br>
+        Grand Total :{{result.totalPrice}}<br><br>
     </div>
+    <div class="po-detail-container" *ngIf="!IsLoading">
+        <div class="po-detail-loading-shade" *ngIf="IsLoading">
+            <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+        </div> 
+        <div class="po-detail-table-container">
+            <table mat-table [dataSource]="result.items">
+    
+                <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> Code </th>
+                <td mat-cell *matCellDef="let column"> {{column.item.code}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="barcode">
+                <th mat-header-cell *matHeaderCellDef> Barcode </th>
+                <td mat-cell *matCellDef="let column"> {{column.item.barcode}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let column"> {{column.item.name}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+                <td mat-cell *matCellDef="let column"> {{column.unitPrice}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let column"> {{column.quantity}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="unit">
+                    <th mat-header-cell *matHeaderCellDef> Unit </th>
+                    <td mat-cell *matCellDef="let column"> {{column.unit.symbol}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <td mat-cell *matCellDef="let column"> {{column.unitPrice * column.quantity}} </td>
+                </ng-container>
+           
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    
+    <button mat-fab class="fab-back" (click)="OnGoBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
 </div>
-
-<button mat-fab class="fab-back" (click)="OnGoBack()">
-    <mat-icon>arrow_back</mat-icon>
-</button>

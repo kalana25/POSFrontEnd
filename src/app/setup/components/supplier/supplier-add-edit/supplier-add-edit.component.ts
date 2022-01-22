@@ -4,6 +4,7 @@ import { Supplier } from '../../../models/supplier';
 import { SupplierService } from '../../../services/supplier.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { noTwoWhiteSpacesValidator,numbersValidator } from 'src/app/shared/Validations/common-validation'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-supplier-add-edit',
@@ -18,6 +19,7 @@ export class SupplierAddEditComponent implements OnInit {
     private fb:FormBuilder,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private supplierService:SupplierService
   ) { 
 
@@ -39,6 +41,7 @@ export class SupplierAddEditComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.getNextSupplierCode();
   }
 
   OnSubmit() {
@@ -52,6 +55,19 @@ export class SupplierAddEditComponent implements OnInit {
     .subscribe(res=>{
       this.router.navigate(['../supplier-list'],{relativeTo:this.route});
     },err=>{
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
+      console.error(err);
+    })
+  }
+
+  private getNextSupplierCode() {
+    this.supplierService.getNextSupplierCode()
+    .subscribe(res=>{
+      if(res.code) {
+        this.supplierFormGroup.get('Code').patchValue(res.code);
+      }
+    },err=>{
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

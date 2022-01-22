@@ -5,6 +5,7 @@ import { GrnPagination } from 'src/app/sales/models/grn-pagination';
 import { GoodReceivedNoteService } from 'src/app/sales/services/good-received-note.service';
 import { MatDialog, MatBottomSheet, PageEvent } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-grn-list',
@@ -24,6 +25,7 @@ export class GrnListComponent implements OnInit {
     protected dialog:MatDialog,
     protected bottomSheet:MatBottomSheet,
     protected route:ActivatedRoute,
+    private toasterService:ToastrService,
     protected router:Router) { 
 
   }
@@ -50,6 +52,7 @@ export class GrnListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

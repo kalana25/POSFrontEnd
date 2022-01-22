@@ -1,53 +1,53 @@
-<h2>Supplier</h2>
-<form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()" autocomplete="off">
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Code</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="Code">
-    <mat-error *ngIf="supplierFormGroup.get('Code').invalid">
-      <span *ngIf="supplierFormGroup.get('Code').errors.required">Mandatory</span>
-    </mat-error>
-  </mat-form-field>
+<div class="flx-col-container">
+  <div class="h-1">New Supplier</div>
+  <form class="supplier-form" [formGroup]="supplierFormGroup" (ngSubmit)="OnSubmit()" autocomplete="off">
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="Name">
-    <mat-error *ngIf="supplierFormGroup.get('Name').invalid">
-      <span *ngIf="supplierFormGroup.get('Name').errors.required">Mandatory</span>
-    </mat-error>
-  </mat-form-field>
+    <div class="form-code-field">
+      <input type="hidden" formControlName="Code">
+      <div>{{supplierFormGroup.get('Code').value}}</div>
+    </div>
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Description</mat-label>
-    <textarea matInput placeholder="Description" formControlName="Description"></textarea>
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="Name">
+      <mat-error *ngIf="supplierFormGroup.get('Name').invalid">
+        <span *ngIf="supplierFormGroup.get('Name').errors.required">Mandatory</span>
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Contact no</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="ContactNo">
-    <mat-error *ngIf="supplierFormGroup.get('ContactNo').invalid">
-      <span *ngIf="supplierFormGroup.get('ContactNo').errors">Invalid contact no</span>
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="Description"></textarea>
+    </mat-form-field>
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Telephone</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="Telephone">
-    <mat-error *ngIf="supplierFormGroup.get('Telephone').invalid">
-      <span *ngIf="supplierFormGroup.get('Telephone').errors">Invalid telephone no</span>
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Contact no</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="ContactNo">
+      <mat-error *ngIf="supplierFormGroup.get('ContactNo').invalid">
+        <span *ngIf="supplierFormGroup.get('ContactNo').errors">Invalid contact no</span>
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="Email">
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Telephone</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="Telephone">
+      <mat-error *ngIf="supplierFormGroup.get('Telephone').invalid">
+        <span *ngIf="supplierFormGroup.get('Telephone').errors">Invalid telephone no</span>
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Comment</mat-label>
-    <textarea matInput placeholder="Leave a comment" formControlName="Comment"></textarea>
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="Email">
+    </mat-form-field>
 
-  <mat-slide-toggle formControlName="BlackList">Blacklist</mat-slide-toggle>
-  <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
-  <button type="submit" mat-button class="float-right">Save</button>
-</form>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Comment</mat-label>
+      <textarea matInput placeholder="Leave a comment" formControlName="Comment"></textarea>
+    </mat-form-field>
+
+    <mat-slide-toggle formControlName="BlackList">Blacklist</mat-slide-toggle>
+    <mat-slide-toggle formControlName="Active">Active</mat-slide-toggle>
+    <button type="submit" mat-button class="float-right">Save</button>
+  </form>
+</div>

@@ -4,7 +4,7 @@ div.parent {
 }
 
 div.discount-header {
-    width: 50%;
+    width: 30%;
     margin-left: 20px;
 }
 
@@ -18,6 +18,10 @@ div.item-picker {
 
 form.discount-form {
     display: block;
+}
+
+.full-width {
+    width: 100%;
 }
 
 /* div.table-container {

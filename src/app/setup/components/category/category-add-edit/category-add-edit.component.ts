@@ -7,6 +7,7 @@ import { DropdownItem } from 'src/app/core/dropdown-item';
 import { map} from 'rxjs/operators';
 import { RouteStateService } from 'src/app/shared/services/route-state.service';
 import { pipe, from } from 'rxjs';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -24,7 +25,8 @@ export class CategoryAddEditComponent implements OnInit {
     private router:Router,
     private activatedRoute:ActivatedRoute,
     public routeStateService:RouteStateService,
-    private categoryService:CategoryService
+    private categoryService:CategoryService,
+    private toasterService:ToastrService
   ) { 
 
   }
@@ -40,6 +42,7 @@ export class CategoryAddEditComponent implements OnInit {
         this.getCategories();
         this.initFormForNewCategory();
       }
+      this.getNextCategoryCode();
     });
   }
 
@@ -109,6 +112,18 @@ export class CategoryAddEditComponent implements OnInit {
     },err=>{
       console.log(err);
     });
+  }
+
+  private getNextCategoryCode() {
+    this.categoryService.getNextCategoryCode()
+    .subscribe(res=>{
+      if(res.code) {
+        this.categoryFormGroup.get('Code').patchValue(res.code);
+      }
+    },err=>{
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
+      console.error(err);
+    })
   }
 
 }

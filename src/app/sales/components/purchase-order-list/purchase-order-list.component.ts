@@ -11,6 +11,7 @@ import { DialogData } from 'src/app/core/dialog-data';
 import { DialogContentComponent } from 'src/app/shared/components/dialog-content/dialog-content.component';
 import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { PurchaseOrderPagination } from '../../models/purchase-order-pagination';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-purchase-order-list',
@@ -30,6 +31,7 @@ export class PurchaseOrderListComponent implements OnInit {
     protected dialog:MatDialog,
     protected bottomSheet:MatBottomSheet,
     protected route:ActivatedRoute,
+    private toasterService:ToastrService,
     protected router:Router) { 
 
   }
@@ -56,6 +58,7 @@ export class PurchaseOrderListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }
