@@ -1,2 +1,49 @@
 html, body { height: 100%; }
 body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.flx-row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flx-col-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-code-field {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: dimgrey;
+}
+
+.h-1 {
+    font-family: Roboto;
+    display: block;
+    font-size: 2em;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.no-records-found{
+    font-size: 1.5em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: 500;
+    font-family: Roboto;
+    height: 450px;
+    color: #838383;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.full-width {
+    width: 100%;
+}

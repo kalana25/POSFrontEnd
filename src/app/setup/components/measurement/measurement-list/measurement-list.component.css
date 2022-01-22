@@ -1,4 +1,16 @@
-h1.page-header, div.measurement-container, div.item-info {
+:host{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+  
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+div.measurement-container, div.item-info {
     margin-left: 20px;
     margin-right: 20px;
 }
