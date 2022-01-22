@@ -1,71 +1,77 @@
-
-<h1 class="page-header">Purchase Orders</h1>
-<div class="po-container mat-elevation-z8">
-
-    <div class="po-loading-shade" *ngIf="IsLoading">
-        <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+<div class="parent-container">
+    <div class="h-1">Purchase Orders</div>
+    
+    <div class="po-container">
+    
+        <div class="po-loading-shade" *ngIf="IsLoading">
+            <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
+        </div>
+        <div class="po-table-container" *ngIf="purchaseOrderResponse?.items.length">
+            <table *ngIf="purchaseOrderResponse" mat-table [dataSource]="purchaseOrderResponse.items">
+    
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let column"> {{column.id}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let column"> {{column.date}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="supplierName">
+                <th mat-header-cell *matHeaderCellDef> Supplier </th>
+                <td mat-cell *matCellDef="let column"> {{column.supplierName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> Code </th>
+                <td mat-cell *matCellDef="let column"> {{column.code}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="totalPrice">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let column"> {{column.totalPrice}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="userId">
+                    <th mat-header-cell *matHeaderCellDef> UserID </th>
+                    <td mat-cell *matCellDef="let column"> {{column.userId}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let column">
+                        <button mat-icon-button (click)="OnDelete(column.id)" >
+                            <mat-icon class="icon-red">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="OnEdit(column)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" (click)="OnViewDetails(column)" class="btn-po-save">
+                            <mat-icon>list</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+    
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator
+                *ngIf="purchaseOrderResponse"
+                [length]="purchaseOrderResponse.totalCount"
+                [pageSize]="purchaseOrderResponse.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="OnPage($event)">
+            </mat-paginator>
+        </div>
+        <div *ngIf="!purchaseOrderResponse?.items.length" class="no-records-found">
+            No Records Found
+        </div>
     </div>
-    <div class="po-table-container">
-        <table *ngIf="purchaseOrderResponse" mat-table [dataSource]="purchaseOrderResponse.items">
 
-            <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let column"> {{column.id}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let column"> {{column.date}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="supplierName">
-            <th mat-header-cell *matHeaderCellDef> Supplier </th>
-            <td mat-cell *matCellDef="let column"> {{column.supplierName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="code">
-            <th mat-header-cell *matHeaderCellDef> Code </th>
-            <td mat-cell *matCellDef="let column"> {{column.code}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="totalPrice">
-            <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let column"> {{column.totalPrice}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="userId">
-                <th mat-header-cell *matHeaderCellDef> UserID </th>
-                <td mat-cell *matCellDef="let column"> {{column.userId}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let column">
-                    <button mat-icon-button (click)="OnDelete(column.id)" >
-                        <mat-icon class="icon-red">delete</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="OnEdit(column)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-raised-button color="primary" 
-                    (click)="OnViewDetails(column)"
-                    class="btn-po-save">Show Details</button>
-                </td>
-            </ng-container>
-
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
-    <mat-paginator
-        *ngIf="purchaseOrderResponse"
-        [length]="purchaseOrderResponse.totalCount"
-        [pageSize]="purchaseOrderResponse.pageSize"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        (page)="OnPage($event)">
-    </mat-paginator>
+    <button mat-fab class="fab-plus" (click)="OnAddClick()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
-<button mat-fab class="fab-plus" (click)="OnAddClick()">
-    <mat-icon>add</mat-icon>
-</button>

@@ -10,6 +10,7 @@ import { MeasurementService } from 'src/app/setup/services/measurement.service';
 import { MeasurementInfo } from 'src/app/setup/models/measurement-info';
 import { MeasurementDeleteAction } from '../dialog-action/measurement-confirmation-action';
 import { MeasurementEditComponent} from '../measurement-edit/measurement-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-measurement-list',
@@ -27,7 +28,8 @@ export class MeasurementListComponent implements OnInit {
     public route:ActivatedRoute,
     public router:Router,
     protected dialog:MatDialog,
-    public measurementService:MeasurementService
+    public measurementService:MeasurementService,
+    private toasterService:ToastrService
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class MeasurementListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

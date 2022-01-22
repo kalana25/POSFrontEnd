@@ -10,6 +10,7 @@ import { CategoryEditComponent } from '../category-edit/category-edit.component'
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-list',
@@ -28,6 +29,7 @@ export class CategoryListComponent implements OnInit {
     public categoryService:CategoryService,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private dialog:MatDialog) { }
 
     ngOnInit() {
@@ -46,6 +48,7 @@ export class CategoryListComponent implements OnInit {
         console.log(res);
       },err=>{
         this.IsLoading = false;
+        this.toasterService.error("Please check the internet connection","Something Bad happen")
         console.error(err);
       })
     }

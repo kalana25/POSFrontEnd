@@ -9,6 +9,7 @@ import { SupplierEditComponent } from '../supplier-edit/supplier-edit.component'
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-supplier-list',
@@ -27,6 +28,7 @@ export class SupplierListComponent implements OnInit {
     public supplierService:SupplierService,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class SupplierListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }

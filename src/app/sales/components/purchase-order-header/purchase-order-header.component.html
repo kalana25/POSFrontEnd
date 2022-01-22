@@ -1,44 +1,49 @@
-<form class="category-form" [formGroup]="purchaseOrderHeader" (ngSubmit)="OnSubmit()">
+<form class="purchase-order-form" [formGroup]="purchaseOrderHeader" (ngSubmit)="OnSubmit()">
 
-    <mat-form-field class="full-width">
-        <mat-label>Code</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="code">
-        <mat-error *ngIf="purchaseOrderHeader.get('code').invalid">
-            <span *ngIf="purchaseOrderHeader.get('code').errors.required">Mandatory</span>
-        </mat-error>
-    </mat-form-field>
+    <div class="po-header-row-one">
+        <div class="po-code">
+            <input type="hidden" formControlName="code">
+            <div>{{purchaseOrderHeader.get('code').value}}</div>
+        </div>
+        <div>
+            <button type="submit" mat-raised-button color="primary" 
+            class="btn-po-save">Save</button>
+        </div>
+    </div>
     
-    <mat-form-field class="full-width">
-        <mat-label>Date</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="purchaseOrderHeader.get('date').invalid">
-            <span *ngIf="purchaseOrderHeader.get('date').errors.required">Mandatory</span>
-        </mat-error>
-    </mat-form-field>
+    <div class="po-header-row-two">
+        <mat-form-field class="w-160">
+            <mat-label>Date</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="date" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="purchaseOrderHeader.get('date').invalid">
+                <span *ngIf="purchaseOrderHeader.get('date').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="w-160">
+            <mat-label>Delivery Date</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="deliveryDate" [matDatepicker]="DeliveryDatepicker">
+            <mat-datepicker-toggle matSuffix [for]="DeliveryDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #DeliveryDatepicker></mat-datepicker>
+            <mat-error *ngIf="purchaseOrderHeader.get('deliveryDate').invalid">
+                <span *ngIf="purchaseOrderHeader.get('deliveryDate').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
     
-    <mat-form-field class="full-width">
-        <mat-label>Delivery Date</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="deliveryDate" [matDatepicker]="DeliveryDatepicker">
-        <mat-datepicker-toggle matSuffix [for]="DeliveryDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker #DeliveryDatepicker></mat-datepicker>
-        <mat-error *ngIf="purchaseOrderHeader.get('deliveryDate').invalid">
-            <span *ngIf="purchaseOrderHeader.get('deliveryDate').errors.required">Mandatory</span>
-        </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-        <mat-label>Supplier</mat-label>
-        <mat-select formControlName="supplierId"placeholder="Supplier">
-            <mat-option *ngFor="let supplier of supplierList" [value]="supplier.id">
-                {{supplier.name}}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="purchaseOrderHeader.get('supplierId').invalid">
-            <span *ngIf="purchaseOrderHeader.get('supplierId').errors.required">Mandatory</span>
-        </mat-error>
-    </mat-form-field>
+        <mat-form-field class="w-300">
+            <mat-label>Supplier</mat-label>
+            <mat-select formControlName="supplierId"placeholder="Supplier">
+                <mat-option *ngFor="let supplier of supplierList" [value]="supplier.id">
+                    {{supplier.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="purchaseOrderHeader.get('supplierId').invalid">
+                <span *ngIf="purchaseOrderHeader.get('supplierId').errors.required">Mandatory</span>
+            </mat-error>
+        </mat-form-field>
+    </div>
 
     <mat-form-field class="full-width">
         <mat-label>User</mat-label>
@@ -49,6 +54,5 @@
         <mat-label>Price</mat-label>
         <input matInput placeholder="Placeholder" formControlName="totalPrice">
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" 
-    class="btn-po-save">Save</button>
+    
 </form>

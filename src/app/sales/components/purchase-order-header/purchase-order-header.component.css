@@ -1,5 +1,31 @@
-.btn-po-save {
-    position: absolute;
-    left: 612px;
-    top: 4px;
+
+.full-width {
+    width: 100%;
+}
+
+.purchase-order-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.po-header-row-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.po-header-row-one {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.po-code {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: dimgrey;
 }

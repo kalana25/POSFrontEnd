@@ -10,6 +10,7 @@ import { DialogContentComponent } from 'src/app/shared/components/dialog-content
 import { ResponseData } from 'src/app/core/response-data';
 import { RequestData } from 'src/app/core/request-data';
 import { PageEvent } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-list',
@@ -28,6 +29,7 @@ export class ProductListComponent implements OnInit {
     public productService:ProductService,
     private router:Router,
     private route:ActivatedRoute,
+    private toasterService:ToastrService,
     private dialog:MatDialog) { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class ProductListComponent implements OnInit {
       console.log(res);
     },err=>{
       this.IsLoading = false;
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
       console.error(err);
     })
   }
