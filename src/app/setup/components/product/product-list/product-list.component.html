@@ -33,7 +33,7 @@
         <div class="product-loading-shade" *ngIf="IsLoading">
             <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
         </div>
-        <div class="product-table-container" *ngIf="productResponse?.items.length">
+        <div class="product-table-container mat-elevation-z3" *ngIf="productResponse?.items.length">
             <table *ngIf="productResponse" mat-table [dataSource]="productResponse.items">
     
                 <ng-container matColumnDef="code">
