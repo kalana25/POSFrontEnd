@@ -27,6 +27,7 @@ import { OrderAddComponent } from './components/order/order-add/order-add.compon
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderHomeComponent } from './components/order/order-home/order-home.component';
 import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
+import { OrderCartComponent } from './components/order/order-cart/order-cart.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { OrderEditComponent } from './components/order/order-edit/order-edit.com
     GrnAdditionalItemComponent, 
     GrnAddSummaryComponent, 
     PoStatusPipe, 
-    GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent, OrderAddComponent, OrderListComponent, OrderHomeComponent, OrderEditComponent
+    GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent, OrderAddComponent, OrderListComponent, OrderHomeComponent, OrderEditComponent, OrderCartComponent
   ],
   imports: [
     CommonModule,

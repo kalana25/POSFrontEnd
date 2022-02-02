@@ -28,6 +28,8 @@ import { BaseUnitEditComponent } from './components/base-unit/base-unit-edit/bas
 import { MeasurementListComponent } from './components/measurement/measurement-list/measurement-list.component';
 import { MeasurementAddComponent } from './components/measurement/measurement-add/measurement-add.component';
 import { MeasurementEditComponent } from './components/measurement/measurement-edit/measurement-edit.component';
+import { CategoryPeginatedGridComponent } from './components/category/category-peginated-grid/category-peginated-grid.component';
+import { ProductPaginatedGridComponent } from './components/product/product-paginated-grid/product-paginated-grid.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { MeasurementEditComponent } from './components/measurement/measurement-e
     MeasurementListComponent,
     MeasurementAddComponent,
     MeasurementEditComponent,
+    CategoryPeginatedGridComponent,
+    ProductPaginatedGridComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +69,9 @@ import { MeasurementEditComponent } from './components/measurement/measurement-e
     SupplierListComponent,
     CategoryListComponent,
     ProductListComponent,
-    PcSetupBoardComponent
+    PcSetupBoardComponent,
+    CategoryPeginatedGridComponent,
+    ProductPaginatedGridComponent
   ],
   entryComponents:[
     BsActionMenuComponent,

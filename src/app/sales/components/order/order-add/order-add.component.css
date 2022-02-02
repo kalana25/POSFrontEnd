@@ -14,5 +14,11 @@ div.new-sales-container {
     margin-left: 20px;
     margin-right: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.category-card,.item-card,.cart-card {
+    width: 49.5%;
+    height:100%;
 }

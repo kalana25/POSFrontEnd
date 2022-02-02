@@ -1,0 +1,12 @@
+<mat-card class="full-width">
+    <mat-card-title>Categories</mat-card-title>
+    <mat-card-content class="card-body">
+        <ng-container *ngIf="categoryResponse">
+            <div *ngFor="let ca of categoryResponse.items" (click)="OnCateogyClick(ca)"
+                class="category-card mat-elevation-z1" matRipple matTooltip="{{ca.description}}">
+                <div class="cate-name">{{ca.name}}</div>
+                <div class="cate-code">{{ca.code}}</div>
+            </div>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

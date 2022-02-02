@@ -12,4 +12,10 @@ export class OrderAddComponent implements OnInit {
   ngOnInit() {
   }
 
+  public OnCategoryOutput(input:any)
+  {
+    console.log(input);
+    
+  }
+
 }

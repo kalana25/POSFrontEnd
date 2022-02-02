@@ -39,11 +39,11 @@ span.profile-name {
 }
 
 a {
-  width: 100% !important;
-  padding-left: 0px;
+  /* width: 100% !important; */
+  /* padding-left: 0px; */
   padding-right: 0px;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   align-items: center;
   font-weight: 550;
 }
