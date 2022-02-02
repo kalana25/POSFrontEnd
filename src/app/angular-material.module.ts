@@ -30,7 +30,8 @@ import {
    MatStepperModule,
    MatExpansionModule,
    MatSliderModule,
-   MatProgressBarModule
+   MatProgressBarModule,
+   MatRippleModule
 } from '@angular/material';
 
 @NgModule({
@@ -63,7 +64,8 @@ import {
       MatStepperModule,
       MatExpansionModule,
       MatSliderModule,
-      MatProgressBarModule
+      MatProgressBarModule,
+      MatRippleModule
    ],
    exports: [
       MatButtonModule,
@@ -93,7 +95,8 @@ import {
       MatStepperModule,
       MatExpansionModule,
       MatSliderModule,
-      MatProgressBarModule
+      MatProgressBarModule,
+      MatRippleModule
    ],
    providers: [
       MatDatepickerModule,

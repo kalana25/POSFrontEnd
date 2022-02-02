@@ -23,6 +23,10 @@ import { GrnListDetailComponent } from './components/grn/grn-list-detail/grn-lis
 import { PoStatusPipe } from './pipes/po-status.pipe';
 import { InventoryListComponent } from './components/inventory/inventory-list/inventory-list.component';
 import { InventoryListDetailComponent } from './components/inventory/inventory-list-detail/inventory-list-detail.component';
+import { OrderAddComponent } from './components/order/order-add/order-add.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderHomeComponent } from './components/order/order-home/order-home.component';
+import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,7 @@ import { InventoryListDetailComponent } from './components/inventory/inventory-l
     GrnAdditionalItemComponent, 
     GrnAddSummaryComponent, 
     PoStatusPipe, 
-    GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent
+    GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent, OrderAddComponent, OrderListComponent, OrderHomeComponent, OrderEditComponent
   ],
   imports: [
     CommonModule,
