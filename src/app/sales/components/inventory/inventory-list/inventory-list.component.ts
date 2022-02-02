@@ -6,11 +6,22 @@ import { InventoryService } from 'src/app/sales/services/inventory.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import { noTwoWhiteSpacesValidator } from 'src/app/shared/Validations/common-validation';
+import { element } from 'protractor';
+import { InventoryListDetailTableData } from '../inventory-list-detail/inventory-list-detail.component';
 
 @Component({
   selector: 'app-inventory-list',
   templateUrl: './inventory-list.component.html',
-  styleUrls: ['./inventory-list.component.css']
+  styleUrls: ['./inventory-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class InventoryListComponent implements OnInit {
 
@@ -20,6 +31,8 @@ export class InventoryListComponent implements OnInit {
   public InventoryDetailsLoading:boolean = false;
 
   displayedColumns: string[] = ['code','name','stock','reOrderLevel','barcode','unit'];
+  expandedElement:any|null;
+  expandedDetails:any|null;
 
 
   constructor(
@@ -58,8 +71,35 @@ export class InventoryListComponent implements OnInit {
   }
 
   public OnRowClick(input) {
+    this.expandedElement = this.expandedElement===input ? null : input;
     this.InventoryDetailsLoading = true;
-    debugger;
+    setTimeout(() => {
+      
+      this.inventoryService.getWithFullInfo(input.item.id)
+      .subscribe(res=>{
+        console.log(res);
+        
+        this.expandedDetails = this.expandedDetails===res ? null : res.details.map(x=>{
+          let orderedUnit:string = x.isBaseUnit ? res.unit.symbol : x.unit.symbol
+          let purhaseUnit:any = x.unit;
+          let quantityInBaseUnit:number = x.isBaseUnit ? x.quantity : x.quantity* purhaseUnit.quantity;
+          return new InventoryListDetailTableData (
+            x.goodReceivedNote.code,
+            x.goodReceivedNote.grnDate,
+            x.stockInDate,
+            x.expireDate,
+            x.quantity,
+            orderedUnit,
+            quantityInBaseUnit,
+            res.unit.symbol);
+        })
+        this.InventoryDetailsLoading = false
+      },err=>{
+        this.toasterService.error("Please check the internet connection","Something Bad happen")
+        this.InventoryDetailsLoading = false
+      })
+    }, 400);
+    
   }
 
 }

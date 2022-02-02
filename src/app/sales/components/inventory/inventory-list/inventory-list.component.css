@@ -46,12 +46,35 @@ table {
     color: rgb(218, 30, 30)
 }
 
-tr.invntry-data-row:hover {
+.invntry-data-row td {
+    border-bottom-width: 0;
+}
+
+tr.invntry-data-row:not(.inventory-expanded-row):hover {
     background: whitesmoke;
     cursor: pointer;
 }
 
-tr.invntry-data-row:active {
+tr.invntry-data-row:not(.inventory-expanded-row):active {
     background: #efefef;
     cursor: pointer;
+}
+
+.inventory-item-detail {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+tr.inventory-detail-row {
+    height: 0;
+}
+
+mat-cell.expanded-cell-container {
+    padding: 0px;
+}
+
+.mat-header-cell {
+    font-size: 13px;
+    color: black;
 }

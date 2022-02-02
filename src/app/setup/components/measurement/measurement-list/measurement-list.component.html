@@ -12,7 +12,7 @@
         <div class="measurement-loading-shade" *ngIf="IsLoading">
             <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
         </div>
-        <div class="measurement-table-container" *ngIf="measurementResponse?.items.length">
+        <div class="measurement-table-container mat-elevation-z3" *ngIf="measurementResponse?.items.length">
             <table *ngIf="measurementResponse" mat-table [dataSource]="measurementResponse.items">
     
                 <ng-container matColumnDef="name">

@@ -1,0 +1,9 @@
+
+.mat-header-cell {
+    font-size: 12px;
+    color: black;
+}
+.mat-header-row {
+    background-color: #e0eeff;
+    height: 40px;
+}
