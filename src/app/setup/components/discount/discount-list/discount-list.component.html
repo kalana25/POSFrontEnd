@@ -6,7 +6,7 @@
             <mat-spinner [diameter]="80" *ngIf="IsLoading"></mat-spinner>
         </div>
 
-        <div class="discount-table-container" *ngIf="discountResponse?.items.length">
+        <div class="discount-table-container mat-elevation-z3" *ngIf="discountResponse?.items.length">
             <table *ngIf="discountResponse" mat-table [dataSource]="discountResponse.items">
     
                 <ng-container matColumnDef="itemName">

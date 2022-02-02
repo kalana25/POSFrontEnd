@@ -1,1 +1,37 @@
-<p>inventory-list-detail works!</p>
+<p>Inventory Details</p>
+
+<table mat-table [dataSource]="data" class="full-width">
+
+    <ng-container matColumnDef="grnCode">
+      <th mat-header-cell *matHeaderCellDef> GRN </th>
+      <td mat-cell *matCellDef="let row"> {{row.grnCode}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="grnDate">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.grnDate|date : 'mediumDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stockInDate">
+        <th mat-header-cell *matHeaderCellDef> Stock In-Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.stockInDate|date : 'mediumDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expDate">
+        <th mat-header-cell *matHeaderCellDef> Exp Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.expDate|date : 'mediumDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="orderedQty">
+      <th mat-header-cell *matHeaderCellDef> Ord. Qty </th>
+      <td mat-cell *matCellDef="let row">{{row.grnQty}}&nbsp;{{row.orderedUnit}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="baseQty">
+        <th mat-header-cell *matHeaderCellDef> Base Qty </th>
+        <td mat-cell *matCellDef="let row" class="inventory-detail-cell">{{row.baseUnitQty}}&nbsp; {{row.baseUnit}}</td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
