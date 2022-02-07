@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/setup/models/category';
 import { Product } from 'src/app/setup/models/product';
@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/setup/services/product.service';
 export class ProductPaginatedGridComponent implements OnInit,OnChanges {
   productList:Array<Product>;
   @Input() category:Category;
+  @Output() selectedProd = new EventEmitter<Product>();
 
   constructor(
     protected productService:ProductService,
@@ -22,7 +23,6 @@ export class ProductPaginatedGridComponent implements OnInit,OnChanges {
   }
   
   ngOnChanges() {
-    debugger;
     if(this.category) {
       this.getProductByCategory(this.category.id)
     }
@@ -35,9 +35,14 @@ export class ProductPaginatedGridComponent implements OnInit,OnChanges {
     .subscribe(resp=>{
       this.productList = resp;
     },err=>{
-
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
+      console.error(err);
     })
   }
   // findall/categoryId/{categoryId}
+
+  public OnSelectProduct(input:Product) {
+    this.selectedProd.emit(input);
+  }
 
 }

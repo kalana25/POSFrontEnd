@@ -18,6 +18,12 @@ div.new-sales-container {
     justify-content: space-between;
 }
 
+div.cart-holder {
+    position: fixed;
+    height: 100%;
+    right: 0;
+}
+
 .category-card,.item-card,.cart-card {
     width: 49.5%;
     height:100%;

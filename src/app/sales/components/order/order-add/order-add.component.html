@@ -8,10 +8,13 @@
           
         <app-product-paginated-grid 
         [category]="selectedCategory"
+        (selectedProd)="OnProductSelect($event)"
         class="item-card">
         </app-product-paginated-grid>
-
-        <!-- <app-order-cart class="cart-card">
-        </app-order-cart> -->
+        
+    </div>
+    <div class="cart-holder">
+        <app-order-cart [@cart-slide]="rotState==='start'?'end':'start'">
+        </app-order-cart>
     </div>
 </div>
