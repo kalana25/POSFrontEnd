@@ -6,7 +6,9 @@
         class="category-card">
         </app-category-peginated-grid>
           
-        <app-product-paginated-grid class="item-card">
+        <app-product-paginated-grid 
+        [category]="selectedCategory"
+        class="item-card">
         </app-product-paginated-grid>
 
         <!-- <app-order-cart class="cart-card">

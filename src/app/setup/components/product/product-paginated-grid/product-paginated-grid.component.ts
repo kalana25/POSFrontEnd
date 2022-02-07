@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/setup/models/category';
 import { Product } from 'src/app/setup/models/product';
 import { ProductService } from 'src/app/setup/services/product.service';
 
@@ -8,8 +9,9 @@ import { ProductService } from 'src/app/setup/services/product.service';
   templateUrl: './product-paginated-grid.component.html',
   styleUrls: ['./product-paginated-grid.component.css']
 })
-export class ProductPaginatedGridComponent implements OnInit {
+export class ProductPaginatedGridComponent implements OnInit,OnChanges {
   productList:Array<Product>;
+  @Input() category:Category;
 
   constructor(
     protected productService:ProductService,
@@ -17,8 +19,15 @@ export class ProductPaginatedGridComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getProductByCategory(1)
   }
+  
+  ngOnChanges() {
+    debugger;
+    if(this.category) {
+      this.getProductByCategory(this.category.id)
+    }
+  }
+
 
 
   private getProductByCategory(categoryId:number) {
