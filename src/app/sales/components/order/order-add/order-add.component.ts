@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { OrderService } from 'src/app/sales/services/order.service';
 import { Category } from 'src/app/setup/models/category';
 import { Product } from 'src/app/setup/models/product';
 import { fade, rotateAll, rotateAndHide, cartslide } from '../../../../core/application-animation'
@@ -13,13 +15,23 @@ import { fade, rotateAll, rotateAndHide, cartslide } from '../../../../core/appl
     rotateAndHide]
 })
 export class OrderAddComponent implements OnInit {
+  public nextOrderCode:string;
   rotState:string ="start"
 
   selectedCategory:Category;
 
-  constructor() { }
+  constructor(
+    private orderService:OrderService,
+    private toasterService:ToastrService
+  ) { }
 
   ngOnInit() {
+    this.orderService.getNextCode()
+    .subscribe(res=>{
+      this.nextOrderCode = res.code;
+    },err=>{
+      this.toasterService.error("Please check the internet connection","Something Bad happen")
+    })
   }
 
   public OnCategoryOutput(input:Category)

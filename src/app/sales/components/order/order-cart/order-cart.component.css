@@ -3,3 +3,9 @@
     width: 500px;
     height: 100%;
 }
+
+.cart-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

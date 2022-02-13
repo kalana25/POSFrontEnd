@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-order-cart',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-cart.component.css']
 })
 export class OrderCartComponent implements OnInit {
-
+  @Input() nextCode:string;
+  cashier:string ="mypos@homail.com"
   constructor() { }
 
   ngOnInit() {

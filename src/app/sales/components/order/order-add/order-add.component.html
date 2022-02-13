@@ -14,7 +14,9 @@
         
     </div>
     <div class="cart-holder">
-        <app-order-cart [@cart-slide]="rotState==='start'?'end':'start'">
+        <app-order-cart 
+        [@cart-slide]="rotState==='start'?'end':'start'"
+        [nextCode]="nextOrderCode">
         </app-order-cart>
     </div>
 </div>
