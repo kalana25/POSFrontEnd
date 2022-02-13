@@ -28,6 +28,7 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
 import { OrderHomeComponent } from './components/order/order-home/order-home.component';
 import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
 import { OrderCartComponent } from './components/order/order-cart/order-cart.component';
+import { ProductPaginatedGridComponent } from './components/inventory/product-paginated-grid/product-paginated-grid.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { OrderCartComponent } from './components/order/order-cart/order-cart.com
     GrnAdditionalItemComponent, 
     GrnAddSummaryComponent, 
     PoStatusPipe, 
+    ProductPaginatedGridComponent,
     GrnListDetailComponent, InventoryListComponent, InventoryListDetailComponent, OrderAddComponent, OrderListComponent, OrderHomeComponent, OrderEditComponent, OrderCartComponent
   ],
   imports: [

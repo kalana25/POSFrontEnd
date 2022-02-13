@@ -29,7 +29,6 @@ import { MeasurementListComponent } from './components/measurement/measurement-l
 import { MeasurementAddComponent } from './components/measurement/measurement-add/measurement-add.component';
 import { MeasurementEditComponent } from './components/measurement/measurement-edit/measurement-edit.component';
 import { CategoryPeginatedGridComponent } from './components/category/category-peginated-grid/category-peginated-grid.component';
-import { ProductPaginatedGridComponent } from './components/product/product-paginated-grid/product-paginated-grid.component';
 
 
 @NgModule({
@@ -56,7 +55,6 @@ import { ProductPaginatedGridComponent } from './components/product/product-pagi
     MeasurementAddComponent,
     MeasurementEditComponent,
     CategoryPeginatedGridComponent,
-    ProductPaginatedGridComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +69,6 @@ import { ProductPaginatedGridComponent } from './components/product/product-pagi
     ProductListComponent,
     PcSetupBoardComponent,
     CategoryPeginatedGridComponent,
-    ProductPaginatedGridComponent
   ],
   entryComponents:[
     BsActionMenuComponent,

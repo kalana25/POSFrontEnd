@@ -45,6 +45,14 @@ export class InventoryService {
     );
   }
 
+  getAvailableStockByCategory(categoryId:number):Observable<Array<any>> {
+    return this.http.get<any>(`${this.config.apiUrl}/${this.resource}/availableStock/find/CategoryId/${categoryId}`)
+    .pipe(
+        tap(_=>console.log('fetch availableStock by categoryId')),
+        catchError(this.handleError<any>(`get=availableStock/find/CategoryId`))
+    );
+  }
+
   private handleError<T>(operation='operation',result?:T) {
     return (error:any):Observable<T> => {
         console.error(error);

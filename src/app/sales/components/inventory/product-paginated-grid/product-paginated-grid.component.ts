@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { InventoryService } from 'src/app/sales/services/inventory.service';
 import { Category } from 'src/app/setup/models/category';
 import { Product } from 'src/app/setup/models/product';
-import { ProductService } from 'src/app/setup/services/product.service';
 
 @Component({
   selector: 'app-product-paginated-grid',
@@ -15,7 +15,7 @@ export class ProductPaginatedGridComponent implements OnInit,OnChanges {
   @Output() selectedProd = new EventEmitter<Product>();
 
   constructor(
-    protected productService:ProductService,
+    protected inventoryService:InventoryService,
     protected toasterService:ToastrService
   ) { }
 
@@ -31,7 +31,7 @@ export class ProductPaginatedGridComponent implements OnInit,OnChanges {
 
 
   private getProductByCategory(categoryId:number) {
-    this.productService.get(`findall/categoryId/${categoryId}`)
+    this.inventoryService.getAvailableStockByCategory(categoryId)
     .subscribe(resp=>{
       this.productList = resp;
     },err=>{
