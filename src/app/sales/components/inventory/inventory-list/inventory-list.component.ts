@@ -74,8 +74,7 @@ export class InventoryListComponent implements OnInit {
     this.expandedElement = this.expandedElement===input ? null : input;
     this.InventoryDetailsLoading = true;
     setTimeout(() => {
-      
-      this.inventoryService.getWithFullInfo(input.item.id)
+      this.inventoryService.getWithFullInfo(input.id)
       .subscribe(res=>{
         console.log(res);
         

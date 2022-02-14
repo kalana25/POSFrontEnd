@@ -38,7 +38,7 @@ export class InventoryService {
   }
 
   getWithFullInfo(itemId:number):Observable<InventoryFullInfo> {
-    return this.http.get<InventoryFullInfo>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/ItemId/${itemId}`)
+    return this.http.get<InventoryFullInfo>(`${this.config.apiUrl}/${this.resource}/fullinfo/find/inventoryId/${itemId}`)
     .pipe(
         tap(_=>console.log('fetched resource')),
         catchError(this.handleError<InventoryFullInfo>(`getWithFullInfo=${itemId}`))
