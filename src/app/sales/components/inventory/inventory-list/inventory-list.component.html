@@ -41,6 +41,16 @@
                         <td mat-cell *matCellDef="let column">{{column.quantity}} {{column.unit.symbol}}</td>
                 </ng-container>
 
+                <ng-container matColumnDef="purchasePrice">
+                    <th mat-header-cell *matHeaderCellDef>Pur.Price </th>
+                        <td mat-cell *matCellDef="let column">{{column.purchasingPricePerBaseUnit|currency}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="sellingPrice">
+                    <th mat-header-cell *matHeaderCellDef>Sel.Price </th>
+                        <td mat-cell *matCellDef="let column">{{column.sellingPricePerBaseUnit|currency}}</td>
+                </ng-container>
+
                 <ng-container matColumnDef="expandedDetail">
                     <td mat-cell *matCellDef="let column" [attr.colspan]="displayedColumns.length" class="expanded-cell-container">
                       <div class="inventory-item-detail" [@detailExpand]="column == expandedElement ? 'expanded' : 'collapsed'">

@@ -6,4 +6,6 @@ export class InventoryHeaderBase extends BaseEntity {
     public quantity:number;
     public baseUnitId:number;
     public reOrderLevel:number;
+    public purchasingPricePerBaseUnit:number;
+    public sellingPricePerBaseUnit:number;
 }

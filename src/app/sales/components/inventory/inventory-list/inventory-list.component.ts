@@ -30,7 +30,7 @@ export class InventoryListComponent implements OnInit {
   public IsLoading:boolean=false;
   public InventoryDetailsLoading:boolean = false;
 
-  displayedColumns: string[] = ['code','name','stock','reOrderLevel','barcode','unit'];
+  displayedColumns: string[] = ['code','name','stock','purchasePrice','sellingPrice','reOrderLevel','barcode','unit'];
   expandedElement:any|null;
   expandedDetails:any|null;
 
