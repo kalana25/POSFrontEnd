@@ -54,6 +54,7 @@
                 <ng-container matColumnDef="expandedDetail">
                     <td mat-cell *matCellDef="let column" [attr.colspan]="displayedColumns.length" class="expanded-cell-container">
                       <div class="inventory-item-detail" [@detailExpand]="column == expandedElement ? 'expanded' : 'collapsed'">
+                        <mat-divider></mat-divider>
                         <mat-progress-bar mode="indeterminate" *ngIf="InventoryDetailsLoading"></mat-progress-bar>
                         <app-inventory-list-detail [data]="expandedDetails"></app-inventory-list-detail>
                       </div>

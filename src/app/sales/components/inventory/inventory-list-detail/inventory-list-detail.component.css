@@ -7,3 +7,10 @@
     background-color: #e0eeff;
     height: 40px;
 }
+
+div.table-header {
+    padding: 10px 0px 10px 10px;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #f8f5e8;
+}
